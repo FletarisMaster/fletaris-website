@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fletaris gives technical asset managers a 12-to-24-month forward view of maintenance commitments, redelivery exposure, and compliance posture." />
+  <title>Fletaris — Fleet Intelligence for Technical Asset Managers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <a href="#"><img src="images/logo.png" alt="Fletaris" style="height:32px;width:auto;display:block;"></a>
+    <div class="nav-links">
+      <a href="#product" class="nav-link">Product</a>
+      <a href="#persona" class="nav-link">Who it's for</a>
+      <a href="#waitlist" class="nav-link">Early access</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://app.fletaris.com" class="btn-ghost-sm">Sign in</a>
+      <a href="#waitlist" class="btn-primary-sm">Request access</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid">
+      <!-- Left column — text -->
+      <div class="hero-left">
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          Pre-launch · Limited early access
+        </div>
+        <h1>Your fleet's technical condition.<br><span style="color:#00C4CC;">Projected forward.</span></h1>
+        <p class="hero-sub">Fletaris gives technical asset managers a 12-to-24-month forward view of maintenance commitments, redelivery exposure, and compliance posture — built from the technical data you already have.</p>
+        <div class="cta-row">
+          <a href="#waitlist" class="btn-primary-lg">Request early access</a>
+          <a href="#product" class="btn-ghost-lg">See the product</a>
+        </div>
+        <p class="hero-microcopy">Limited initial cohort · No sales calls · Direct outreach only</p>
+      </div>
+
+      <!-- Right column — app UI mockup (inline HTML, Option A: sidebar + main) -->
+      <div class="hero-panel">
+
+        <!-- Browser / app chrome bar -->
+        <div class="hp-chrome">
+          <div class="hp-chrome-dots">
+            <span style="background:#EF4444;"></span>
+            <span style="background:#F59E0B;"></span>
+            <span style="background:#22C55E;"></span>
+          </div>
+          <div class="hp-chrome-bar">app.fletaris.com/portfolio</div>
+          <div class="hp-chrome-spacer"></div>
+        </div>
+
+        <!-- App body: sidebar + main side by side -->
+        <div class="hp-body">
+
+        <!-- Sidebar navigation -->
+        <div class="hp-sidebar">
+          <div class="hp-logo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="9" height="9" rx="2" fill="#00C4CC"/>
+              <rect x="13" y="2" width="9" height="9" rx="2" fill="rgba(0,196,204,0.35)"/>
+              <rect x="2" y="13" width="9" height="9" rx="2" fill="rgba(0,196,204,0.35)"/>
+              <rect x="13" y="13" width="9" height="9" rx="2" fill="rgba(0,196,204,0.18)"/>
+            </svg>
+            <span class="hp-logo-text">Fletaris</span>
+          </div>
+          <div class="hp-modules-label">MODULES</div>
+          <nav class="hp-nav">
+            <div class="hp-nav-item hp-nav-active">
+              <svg viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="4" rx="0.8" fill="currentColor"/><rect x="7" y="1" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/><rect x="1" y="7" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/><rect x="7" y="7" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/></svg>
+              <span>Portfolio</span>
+            </div>
+            <div class="hp-nav-item">
+              <svg viewBox="0 0 12 12" fill="none"><path d="M1 6 L4 3 L6 5 L8 2 L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 9 L10 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span>Fleet Registry</span>
+            </div>
+            <div class="hp-nav-item">
+              <svg viewBox="0 0 12 12" fill="none"><rect x="2" y="1" width="8" height="10" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M4 4.5 L8 4.5 M4 6.5 L8 6.5 M4 8.5 L6 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              <span>Findings Log</span>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Main content area -->
+        <div class="hp-main">
+
+          <!-- KPI stats row -->
+          <div class="hp-stats">
+            <div class="hp-stat">
+              <div class="hp-stat-label">Aircraft in Registry</div>
+              <div class="hp-stat-value">5</div>
+            </div>
+            <div class="hp-stat">
+              <div class="hp-stat-label">Open Findings</div>
+              <div class="hp-stat-value" style="color:#00C4CC;">6</div>
+            </div>
+            <div class="hp-stat">
+              <div class="hp-stat-label">Active Engagements</div>
+              <div class="hp-stat-value">0</div>
+            </div>
+          </div>
+
+          <!-- Section header -->
+          <div class="hp-section-hdr">
+            <span class="hp-section-title">Hangar</span>
+            <span class="hp-sort-label">Sorted by lease return date</span>
+            <div class="hp-toggle">
+              <span class="hp-toggle-btn hp-toggle-active">Hangar</span>
+              <span class="hp-toggle-btn">List</span>
+            </div>
+          </div>
+
+          <!-- Aircraft cards grid -->
+          <div class="hp-cards">
+
+            <!-- Card 1: MSN 26207 -->
+            <div class="hp-card">
+              <div class="hp-card-top">
+                <span class="hp-card-msn">MSN 26207</span>
+                <span class="hp-card-reg">N642GT</span>
+              </div>
+              <div class="hp-card-type">Boeing 767-3Y0(ER)</div>
+              <div class="hp-card-meta">
+                <span>FH 87,640</span><span class="hp-meta-dot">·</span><span>FC 22,180</span>
+              </div>
+              <div class="hp-card-route">PHNL → YBBN</div>
+              <div class="hp-card-operator">Atlas Air / DHL</div>
+              <div class="hp-card-days">165 days</div>
+              <div class="hp-card-tags">
+                <span class="hp-tag">AIRFRAME</span>
+                <span class="hp-tag">ARC</span>
+                <span class="hp-tag">ENGINE</span>
+                <span class="hp-tag">LEASE</span>
+              </div>
+            </div>
+
+            <!-- Card 2: MSN 39406 -->
+            <div class="hp-card">
+              <div class="hp-card-top">
+                <span class="hp-card-msn">MSN 39406</span>
+                <span class="hp-card-reg">N794AV</span>
+              </div>
+              <div class="hp-card-type">Boeing 787-8</div>
+              <div class="hp-card-meta">
+                <span>FH 42,180</span><span class="hp-meta-dot">·</span><span>FC 10,890</span>
+              </div>
+              <div class="hp-card-route">SKBO → LEMD</div>
+              <div class="hp-card-operator">Avianca</div>
+              <div class="hp-card-days">226 days</div>
+              <div class="hp-card-tags">
+                <span class="hp-tag">AIRFRAME</span>
+                <span class="hp-tag">ARC</span>
+                <span class="hp-tag">ENGINE</span>
+                <span class="hp-tag">LEASE</span>
+              </div>
+            </div>
+
+          </div><!-- /.hp-cards -->
+        </div><!-- /.hp-main -->
+        </div><!-- /.hp-body -->
+      </div><!-- /.hero-panel -->
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF STRIP -->
+  <section id="strip">
+    <div class="proof-left">
+      <span class="proof-label">Built by practitioners</span>
+      <div class="proof-divider"></div>
+      <span class="proof-text">Aeronautical engineers · Transition managers · Appraisers</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#00C4CC;display:inline-block;"></span>
+      <span style="font-size:11px;color:#00C4CC;font-weight:600;">Built on industry standards</span>
+    </div>
+  </section>
+
+  <!-- THE GAP -->
+  <section id="gap">
+    <div class="section-center-header">
+      <div class="section-eyebrow">The gap no tool addresses</div>
+      <h2>Three problems. One forward view.</h2>
+    </div>
+    <div class="gap-grid">
+      <div class="gap-card">
+        <div class="gap-number">01</div>
+        <p>Your technical records tell you what happened. No system tells you what's coming.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">02</div>
+        <p>Lease events and redelivery conditions don't wait for your spreadsheet to catch up.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">03</div>
+        <p>Shop visit windows and compliance exposure are invisible until it's too late to act.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SCREENSHOTS -->
+  <section id="product">
+    <div class="section-center-header">
+      <div class="section-eyebrow" style="text-align:center;">The work, elevated</div>
+      <h2 style="text-align:center;">Built for the data you already have.</h2>
+      <p class="section-sub">Import your existing records. Fletaris projects forward, flags exposure, and surfaces what needs attention — without changing how you work.</p>
+    </div>
+    <div class="transform-wrap">
+      <div class="transform-grid">
+
+        <!-- LEFT: Excel/spreadsheet style -->
+        <div class="transform-panel">
+          <div class="transform-label transform-label-before">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;"><rect width="5" height="5" rx="0.5" fill="#22C55E"/><rect x="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".65"/><rect y="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".65"/><rect x="6" y="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".35"/></svg>
+            Fleet_tracking_v3_FINAL_v2.xlsx
+          </div>
+          <div class="transform-body transform-body-before">
+            <table class="xls-table">
+              <thead>
+                <tr>
+                  <th class="xls-rn"></th>
+                  <th>MSN</th><th>Type</th><th>Reg</th><th>C-Check</th><th>Eng1 TSN</th><th>LLP</th><th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="xls-rn">2</td>
+                  <td>7842</td><td>A320-214</td><td>EC-MKL</td>
+                  <td class="xls-warn">???</td>
+                  <td>22,841</td>
+                  <td class="xls-warn">TBC</td>
+                  <td class="xls-note">check v2 tab</td>
+                </tr>
+                <tr class="xls-alt">
+                  <td class="xls-rn">3</td>
+                  <td>6291</td><td>B737-800</td><td>EI-FVL</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-urgent">URGENT</td>
+                  <td class="xls-note">redly 42d?</td>
+                </tr>
+                <tr>
+                  <td class="xls-rn">4</td>
+                  <td>5104</td><td>A320-232</td><td>OE-IQA</td>
+                  <td>2026-09</td><td>18,340</td><td>N</td><td></td>
+                </tr>
+                <tr class="xls-alt xls-faded">
+                  <td class="xls-rn">5</td>
+                  <td>4817</td><td>A321-211</td>
+                  <td class="xls-warn">???</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-note">missing</td>
+                </tr>
+                <tr>
+                  <td class="xls-rn">6</td>
+                  <td>9103</td><td>A330-223</td><td>G-VJCA</td>
+                  <td class="xls-warn">???</td>
+                  <td>44,210</td>
+                  <td class="xls-urgent">OVERDUE</td>
+                  <td class="xls-note">eng file sep</td>
+                </tr>
+                <tr class="xls-alt">
+                  <td class="xls-rn">7</td>
+                  <td class="xls-warn">???</td><td>B777F</td><td class="xls-warn">9V-???</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-note">no data</td>
+                </tr>
+                <tr>
+                  <td class="xls-rn">8</td>
+                  <td>6291</td><td>B737-800</td><td>EI-FVL</td>
+                  <td class="xls-warn">TBC</td>
+                  <td class="xls-warn">31,047?</td>
+                  <td class="xls-warn">TBC</td>
+                  <td class="xls-note">DUPLICATE check</td>
+                </tr>
+                <tr class="xls-alt">
+                  <td class="xls-rn">9</td>
+                  <td>1842</td><td>A319-111</td><td>OY-KBR</td>
+                  <td>2025-11</td>
+                  <td>19,833</td>
+                  <td>N</td>
+                  <td></td>
+                </tr>
+                <tr class="xls-faded">
+                  <td class="xls-rn">10</td>
+                  <td class="xls-warn">???</td><td class="xls-warn">???</td><td class="xls-warn">???</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-warn">—</td>
+                  <td class="xls-note">missing v1</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="xls-footer">4 spreadsheets · inconsistent formats · gaps unknown · no forward view</div>
+          </div>
+        </div>
+
+        <!-- CENTER: Funnel connector — many inputs → Fletaris → one structured view -->
+        <div class="transform-arrow" aria-hidden="true">
+          <svg width="88" height="220" viewBox="0 0 88 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 5 dashed input lines converging from left into badge -->
+            <line x1="0" y1="82"  x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="0" y1="96"  x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="0" y1="110" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="0" y1="124" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="0" y1="138" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Fletaris badge circle -->
+            <circle cx="44" cy="110" r="14" fill="rgba(0,196,204,0.12)" stroke="#00C4CC" stroke-width="1.5"/>
+            <!-- Arrow inside badge -->
+            <path d="M38 110h12M46 106.5l3.5 3.5-3.5 3.5" stroke="#00C4CC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Single solid output line to right -->
+            <line x1="58" y1="110" x2="80" y2="110" stroke="#00C4CC" stroke-width="1.5"/>
+            <path d="M77 107l3 3-3 3" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- "raw in" label top -->
+            <text x="44" y="72" font-family="Poppins,sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.06em">RAW IN</text>
+            <!-- "FLETARIS" label below badge -->
+            <text x="44" y="138" font-family="Poppins,sans-serif" font-size="7.5" font-weight="700" fill="#00C4CC" text-anchor="middle" letter-spacing="0.08em">FLETARIS</text>
+            <!-- "structured" label bottom -->
+            <text x="44" y="155" font-family="Poppins,sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.06em">STRUCTURED</text>
+          </svg>
+        </div>
+
+        <!-- RIGHT: Bright aircraft card -->
+        <div class="transform-panel">
+          <div class="transform-label transform-label-after">Fletaris — MSN 6291</div>
+          <div class="transform-body transform-body-after">
+
+            <div class="flt-top">
+              <div>
+                <div class="flt-msn">MSN 6291</div>
+                <div class="flt-reg">EI-FVL</div>
+              </div>
+              <div class="flt-type-col">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#94A3B8"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                <div class="flt-type">Boeing 737-800</div>
+              </div>
+            </div>
+
+            <div class="flt-fhfc">FH 31,047 · FC 8,204</div>
+            <div class="flt-sep"></div>
+
+            <div class="flt-last-label">Last flight</div>
+            <div class="flt-route">DUB <span class="flt-arrow-route">→</span> LGW</div>
+            <div class="flt-operator">Ryanair (wet-lease)</div>
+            <div class="flt-date">09 Apr 2026</div>
+            <div class="flt-updated">Updated today · Action required</div>
+
+            <div class="flt-sep"></div>
+
+            <div class="flt-redly-label">redelivery in</div>
+            <div class="flt-redly-row">
+              <span class="flt-redly-num">42</span>
+              <span class="flt-redly-unit">days</span>
+            </div>
+
+            <div class="flt-tags">
+              <span class="flt-tag flt-tag-red">AIRFRAME</span>
+              <span class="flt-tag flt-tag-red">AD GAP</span>
+              <span class="flt-tag flt-tag-blue">ENGINE</span>
+              <span class="flt-tag flt-tag-green">LEASE</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSET LIFECYCLE PHASES SECTION -->
+<section id="asset-lifecycle" style="background:#0B1120;padding:64px 40px 40px;">
+
+  <!-- Header -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <div style="font-family:'Poppins',system-ui,sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#00C4CC;margin-bottom:12px;">The asset lifecycle</div>
+    <h2 style="font-family:'Poppins',system-ui,sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.01em;margin:0 0 16px;line-height:1.2;">From delivery to redelivery.<br>Fletaris covers the full journey.</h2>
+    <p style="font-family:'Outfit',system-ui,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;line-height:1.65;">Every aircraft in your portfolio moves through the same five phases. Most tools only see one. Fletaris sees all of them — and projects forward from wherever your aircraft is today.</p>
+  </div>
+
+  <!-- Phase icons with connector line -->
+  <div style="position:relative;margin-bottom:40px;">
+
+    <!-- Connector line behind icons -->
+    <div style="position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(to right,#2D3F5C,#00C4CC 50%,#2D3F5C);z-index:0;"></div>
+
+    <!-- Five phases -->
+    <div class="alc-phase-row">
+
+      <!-- Phase 1 — Background -->
+      <div class="alc-phase-col">
+        <div class="alc-icon-ring">
+          <div class="alc-phase-num">1</div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M6 14h16M14 6v16" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="4" y="4" width="20" height="20" rx="4" stroke="#00C4CC" stroke-width="1.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <div class="alc-phase-name">Background</div>
+        <div class="alc-phase-desc">Asset origination &amp; initial assessment</div>
+      </div>
+
+      <!-- Phase 2 — Pre-delivery -->
+      <div class="alc-phase-col">
+        <div class="alc-icon-ring">
+          <div class="alc-phase-num">2</div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M5 20l8-8 4 4 6-9" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="22" cy="8" r="2.5" fill="rgba(0,196,204,0.3)" stroke="#00C4CC" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="alc-phase-name">Pre-delivery</div>
+        <div class="alc-phase-desc">Technical records &amp; condition review</div>
+      </div>
+
+      <!-- Phase 3 — Delivery (highlighted) -->
+      <div class="alc-phase-col">
+        <div class="alc-icon-ring alc-icon-active">
+          <div class="alc-phase-num">3</div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M4 18l7-4 4 2 9-7" stroke="#00C4CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14" cy="10" r="3" fill="none" stroke="#00C4CC" stroke-width="1.5"/>
+            <path d="M14 13v5" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="alc-phase-name" style="color:#00C4CC;">Delivery</div>
+        <div class="alc-phase-desc">Acceptance, handover, lease start</div>
+      </div>
+
+      <!-- Phase 4 — In-service -->
+      <div class="alc-phase-col">
+        <div class="alc-icon-ring">
+          <div class="alc-phase-num">4</div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="8" stroke="#00C4CC" stroke-width="1.5"/>
+            <path d="M14 10v4l3 3" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="alc-phase-name">In-service</div>
+        <div class="alc-phase-desc">Operations, maintenance, compliance</div>
+      </div>
+
+      <!-- Phase 5 — Redelivery -->
+      <div class="alc-phase-col">
+        <div class="alc-icon-ring">
+          <div class="alc-phase-num">5</div>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M8 14h12M16 10l4 4-4 4" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="4" y="4" width="20" height="20" rx="4" stroke="#00C4CC" stroke-width="1.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <div class="alc-phase-name">Redelivery</div>
+        <div class="alc-phase-desc">Return conditions, transition, remarketing</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Detail cards — one per phase -->
+  <div class="alc-cards-grid">
+
+    <div class="alc-card">
+      <div class="alc-card-eyebrow">Background</div>
+      <ul class="alc-card-list">
+        <li>Appraisal &amp; valuation</li>
+        <li>Market positioning</li>
+        <li>Initial records review</li>
+        <li>Lessee qualification</li>
+      </ul>
+    </div>
+
+    <div class="alc-card">
+      <div class="alc-card-eyebrow">Pre-delivery</div>
+      <ul class="alc-card-list">
+        <li>Technical inspection</li>
+        <li>Records audit &amp; gap analysis</li>
+        <li>Delivery conditions set</li>
+        <li>Maintenance reserve baseline</li>
+      </ul>
+    </div>
+
+    <div class="alc-card alc-card-active">
+      <div class="alc-card-eyebrow alc-eyebrow-teal">Delivery</div>
+      <ul class="alc-card-list alc-list-teal">
+        <li>Airworthiness baseline locked</li>
+        <li>LLP status documented</li>
+        <li>AD compliance confirmed</li>
+        <li>Lease terms active</li>
+      </ul>
+    </div>
+
+    <div class="alc-card alc-card-active">
+      <div class="alc-card-eyebrow alc-eyebrow-teal">In-service</div>
+      <ul class="alc-card-list alc-list-teal">
+        <li>Scheduled maintenance tracking</li>
+        <li>Reserve reconciliation</li>
+        <li>Shop visit forecasting</li>
+        <li>Compliance monitoring</li>
+      </ul>
+    </div>
+
+    <div class="alc-card alc-card-active">
+      <div class="alc-card-eyebrow alc-eyebrow-teal">Redelivery</div>
+      <ul class="alc-card-list alc-list-teal">
+        <li>24-month countdown active</li>
+        <li>Return condition gap analysis</li>
+        <li>Transition cost projection</li>
+        <li>Next lessee readiness</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Fletaris positioning bar -->
+  <div class="alc-position-bar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;background:rgba(0,196,204,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="7" stroke="#00C4CC" stroke-width="1.5"/>
+          <path d="M9 5v4l3 3" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',system-ui,sans-serif;font-size:13px;font-weight:600;color:#F1F5F9;">Fletaris is active across the full in-service and redelivery phases</div>
+        <div style="font-family:'Outfit',system-ui,sans-serif;font-size:11px;color:#64748B;margin-top:2px;">Delivery baseline → in-service tracking → 24-month redelivery countdown</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="alc-pillar-chip">Foresight</span>
+      <span class="alc-pillar-chip">Visibility</span>
+      <span class="alc-pillar-chip">Readiness</span>
+    </div>
+  </div>
+
+</section>
+<!-- END ASSET LIFECYCLE PHASES SECTION -->
+
+  <!-- ASSET LIFECYCLE PROJECTION SECTION -->
+  <section id="lifecycle" style="background:#1E2D4A;padding:64px 40px;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#00C4CC;margin-bottom:12px;font-family:'Poppins',system-ui,sans-serif;">Asset lifecycle intelligence</div>
+      <h2 style="font-family:'Poppins',system-ui,sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.01em;margin:0 0 16px;">Every event. Every aircraft.<br>Every month of the forward window.</h2>
+      <p style="font-family:'Outfit',system-ui,sans-serif;font-size:14px;color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto;line-height:1.65;">Fletaris maps your entire fleet's maintenance commitments, lease obligations, and compliance posture against a rolling 12-to-24-month projection — so you see what's coming before it becomes a constraint.</p>
+    </div>
+
+    <!-- Timeline widget -->
+    <div id="lifecycleWidget" style="background:#152032;border:1px solid #2D3F5C;border-radius:12px;padding:28px;max-width:900px;margin:0 auto;">
+
+      <!-- Widget header -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;gap:16px;">
+        <div>
+          <div style="font-family:'Poppins',system-ui,sans-serif;font-size:13px;font-weight:600;color:#F1F5F9;">Fleet lifecycle projection — MSN 7842 · A320-214 · EC-MKL</div>
+          <div style="font-family:'Outfit',system-ui,sans-serif;font-size:10px;color:#64748B;margin-top:3px;">Rolling 12-month forward view · Updated from last records import</div>
+        </div>
+        <div style="background:rgba(0,196,204,0.12);border:1px solid rgba(0,196,204,0.25);color:#00C4CC;font-family:'Outfit',system-ui,sans-serif;font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;flex-shrink:0;">● LIVE VIEW</div>
+      </div>
+
+      <!-- Month header row -->
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:12px;margin-bottom:4px;">
+        <div></div>
+        <div id="lcMonthHeaders" style="display:grid;grid-template-columns:repeat(12,1fr);"></div>
+      </div>
+
+      <!-- Track rows -->
+      <div class="lc-track">
+        <div class="lc-track-label">Airframe / C-Check</div>
+        <div class="lc-bar-area" id="lcAirframe"></div>
+      </div>
+      <div class="lc-track">
+        <div class="lc-track-label">Engine 1 · LLP Set</div>
+        <div class="lc-bar-area" id="lcEng1"></div>
+      </div>
+      <div class="lc-track">
+        <div class="lc-track-label">Engine 2 · Shop Visit</div>
+        <div class="lc-bar-area" id="lcEng2"></div>
+      </div>
+      <div class="lc-track">
+        <div class="lc-track-label">APU / Lease Return</div>
+        <div class="lc-bar-area" id="lcApu"></div>
+      </div>
+
+      <!-- Alert summary row -->
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+        <div class="lc-alert">
+          <div class="lc-alert-dot" style="background:#22C55E;"></div>
+          <div class="lc-alert-text"><strong style="color:#4ADE80;display:block;margin-bottom:2px;">Airframe</strong>C-Check in 8.5 months — scheduled</div>
+        </div>
+        <div class="lc-alert">
+          <div class="lc-alert-dot" style="background:#F59E0B;"></div>
+          <div class="lc-alert-text"><strong style="color:#FCD34D;display:block;margin-bottom:2px;">Engine 1</strong>LLP limit at 6 months — action window open</div>
+        </div>
+        <div class="lc-alert">
+          <div class="lc-alert-dot" style="background:#EF4444;"></div>
+          <div class="lc-alert-text"><strong style="color:#FCA5A5;display:block;margin-bottom:2px;">Engine 2</strong>Unplanned shop visit risk · 3.5 months</div>
+        </div>
+        <div class="lc-alert">
+          <div class="lc-alert-dot" style="background:#00C4CC;"></div>
+          <div class="lc-alert-text"><strong style="color:#00C4CC;display:block;margin-bottom:2px;">Lease return</strong>Conditions review due in 11 months</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- END ASSET LIFECYCLE PROJECTION SECTION -->
+
+  <!-- PILLARS (continues navy background — no visual break from lifecycle) -->
+  <section id="pillars">
+    <div class="section-center-header">
+      <div class="section-eyebrow" style="color:#00C4CC;text-align:center;">Three value pillars</div>
+      <h2 style="color:#fff;text-align:center;">Translate technical data into business decisions.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card" style="border-top:3px solid #00C4CC;">
+        <div class="pillar-eyebrow" style="color:#00C4CC;">Foresight · The differentiator</div>
+        <h3>See what's coming.</h3>
+        <p>Project component life limits and shop visit forecasts 12 to 24 months forward. Know your cost exposure before it becomes an operational constraint.</p>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid rgba(0,196,204,0.35);">
+        <div class="pillar-eyebrow" style="color:#64748B;">Visibility · The foundation</div>
+        <h3>One screen. Entire portfolio.</h3>
+        <p>Your entire fleet on one dashboard, current as of your last records update. Airframe, engines, APU, landing gear, ADs — all in one place.</p>
+      </div>
+      <div class="pillar-card" style="border-top:3px solid rgba(0,196,204,0.35);">
+        <div class="pillar-eyebrow" style="color:#64748B;">Readiness · The outcome</div>
+        <h3>Arrive prepared.</h3>
+        <p>Know your compliance and airworthiness posture before your next audit or redelivery. No last-minute surprises. No exposure you didn't see coming.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST OF NOT KNOWING -->
+  <section id="cost">
+    <div class="cost-grid">
+      <div class="cost-left">
+        <div class="section-eyebrow">The cost of not knowing</div>
+        <h2>Unplanned events don't announce themselves.</h2>
+        <div style="width:40px;height:3px;background:#00C4CC;margin-top:16px;border-radius:2px;"></div>
+      </div>
+      <div class="cost-right">
+        <div class="cost-row">
+          <div style="width:36px;height:36px;background:#FEF2F2;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2L14 13H2L8 2Z" stroke="#EF4444" stroke-width="1.5" stroke-linejoin="round"/>
+              <line x1="8" y1="6" x2="8" y2="9.5" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="8" cy="11.5" r="0.75" fill="#EF4444"/>
+            </svg>
+          </div>
+          <div>
+            <div class="cost-title">Redelivery disputes</div>
+            <p class="cost-body">Conditions found at aircraft return that weren't tracked forward become negotiating leverage for the other side. Every discrepancy discovered at redelivery is a position already lost.</p>
+            <span class="cost-callout">↑ Fletaris projects redelivery exposure 12–24 months out</span>
+          </div>
+        </div>
+        <div class="cost-row">
+          <div style="width:36px;height:36px;background:#FFF7ED;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6" stroke="#F59E0B" stroke-width="1.5"/>
+              <line x1="8" y1="5" x2="8" y2="9" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="8" cy="11" r="0.75" fill="#F59E0B"/>
+            </svg>
+          </div>
+          <div>
+            <div class="cost-title">Unplanned shop visits</div>
+            <p class="cost-body">The premium on an unplanned engine or APU shop visit versus a scheduled one is significant — in cost, in timing, and in aircraft availability. Visibility over the forward window eliminates the surprise.</p>
+            <span class="cost-callout">↑ Fletaris forecasts shop visits against the 12-month window</span>
+          </div>
+        </div>
+        <div class="cost-row cost-row-last">
+          <div style="width:36px;height:36px;background:#F0FDF4;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l3 3 7-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="cost-title">Compliance gaps at audit</div>
+            <p class="cost-body">An airworthiness gap found by an auditor instead of found by you comes with a deadline, a cost, and a counterparty watching. Being prepared is a posture, not a document.</p>
+            <span class="cost-callout">↑ Fletaris monitors compliance posture in real time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section id="persona">
+    <div class="persona-grid">
+      <div class="persona-left">
+        <div class="section-eyebrow">Built for</div>
+        <h2>The Technical Asset Manager</h2>
+        <p style="font-size:14px;color:#64748B;line-height:1.65;margin-bottom:24px;">You carry the technical airworthiness of a portfolio that moves fast. Redeliveries, lease transitions, shop visit windows, reserve reconciliations — all running in parallel. Fletaris is built around your work, not around the airline operator's.</p>
+        <div class="persona-chips">
+          <span class="chip-primary">Aviation Asset Managers</span>
+          <span class="chip-secondary">Independent CAMOs</span>
+          <span class="chip-secondary">Transition Managers</span>
+          <span class="chip-secondary">Fleet Directors</span>
+          <span class="chip-secondary">Appraisers</span>
+        </div>
+      </div>
+      <div class="persona-right">
+        <div class="position-card">
+          <div class="section-eyebrow" style="margin-bottom:16px;">Where Fletaris sits</div>
+          <div class="position-row position-muted">
+            <div class="position-dot" style="background:#94A3B8;"></div>
+            <div class="position-text">
+              <div class="position-name">Maintenance &amp; engineering systems</div>
+              <div class="position-desc">Execution-layer tools for engineers and technicians</div>
+            </div>
+            <div class="position-role">Serves the<br>engineer</div>
+          </div>
+          <div class="position-row position-active">
+            <div class="position-dot" style="background:#00C4CC;"></div>
+            <div class="position-text">
+              <div class="position-name" style="color:#00C4CC;">Fletaris</div>
+              <div class="position-desc" style="color:rgba(255,255,255,0.45);">Fleet intelligence · Forward projection</div>
+            </div>
+            <div class="position-role" style="color:#00C4CC;font-weight:600;">Serves the<br>asset manager</div>
+          </div>
+          <div class="position-row position-muted">
+            <div class="position-dot" style="background:#94A3B8;"></div>
+            <div class="position-text">
+              <div class="position-name">Lessor finance &amp; asset management platforms</div>
+              <div class="position-desc">Accounting-layer tools for finance teams</div>
+            </div>
+            <div class="position-role">Serves the<br>accountant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section id="waitlist" class="waitlist-section">
+    <div class="waitlist-inner">
+      <div class="badge-pill" style="justify-content:center;margin-bottom:20px;">
+        <span class="badge-dot"></span>Limited cohort · By invitation
+      </div>
+      <h2 style="color:#fff;font-size:28px;font-weight:700;letter-spacing:-0.01em;margin-bottom:12px;">Get early access</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.65;margin-bottom:32px;">We're onboarding a limited number of organizations for our initial release. No sales calls. No demos you didn't ask for. If your portfolio is the right fit, you'll hear from us directly.</p>
+
+      <div class="form-card" role="region" aria-label="Waitlist signup form">
+        <form id="waitlist-form" novalidate aria-label="Early access request form">
+          <div id="form-error-banner" style="display:none;color:#FCA5A5;font-size:0.85rem;margin-bottom:12px;">Something went wrong. Please try again or email us at operations@fletaris.com.</div>
+          <div class="form-row">
+            <div class="form-group" id="group-firstname">
+              <label for="firstname">First name</label>
+              <input type="text" id="firstname" name="firstname" placeholder="Maria" autocomplete="given-name" />
+            </div>
+            <div class="form-group" id="group-lastname">
+              <label for="lastname">Last name</label>
+              <input type="text" id="lastname" name="lastname" placeholder="Rodriguez" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-group" id="group-email">
+            <label for="email">Work email <span aria-hidden="true" style="color:#FCA5A5;">*</span></label>
+            <input type="email" id="email" name="email" placeholder="m.rodriguez@avcap.com" autocomplete="email" required aria-required="true" />
+            <span class="error-msg" role="alert">Please enter a valid work email address.</span>
+          </div>
+          <div class="form-group" id="group-company">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Aero Capital Partners" autocomplete="organization" />
+          </div>
+          <div class="form-group" id="group-fleetsize">
+            <label for="fleetsize">Fleet size <span aria-hidden="true" style="color:#FCA5A5;">*</span></label>
+            <div class="select-wrap">
+              <select id="fleetsize" name="fleetsize" required aria-required="true">
+                <option value="" disabled selected>Select fleet size</option>
+                <option value="1-10">1 – 10 aircraft</option>
+                <option value="11-30">11 – 30 aircraft</option>
+                <option value="31-80">31 – 80 aircraft</option>
+                <option value="80+">80+ aircraft</option>
+              </select>
+            </div>
+            <span class="error-msg" role="alert">Please select your fleet size.</span>
+          </div>
+          <button type="submit" class="btn-submit" aria-label="Submit waitlist request">Join the waitlist</button>
+        </form>
+        <div class="form-success" id="form-success" aria-live="polite" role="status" style="display:none;">
+          <div class="success-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00C4CC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h3>You're on the list.</h3>
+          <p>We'll reach out directly if your portfolio is a match for the initial cohort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-copy">&copy; 2026 Uchuva Tech. All rights reserved.</p>
+        <p class="footer-tm">Fletaris&trade; is a trademark of Uchuva Tech. All rights reserved.</p>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:operations@fletaris.com" class="footer-contact">operations@fletaris.com</a>
+        <div class="footer-divider"></div>
+        <div class="powered-by">
+          <span class="powered-label">Powered by</span>
+          <img src="images/uchuva.png" alt="Uchuva" class="uchuva-logo">
+          <span class="powered-name">Uchuva</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
