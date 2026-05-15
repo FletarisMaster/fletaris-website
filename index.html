@@ -1,823 +1,888 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fletaris gives technical asset managers a 12-to-24-month forward view of maintenance commitments, redelivery exposure, and compliance posture." />
-  <title>Fletaris — Fleet Intelligence for Technical Asset Managers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Fletaris gives technical asset managers a 12-to-24-month forward view of maintenance commitments, redelivery exposure, and compliance posture — built from the technical data you already have."/>
+<title>Fletaris — Fleet intelligence for technical asset managers</title>
+<link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ───────── tokens ───────── */
+:root{
+  --navy:#1E2D4A; --navy-deep:#152032; --navy-base:#0B1120;
+  --navy-line:#2D3F5C; --navy-mid:#26384A;
+  --teal:#00C4CC; --teal-hover:#00B0B8; --teal-soft:#82F4F4;
+  --teal-12:rgba(0,196,204,0.12); --teal-25:rgba(0,196,204,0.25); --teal-35:rgba(0,196,204,0.35);
+  --red:#EF4444; --amber:#F59E0B; --green:#22C55E;
+  --bg-page:#F8FAFC; --bg-card:#FFFFFF;
+  --border:#E2E8F0; --border-strong:#CBD5E1;
+  --ink-1:#020202; --ink-2:#1E2D4A; --ink-3:#475569; --ink-muted:#64748B; --ink-subtle:#94A3B8;
+  --fh:'Poppins',system-ui,sans-serif; --fb:'Outfit',system-ui,sans-serif; --fm:'JetBrains Mono',ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{font-family:var(--fb);color:var(--ink-1);background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+/* ───────── nav ───────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(11,17,32,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(45,63,92,0.5);height:64px;display:flex;align-items:center;padding:0 40px;}
+.nav-inner{max-width:1320px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.logo{height:24px;}
+.nav-links{display:flex;gap:36px;}
+.nav-link{font-family:var(--fh);font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);transition:color 0.2s;}
+.nav-link:hover{color:#fff;}
+.nav-actions{display:flex;gap:10px;align-items:center;}
+.btn{font-family:var(--fh);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border:1.5px solid transparent;transition:all 0.2s ease;text-decoration:none;}
+.btn-sm{font-size:12px;padding:7px 14px;border-radius:6px;}
+.btn-lg{font-size:14px;padding:15px 26px;border-radius:7px;font-weight:700;}
+.btn-primary{background:var(--teal);color:var(--navy);}
+.btn-primary:hover{background:var(--teal-hover);}
+.btn-ghost-dark{color:#fff;border-color:rgba(255,255,255,0.28);}
+.btn-ghost-dark:hover{border-color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.04);}
+.btn-ghost-light{color:var(--navy);border-color:var(--border-strong);}
+.btn-ghost-light:hover{border-color:var(--navy);background:var(--bg-page);}
+
+/* ───────── HERO — full-bleed editorial ───────── */
+.hero{position:relative;min-height:780px;display:flex;align-items:center;padding:120px 40px 80px;overflow:hidden;background:var(--navy-base);}
+.hero-bg{position:absolute;inset:0;background-image:url('images/image4.png');background-size:cover;background-position:center;filter:brightness(0.45) saturate(0.7) contrast(1.05);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg, rgba(11,17,32,0.95) 0%, rgba(11,17,32,0.7) 40%, rgba(11,17,32,0.3) 70%, rgba(11,17,32,0.85) 100%);}
+.hero-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,196,204,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,196,204,0.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-w{position:relative;max-width:1320px;margin:0 auto;width:100%;}
+.hero-meta{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;margin-bottom:48px;}
+.hero-serial{font-family:var(--fm);font-size:11px;color:var(--teal);letter-spacing:0.16em;font-weight:600;}
+.hero-meta-mid{display:flex;align-items:center;gap:14px;}
+.hero-meta-mid .ln{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(0,196,204,0.4),transparent);min-width:80px;}
+.hero-meta-mid .lbl{font-family:var(--fm);font-size:10.5px;color:rgba(255,255,255,0.55);letter-spacing:0.16em;text-transform:uppercase;}
+.hero-vol{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;}
+.hero-title{font-family:var(--fh);font-size:clamp(56px,8.5vw,124px);font-weight:700;line-height:0.92;letter-spacing:-0.038em;color:#fff;margin:0 0 32px;max-width:1100px;}
+.hero-title .l2{display:inline-block;padding-left:0.5em;}
+.hero-title em{font-style:normal;color:var(--teal);position:relative;}
+.hero-title em::after{content:"";position:absolute;left:0;right:0;bottom:0.1em;height:0.06em;background:var(--teal);opacity:0.35;}
+.hero-byline{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:end;margin-top:48px;}
+.hero-bl-l{max-width:520px;}
+.hero-bl-l p{font-family:var(--fb);font-size:18px;line-height:1.5;color:rgba(255,255,255,0.7);margin:0 0 24px;}
+.hero-bl-l .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-bl-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--navy-line);border-radius:12px;background:rgba(11,17,32,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;}
+.hero-bl-stat{padding:18px 24px;border-right:1px solid var(--navy-line);}
+.hero-bl-stat:last-child{border-right:none;}
+.hero-bl-stat .l{font-family:var(--fm);font-size:9.5px;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;}
+.hero-bl-stat .v{font-family:var(--fh);font-size:24px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;line-height:1;}
+.hero-bl-stat .v.teal{color:var(--teal);}
+.hero-bl-stat .v.red{color:#FCA5A5;}
+.hero-bl-stat .s{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px;}
+
+/* scroll cue */
+.scroll-cue{position:absolute;bottom:32px;left:40px;font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.16em;display:flex;align-items:center;gap:12px;}
+.scroll-cue::before{content:"";width:30px;height:1px;background:var(--teal);animation:slideR 3s ease-in-out infinite;}
+@keyframes slideR{0%,100%{opacity:0.3;transform:translateX(0);}50%{opacity:1;transform:translateX(8px);}}
+
+/* ───────── section primitives ───────── */
+.sec{padding:120px 40px;position:relative;}
+.sec-w{max-width:1320px;margin:0 auto;}
+.sec-band{display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;}
+.sec-serial{font-family:var(--fm);font-size:11px;font-weight:700;color:var(--teal);letter-spacing:0.16em;line-height:1;padding-top:8px;border-top:2px solid var(--teal);width:60px;}
+.sec-serial.light{color:var(--teal);border-color:var(--teal);}
+.sec-eyebrow{font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:14px;}
+.sec-eyebrow.light{color:rgba(255,255,255,0.55);}
+.sec-h{font-family:var(--fh);font-size:clamp(36px,4.5vw,64px);font-weight:700;line-height:1.05;letter-spacing:-0.025em;color:var(--ink-2);margin:0 0 24px;}
+.sec-h.light{color:#fff;}
+.sec-h em{font-style:normal;color:var(--teal);}
+.sec-lede{font-family:var(--fb);font-size:18px;line-height:1.55;color:var(--ink-muted);max-width:660px;margin:0;}
+.sec-lede.light{color:rgba(255,255,255,0.6);}
+
+/* ───────── diptych ───────── */
+.dip{background:#fff;}
+.dip .sec-band{margin-bottom:64px;}
+.dip-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.dip-side{padding:48px;position:relative;}
+.dip-side.before{background:#0B1120;color:#fff;min-height:560px;}
+.dip-side.before::before{content:"";position:absolute;inset:0;background-image:url('images/image2.png');background-size:cover;background-position:center;filter:saturate(0.7) brightness(0.7) contrast(1.05);opacity:0.5;}
+.dip-side.before::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,17,32,0.65),rgba(11,17,32,0.92));}
+.dip-side.before > *{position:relative;z-index:1;}
+.dip-side.after{background:var(--bg-page);}
+.dip-tag{font-family:var(--fm);font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:6px;}
+.dip-tag.before{color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);}
+.dip-tag.before .dot{width:6px;height:6px;border-radius:50%;background:#FCA5A5;}
+.dip-tag.after{color:var(--teal);background:var(--teal-12);border:1px solid var(--teal-25);}
+.dip-tag.after .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);}
+.dip-headline{font-family:var(--fh);font-size:30px;font-weight:700;letter-spacing:-0.015em;line-height:1.15;margin:20px 0 12px;}
+.dip-side.before .dip-headline{color:#fff;}
+.dip-side.after .dip-headline{color:var(--ink-2);}
+.dip-side.after .dip-headline em{font-style:normal;color:var(--teal);}
+.dip-body{font-family:var(--fb);font-size:15px;line-height:1.55;}
+.dip-side.before .dip-body{color:rgba(255,255,255,0.6);}
+.dip-side.after .dip-body{color:var(--ink-muted);}
+.dip-evidence{margin-top:36px;display:flex;flex-direction:column;gap:10px;}
+.dip-ev-row{display:grid;grid-template-columns:24px 1fr auto;gap:14px;align-items:center;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;}
+.dip-ev-icn{width:24px;height:24px;border-radius:5px;background:rgba(239,68,68,0.15);display:flex;align-items:center;justify-content:center;}
+.dip-ev-l{font-family:var(--fm);font-size:13px;color:rgba(255,255,255,0.85);}
+.dip-ev-r{font-family:var(--fm);font-size:11px;color:#FCA5A5;font-variant-numeric:tabular-nums;font-weight:600;}
+.dip-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-top:36px;position:relative;}
+.dip-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);border-radius:12px 12px 0 0;}
+.dip-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.dip-msn{font-family:var(--fh);font-size:28px;font-weight:700;color:var(--ink-2);letter-spacing:-0.015em;line-height:1;}
+.dip-reg{font-family:var(--fm);font-size:12px;color:var(--ink-muted);margin-top:5px;letter-spacing:0.04em;}
+.dip-pill{font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 8px;border-radius:4px;background:var(--teal-12);color:var(--teal);border:1px solid var(--teal-25);}
+.dip-fh{font-family:var(--fm);font-size:12px;color:var(--ink-muted);margin-top:10px;}
+.dip-fh b{color:var(--ink-2);font-weight:600;}
+.dip-sep{height:1px;background:var(--border);margin:18px 0;}
+.dip-meta-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.dip-meta-l{font-family:var(--fm);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-subtle);margin-bottom:5px;}
+.dip-meta-v{font-family:var(--fh);font-size:14px;font-weight:600;color:var(--ink-2);font-variant-numeric:tabular-nums;}
+.dip-bm{display:flex;align-items:baseline;gap:10px;margin-top:14px;}
+.dip-bm .n{font-family:var(--fh);font-size:64px;font-weight:700;line-height:0.9;color:var(--red);letter-spacing:-0.03em;font-variant-numeric:tabular-nums;}
+.dip-bm .u{font-family:var(--fb);font-size:16px;color:var(--ink-muted);}
+.dip-bm .s{margin-left:auto;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#DC2626;background:#FEF2F2;border:1px solid #FECACA;padding:4px 10px;border-radius:4px;}
+
+/* ───────── lifecycle — operations widget ───────── */
+.lifecycle{background:var(--navy-base);position:relative;overflow:hidden;padding:120px 40px;}
+.lifecycle::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,196,204,0.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;}
+.lifecycle::after{content:"";position:absolute;top:0;left:50%;width:700px;height:500px;transform:translate(-50%,-30%);background:radial-gradient(circle,rgba(0,196,204,0.10),transparent 60%);pointer-events:none;}
+.lifecycle .sec-band{margin-bottom:64px;}
+.lc-stage{position:relative;background:rgba(11,17,32,0.55);border:1px solid var(--navy-line);border-radius:4px;padding:0;overflow:hidden;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.lc-stage::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,196,204,0.5),transparent);z-index:2;}
+.lc-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:24px 40px;border-bottom:1px solid var(--navy-line);}
+.lc-head-l{display:flex;align-items:center;gap:18px;min-width:0;}
+.lc-mark{width:54px;height:54px;border-radius:4px;background:var(--teal-12);border:1px solid var(--teal-25);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lc-mark svg{width:26px;height:26px;}
+.lc-titles{min-width:0;}
+.lc-msn{font-family:var(--fh);font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.015em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.lc-msn .reg{margin-left:14px;font-family:var(--fm);font-size:13px;color:var(--teal);font-weight:600;letter-spacing:0.06em;}
+.lc-sub{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.5);margin-top:7px;letter-spacing:0.04em;display:flex;gap:14px;flex-wrap:wrap;}
+.lc-sub .div{color:var(--navy-line);}
+.lc-sub b{color:rgba(255,255,255,0.8);font-weight:600;}
+.lc-head-mid{display:flex;gap:0;border-top:1px solid var(--navy-line);border-bottom:1px solid var(--navy-line);overflow:hidden;background:rgba(11,17,32,0.5);}
+.lc-tab{font-family:var(--fm);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);padding:11px 22px;cursor:pointer;border-right:1px solid var(--navy-line);letter-spacing:0.1em;text-transform:uppercase;background:transparent;transition:all 0.15s ease;user-select:none;flex:0 0 auto;}
+.lc-tab:last-child{border-right:none;}
+.lc-tab:hover{color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.03);}
+.lc-tab.active{color:var(--teal);background:var(--teal-12);box-shadow:inset 0 -2px 0 var(--teal);}
+.lc-head-r{display:flex;align-items:center;gap:14px;}
+.lc-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10.5px;font-weight:700;letter-spacing:0.14em;color:var(--teal);padding:6px 12px;background:var(--teal-12);border:1px solid var(--teal-25);border-radius:4px;}
+.lc-live .led{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s ease-in-out infinite;}
+.lc-sync{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.lc-axis{display:grid;grid-template-columns:200px 1fr;gap:0;padding:18px 40px 0;}
+.lc-axis-l{font-family:var(--fm);font-size:9.5px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.14em;text-transform:uppercase;align-self:end;padding-bottom:8px;}
+.lc-axis-cells{display:grid;grid-template-columns:repeat(12,1fr);position:relative;}
+.lc-axis-cell{font-family:var(--fm);font-size:10px;font-weight:600;color:rgba(255,255,255,0.4);text-align:center;padding-bottom:10px;letter-spacing:0.08em;position:relative;}
+.lc-axis-cell.now{color:var(--teal);}
+.lc-axis-cell.now::before{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--teal);}
+.lc-axis-cell.q::after{content:attr(data-q);position:absolute;top:-12px;left:0;right:0;font-size:8.5px;letter-spacing:0.12em;color:rgba(255,255,255,0.3);font-weight:600;}
+.lc-tracks-wrap{position:relative;padding:0 40px 24px;}
+.lc-tracks-wrap::before{content:"";position:absolute;left:calc(40px + 200px + (100% - 80px - 200px) * 0.0417);top:0;bottom:24px;width:1px;background:linear-gradient(to bottom,var(--teal),rgba(0,196,204,0.15));box-shadow:0 0 8px rgba(0,196,204,0.4);pointer-events:none;z-index:1;}
+.lc-tracks-wrap::after{content:"NOW";position:absolute;left:calc(40px + 200px + (100% - 80px - 200px) * 0.0417);top:-4px;transform:translateX(-50%);font-family:var(--fm);font-size:8.5px;font-weight:700;letter-spacing:0.16em;color:var(--teal);background:var(--navy-base);padding:0 6px;z-index:2;}
+.lc-tracks{position:relative;display:flex;flex-direction:column;}
+.lc-tracks::before{content:"";position:absolute;left:200px;right:0;top:0;bottom:0;background-image:repeating-linear-gradient(to right, transparent, transparent calc(8.333% - 1px), rgba(45,63,92,0.4) calc(8.333% - 1px), rgba(45,63,92,0.4) 8.333%);pointer-events:none;}
+.lc-track{display:grid;grid-template-columns:200px 1fr;gap:0;align-items:center;padding:9px 0;border-bottom:1px solid rgba(45,63,92,0.4);}
+.lc-track:last-child{border-bottom:none;}
+.lc-track-l{display:flex;flex-direction:column;gap:4px;padding-right:18px;}
+.lc-track-name{font-family:var(--fh);font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.92);letter-spacing:-0.005em;}
+.lc-track-sub{font-family:var(--fm);font-size:9.5px;color:rgba(255,255,255,0.42);letter-spacing:0.04em;}
+.lc-bar-area{position:relative;height:30px;}
+.lc-bar{position:absolute;top:0;height:30px;border-radius:2px;display:flex;align-items:center;padding:0 12px;font-family:var(--fm);font-size:10px;font-weight:700;white-space:nowrap;overflow:hidden;letter-spacing:0.08em;text-transform:uppercase;z-index:1;}
+.lc-bar.green-dim{background:rgba(34,197,94,0.10);color:#86EFAC;border:1px solid rgba(34,197,94,0.30);}
+.lc-bar.green-solid{background:rgba(34,197,94,0.55);color:#fff;border:1px solid rgba(34,197,94,0.85);}
+.lc-bar.amber-dim{background:rgba(245,158,11,0.10);color:#FCD34D;border:1px dashed rgba(245,158,11,0.45);}
+.lc-bar.amber-solid{background:rgba(245,158,11,0.55);color:#fff;border:1px solid rgba(245,158,11,0.85);}
+.lc-bar.red-dim{background:rgba(239,68,68,0.12);color:#FCA5A5;border:1px solid rgba(239,68,68,0.35);}
+.lc-bar.red-solid{background:rgba(239,68,68,0.65);color:#fff;border:1px solid rgba(239,68,68,0.9);}
+.lc-bar.teal-dim{background:rgba(0,196,204,0.10);color:var(--teal);border:1px solid rgba(0,196,204,0.30);}
+.lc-bar.teal-solid{background:rgba(0,196,204,0.45);color:#fff;border:1px solid var(--teal);box-shadow:0 0 8px rgba(0,196,204,0.25);}
+.lc-flag{position:absolute;top:-18px;font-family:var(--fm);font-size:8.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);background:var(--navy-base);padding:2px 7px;border:1px solid var(--teal);border-radius:0;z-index:3;}
+.lc-flag::after{content:"";position:absolute;left:50%;bottom:-5px;width:1px;height:5px;background:var(--teal);}
+.lc-foot{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--navy-line);}
+.lc-alert{padding:18px 22px;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--navy-line);background:rgba(255,255,255,0.015);}
+.lc-alert:last-child{border-right:none;}
+.lc-alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.lc-alert-text{font-family:var(--fb);font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;}
+.lc-alert-text b{display:block;margin-bottom:4px;font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;}
+.lc-alert-text .when{display:block;margin-top:6px;font-family:var(--fm);font-size:10.5px;color:rgba(255,255,255,0.75);font-weight:600;letter-spacing:0.02em;font-variant-numeric:tabular-nums;}
+.lc-legend{display:flex;justify-content:space-between;align-items:center;padding:14px 40px;border-top:1px solid var(--navy-line);background:rgba(11,17,32,0.6);}
+.lc-leg-l{display:flex;gap:22px;flex-wrap:wrap;}
+.lc-leg-item{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:8px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+.lc-leg-item .sw{width:18px;height:6px;border-radius:1px;}
+.lc-leg-r{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;font-variant-numeric:tabular-nums;}
+.lc-leg-r b{color:var(--teal);font-weight:700;}
+
+/* ───────── pillars ───────── */
+.pillars{background:#fff;padding:120px 40px;}
+.pl-band{margin-bottom:72px;}
+.pl-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.pl-col{padding:48px 40px;border-right:1px solid var(--border);position:relative;}
+.pl-col:last-child{border-right:none;}
+.pl-col.primary{background:linear-gradient(180deg,rgba(0,196,204,0.04),transparent 60%);}
+.pl-col-serial{font-family:var(--fm);font-size:10.5px;color:var(--teal);letter-spacing:0.14em;font-weight:700;margin-bottom:18px;}
+.pl-col-stat{font-family:var(--fh);font-size:96px;font-weight:700;line-height:0.85;letter-spacing:-0.04em;color:var(--ink-2);font-variant-numeric:tabular-nums;margin-bottom:14px;}
+.pl-col.primary .pl-col-stat{color:var(--teal);}
+.pl-col-stat .small{font-size:32px;color:var(--ink-subtle);font-weight:500;letter-spacing:0;}
+.pl-col-eyebrow{font-family:var(--fm);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:18px;}
+.pl-col-h{font-family:var(--fh);font-size:26px;font-weight:700;letter-spacing:-0.015em;line-height:1.15;color:var(--ink-2);margin:0 0 12px;}
+.pl-col-p{font-family:var(--fb);font-size:15px;line-height:1.55;color:var(--ink-muted);margin:0;}
+
+/* ───────── cost / quote ───────── */
+.quote{position:relative;padding:140px 40px;background:var(--navy-deep);overflow:hidden;}
+.quote::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,196,204,0.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
+.quote::after{content:"";position:absolute;top:0;left:50%;width:800px;height:500px;transform:translate(-50%,-20%);background:radial-gradient(ellipse, rgba(239,68,68,0.10), transparent 65%);pointer-events:none;}
+.quote-w{position:relative;max-width:1320px;margin:0 auto;}
+.quote-band{display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;margin-bottom:64px;}
+.quote-band .sec-h{color:#fff;}
+.quote-band .sec-h em{color:var(--teal);}
+.quote-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--navy-line);border:1px solid var(--navy-line);border-radius:14px;overflow:hidden;}
+.qc{background:var(--navy-base);padding:40px 36px;display:flex;flex-direction:column;}
+.qc-tag{font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px;margin-bottom:24px;}
+.qc-tag .dot{width:6px;height:6px;border-radius:50%;}
+.qc-num{font-family:var(--fh);font-size:96px;font-weight:700;line-height:0.85;letter-spacing:-0.04em;font-variant-numeric:tabular-nums;margin-bottom:8px;}
+.qc-num .u{font-size:28px;color:rgba(255,255,255,0.6);font-weight:500;letter-spacing:0;margin-left:6px;}
+.qc-num.red{color:#FCA5A5;}
+.qc-num.amber{color:#FCD34D;}
+.qc-num.green{color:#4ADE80;}
+.qc-h{font-family:var(--fh);font-size:18px;font-weight:600;color:#fff;line-height:1.3;margin:0 0 10px;}
+.qc-b{font-family:var(--fb);font-size:14px;line-height:1.55;color:rgba(255,255,255,0.72);margin:0 0 auto;flex:1;}
+.qc-foot{margin-top:24px;font-family:var(--fm);font-size:11px;color:var(--teal);font-weight:600;border-top:1px solid rgba(0,196,204,0.22);padding-top:14px;display:flex;align-items:center;gap:8px;}
+
+/* ───────── persona ───────── */
+.persona{background:var(--navy-deep);padding:120px 40px;}
+.persona-w{max-width:1320px;margin:0 auto;}
+.persona-band{margin-bottom:64px;}
+.persona-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start;}
+.persona-l{display:flex;flex-direction:column;gap:24px;}
+.persona-quote{font-family:var(--fh);font-size:28px;font-weight:500;font-style:italic;color:#fff;line-height:1.3;letter-spacing:-0.01em;border-left:3px solid var(--teal);padding-left:24px;}
+.persona-quote .who{display:block;font-family:var(--fm);font-style:normal;font-size:11px;color:var(--ink-muted);margin-top:18px;letter-spacing:0.04em;font-weight:500;}
+.persona-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip-1{background:var(--teal);color:var(--navy);font-family:var(--fh);font-size:12px;font-weight:700;padding:8px 14px;border-radius:999px;letter-spacing:0.02em;}
+.chip-2{background:transparent;color:rgba(255,255,255,0.7);border:1px solid var(--navy-line);font-family:var(--fh);font-size:12px;font-weight:500;padding:8px 14px;border-radius:999px;letter-spacing:0.02em;}
+.position-card{background:rgba(11,17,32,0.6);border:1px solid var(--navy-line);border-radius:14px;padding:32px;}
+.pc-head{font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.pc-head::after{content:"";flex:1;height:1px;background:var(--navy-line);}
+.pc-row{display:grid;grid-template-columns:48px 1fr auto;gap:20px;align-items:center;padding:20px;margin:0 -20px;border-radius:10px;border-bottom:1px solid var(--navy-line);}
+.pc-row:last-child{border-bottom:none;}
+.pc-row.active{background:linear-gradient(90deg,rgba(0,196,204,0.10),transparent);border-bottom:1px solid var(--teal-25);position:relative;}
+.pc-row.active::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--teal);}
+.pc-mark{width:48px;height:48px;border-radius:10px;background:var(--navy-deep);border:1px solid var(--navy-line);display:flex;align-items:center;justify-content:center;}
+.pc-row.active .pc-mark{background:var(--teal-12);border-color:var(--teal-35);}
+.pc-mark svg{width:22px;height:22px;}
+.pc-name{font-family:var(--fh);font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);}
+.pc-row.active .pc-name{color:var(--teal);}
+.pc-desc{font-family:var(--fb);font-size:12.5px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.pc-role{font-family:var(--fm);font-size:10.5px;color:rgba(255,255,255,0.4);text-align:right;line-height:1.4;letter-spacing:0.04em;}
+.pc-row.active .pc-role{color:var(--teal);font-weight:600;}
+
+/* ───────── waitlist ───────── */
+.waitlist{position:relative;padding:140px 40px;background:#0B1120;overflow:hidden;}
+.waitlist::before{content:"";position:absolute;inset:0;background-image:url('images/image5.png');background-size:cover;background-position:center;filter:saturate(0.6) brightness(0.65);}
+.waitlist::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(11,17,32,0.96) 0%,rgba(11,17,32,0.78) 40%,rgba(11,17,32,0.45) 70%,rgba(11,17,32,0.85) 100%);}
+.waitlist-w{position:relative;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center;}
+.waitlist-l{display:flex;flex-direction:column;gap:20px;}
+.waitlist-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);padding:6px 14px;border:1px solid var(--teal-25);background:var(--teal-12);border-radius:999px;align-self:flex-start;}
+.waitlist-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(0,196,204,0.18);}
+.waitlist h2{font-family:var(--fh);font-size:clamp(40px,5vw,68px);font-weight:700;letter-spacing:-0.025em;color:#fff;line-height:1.02;margin:0;}
+.waitlist h2 em{font-style:normal;color:var(--teal);}
+.waitlist-lede{font-family:var(--fb);font-size:17px;line-height:1.55;color:rgba(255,255,255,0.65);margin:0;max-width:440px;}
+.waitlist-receipts{display:flex;flex-direction:column;gap:10px;margin-top:18px;border-top:1px solid var(--navy-line);padding-top:24px;}
+.wl-rec{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;}
+.wl-rec-mark{width:28px;height:28px;border-radius:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.4);display:flex;align-items:center;justify-content:center;color:#4ADE80;}
+.wl-rec-l{font-family:var(--fb);font-size:13px;color:rgba(255,255,255,0.65);}
+.wl-rec-r{font-family:var(--fm);font-size:10.5px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;}
+.form-card{background:rgba(21,32,50,0.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(0,196,204,0.18);border-radius:16px;padding:36px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);}
+.form-card-head{font-family:var(--fh);font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}
+.form-card-head .step{font-family:var(--fm);font-size:11px;color:var(--teal);letter-spacing:0.06em;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fld{margin-bottom:16px;}
+.fld label{display:block;font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
+.fld input,.fld select{width:100%;background:rgba(11,17,32,0.6);border:1px solid var(--navy-line);border-radius:8px;padding:14px 16px;color:#F1F5F9;font-family:var(--fb);font-size:14px;outline:none;transition:all 0.2s ease;}
+.fld input::placeholder{color:#4B6080;}
+.fld input:focus,.fld select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,196,204,0.12);}
+.fld.has-error input,.fld.has-error select{border-color:var(--red);}
+.select-wrap{position:relative;}
+.select-wrap::after{content:"▾";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--ink-muted);pointer-events:none;}
+.fld select{appearance:none;-webkit-appearance:none;padding-right:36px;background-color:rgba(11,17,32,0.6);}
+.fld select option{background:#1E2D4A;color:#F1F5F9;}
+.btn-submit{width:100%;background:var(--teal);color:var(--navy);font-family:var(--fh);font-size:14px;font-weight:700;padding:16px;border:none;border-radius:8px;cursor:pointer;margin-top:10px;letter-spacing:0.01em;transition:background 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+.btn-submit:hover{background:var(--teal-hover);}
+.btn-submit:disabled{opacity:0.6;cursor:default;}
+
+/* form states */
+#form-error-banner{background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.4);border-radius:8px;padding:12px 16px;font-family:var(--fm);font-size:12px;color:#FCA5A5;margin-bottom:14px;}
+#form-success{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.35);border-radius:12px;padding:36px;text-align:center;}
+#form-success .s-title{font-family:var(--fh);font-size:20px;font-weight:700;color:#4ADE80;margin-bottom:10px;}
+#form-success .s-body{font-family:var(--fb);font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;}
+
+/* ───────── footer ───────── */
+.foot{background:var(--navy-base);border-top:1px solid var(--navy-line);padding:48px 40px 36px;}
+.foot-inner{max-width:1320px;margin:0 auto;}
+.foot-top{display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:center;padding-bottom:32px;border-bottom:1px solid var(--navy-line);}
+.foot-logo{height:24px;}
+.foot-tagline{font-family:var(--fb);font-size:13px;color:rgba(255,255,255,0.55);}
+.foot-tagline b{color:var(--teal);font-family:var(--fh);font-weight:600;}
+.foot-status{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:8px;letter-spacing:0.04em;}
+.foot-status .dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;box-shadow:0 0 6px #4ADE80;}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;gap:24px;flex-wrap:wrap;}
+.foot-l{display:flex;flex-direction:column;gap:4px;}
+.foot-copy{font-family:var(--fb);font-size:12px;color:rgba(255,255,255,0.55);}
+.foot-tm{font-family:var(--fb);font-size:11px;color:rgba(255,255,255,0.32);}
+.foot-r{display:flex;align-items:center;gap:18px;}
+.foot-r a{font-family:var(--fh);font-size:12px;color:var(--teal);font-weight:600;}
+.foot-vbar{width:1px;height:14px;background:var(--navy-line);}
+.foot-pb{display:flex;align-items:center;gap:7px;}
+.foot-pb-l{font-family:var(--fb);font-size:11px;color:rgba(255,255,255,0.45);}
+.foot-pb-name{font-family:var(--fh);font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;}
+.foot-pb img{height:14px;}
+
+/* ───────── responsive ───────── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hero{padding:100px 24px 60px;}
+  .hero-meta{grid-template-columns:1fr;gap:12px;}
+  .hero-byline{grid-template-columns:1fr;gap:32px;}
+  .hero-bl-stats{grid-template-columns:1fr;}
+  .sec{padding:80px 24px;}
+  .dip-grid{grid-template-columns:1fr;}
+  .dip-side.before{min-height:auto;}
+  .lc-axis{grid-template-columns:120px 1fr;padding:12px 20px 0;}
+  .lc-tracks-wrap{padding:0 20px 20px;}
+  .lc-track{grid-template-columns:120px 1fr;}
+  .lc-tracks-wrap::before{left:calc(20px + 120px + (100% - 40px - 120px) * 0.0417);}
+  .lc-tracks-wrap::after{left:calc(20px + 120px + (100% - 40px - 120px) * 0.0417);}
+  .lc-head{padding:20px 20px;}
+  .lc-legend{padding:12px 20px;flex-direction:column;gap:12px;align-items:flex-start;}
+  .lc-foot{grid-template-columns:1fr 1fr;}
+  .pl-stack{grid-template-columns:1fr;}
+  .pl-col{border-right:none;border-bottom:1px solid var(--border);padding:36px 24px;}
+  .quote-card-grid{grid-template-columns:1fr;}
+  .persona-grid{grid-template-columns:1fr;gap:40px;}
+  .waitlist-w{grid-template-columns:1fr;gap:48px;}
+  .pillars{padding:80px 24px;}
+  .quote{padding:80px 24px;}
+  .persona{padding:80px 24px;}
+  .waitlist{padding:80px 24px;}
+  .lifecycle{padding:80px 24px;}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="site-nav">
-    <a href="#"><img src="images/logo.png" alt="Fletaris" style="height:32px;width:auto;display:block;"></a>
+<!-- ───────── nav ───────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#"><img class="logo" src="images/logo-horizontal-darkbg.png" alt="Fletaris"/></a>
     <div class="nav-links">
-      <a href="#product" class="nav-link">Product</a>
-      <a href="#persona" class="nav-link">Who it's for</a>
-      <a href="#waitlist" class="nav-link">Early access</a>
+      <a class="nav-link" href="#problem">The problem</a>
+      <a class="nav-link" href="#lifecycle">Lifecycle</a>
+      <a class="nav-link" href="#pillars">Why Fletaris</a>
+      <a class="nav-link" href="#persona">Who it's for</a>
     </div>
     <div class="nav-actions">
-      <a href="https://app.fletaris.com" class="btn-ghost-sm">Sign in</a>
-      <a href="#waitlist" class="btn-primary-sm">Request access</a>
+      <a href="https://app.fletaris.com" class="btn btn-sm btn-ghost-dark">Sign in</a>
+      <a href="#waitlist" class="btn btn-sm btn-primary">Request access</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-grid">
-      <!-- Left column — text -->
-      <div class="hero-left">
-        <div class="badge-pill">
-          <span class="badge-dot"></span>
-          Pre-launch · Limited early access
-        </div>
-        <h1>Your fleet's technical condition.<br><span style="color:#00C4CC;">Projected forward.</span></h1>
-        <p class="hero-sub">Fletaris gives technical asset managers a 12-to-24-month forward view of maintenance commitments, redelivery exposure, and compliance posture — built from the technical data you already have.</p>
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-w">
+    <div class="hero-meta">
+      <div class="hero-serial">/ 01 — INTELLIGENCE LAYER</div>
+      <div class="hero-meta-mid">
+        <span class="ln"></span>
+        <span class="lbl">FLEET FORESIGHT FOR ASSET MANAGERS</span>
+        <span class="ln"></span>
+      </div>
+      <div class="hero-vol">FILE — FLT/26207.MR/2026.05</div>
+    </div>
+    <h1 class="hero-title">
+      Your fleet's<br/>
+      technical<br/>
+      condition.<br/>
+      <span class="l2"><em>Projected forward.</em></span>
+    </h1>
+    <div class="hero-byline">
+      <div class="hero-bl-l">
+        <p>A forward view of maintenance, redelivery exposure, and compliance posture — built from records your team already keeps.</p>
         <div class="cta-row">
-          <a href="#waitlist" class="btn-primary-lg">Request early access</a>
-          <a href="#product" class="btn-ghost-lg">See the product</a>
+          <a href="#waitlist" class="btn btn-lg btn-primary">Request early access
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
-        <p class="hero-microcopy">Limited initial cohort · No sales calls · Direct outreach only</p>
       </div>
-
-      <!-- Right column — app UI mockup (inline HTML, Option A: sidebar + main) -->
-      <div class="hero-panel">
-
-        <!-- Browser / app chrome bar -->
-        <div class="hp-chrome">
-          <div class="hp-chrome-dots">
-            <span style="background:#EF4444;"></span>
-            <span style="background:#F59E0B;"></span>
-            <span style="background:#22C55E;"></span>
-          </div>
-          <div class="hp-chrome-bar">app.fletaris.com/portfolio</div>
-          <div class="hp-chrome-spacer"></div>
-        </div>
-
-        <!-- App body: sidebar + main side by side -->
-        <div class="hp-body">
-
-        <!-- Sidebar navigation -->
-        <div class="hp-sidebar">
-          <div class="hp-logo">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="9" height="9" rx="2" fill="#00C4CC"/>
-              <rect x="13" y="2" width="9" height="9" rx="2" fill="rgba(0,196,204,0.35)"/>
-              <rect x="2" y="13" width="9" height="9" rx="2" fill="rgba(0,196,204,0.35)"/>
-              <rect x="13" y="13" width="9" height="9" rx="2" fill="rgba(0,196,204,0.18)"/>
-            </svg>
-            <span class="hp-logo-text">Fletaris</span>
-          </div>
-          <div class="hp-modules-label">MODULES</div>
-          <nav class="hp-nav">
-            <div class="hp-nav-item hp-nav-active">
-              <svg viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="4" rx="0.8" fill="currentColor"/><rect x="7" y="1" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/><rect x="1" y="7" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/><rect x="7" y="7" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.5"/></svg>
-              <span>Portfolio</span>
-            </div>
-            <div class="hp-nav-item">
-              <svg viewBox="0 0 12 12" fill="none"><path d="M1 6 L4 3 L6 5 L8 2 L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 9 L10 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <span>Fleet Registry</span>
-            </div>
-            <div class="hp-nav-item">
-              <svg viewBox="0 0 12 12" fill="none"><rect x="2" y="1" width="8" height="10" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M4 4.5 L8 4.5 M4 6.5 L8 6.5 M4 8.5 L6 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
-              <span>Findings Log</span>
-            </div>
-          </nav>
-        </div>
-
-        <!-- Main content area -->
-        <div class="hp-main">
-
-          <!-- KPI stats row -->
-          <div class="hp-stats">
-            <div class="hp-stat">
-              <div class="hp-stat-label">Aircraft in Registry</div>
-              <div class="hp-stat-value">5</div>
-            </div>
-            <div class="hp-stat">
-              <div class="hp-stat-label">Open Findings</div>
-              <div class="hp-stat-value" style="color:#00C4CC;">6</div>
-            </div>
-            <div class="hp-stat">
-              <div class="hp-stat-label">Active Engagements</div>
-              <div class="hp-stat-value">0</div>
-            </div>
-          </div>
-
-          <!-- Section header -->
-          <div class="hp-section-hdr">
-            <span class="hp-section-title">Hangar</span>
-            <span class="hp-sort-label">Sorted by lease return date</span>
-            <div class="hp-toggle">
-              <span class="hp-toggle-btn hp-toggle-active">Hangar</span>
-              <span class="hp-toggle-btn">List</span>
-            </div>
-          </div>
-
-          <!-- Aircraft cards grid -->
-          <div class="hp-cards">
-
-            <!-- Card 1: MSN 26207 -->
-            <div class="hp-card">
-              <div class="hp-card-top">
-                <span class="hp-card-msn">MSN 26207</span>
-                <span class="hp-card-reg">N642GT</span>
-              </div>
-              <div class="hp-card-type">Boeing 767-3Y0(ER)</div>
-              <div class="hp-card-meta">
-                <span>FH 87,640</span><span class="hp-meta-dot">·</span><span>FC 22,180</span>
-              </div>
-              <div class="hp-card-route">PHNL → YBBN</div>
-              <div class="hp-card-operator">Atlas Air / DHL</div>
-              <div class="hp-card-days">165 days</div>
-              <div class="hp-card-tags">
-                <span class="hp-tag">AIRFRAME</span>
-                <span class="hp-tag">ARC</span>
-                <span class="hp-tag">ENGINE</span>
-                <span class="hp-tag">LEASE</span>
-              </div>
-            </div>
-
-            <!-- Card 2: MSN 39406 -->
-            <div class="hp-card">
-              <div class="hp-card-top">
-                <span class="hp-card-msn">MSN 39406</span>
-                <span class="hp-card-reg">N794AV</span>
-              </div>
-              <div class="hp-card-type">Boeing 787-8</div>
-              <div class="hp-card-meta">
-                <span>FH 42,180</span><span class="hp-meta-dot">·</span><span>FC 10,890</span>
-              </div>
-              <div class="hp-card-route">SKBO → LEMD</div>
-              <div class="hp-card-operator">Avianca</div>
-              <div class="hp-card-days">226 days</div>
-              <div class="hp-card-tags">
-                <span class="hp-tag">AIRFRAME</span>
-                <span class="hp-tag">ARC</span>
-                <span class="hp-tag">ENGINE</span>
-                <span class="hp-tag">LEASE</span>
-              </div>
-            </div>
-
-          </div><!-- /.hp-cards -->
-        </div><!-- /.hp-main -->
-        </div><!-- /.hp-body -->
-      </div><!-- /.hero-panel -->
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF STRIP -->
-  <section id="strip">
-    <div class="proof-left">
-      <span class="proof-label">Built by practitioners</span>
-      <div class="proof-divider"></div>
-      <span class="proof-text">Aeronautical engineers · Transition managers · Appraisers</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:6px;">
-      <span style="width:6px;height:6px;border-radius:50%;background:#00C4CC;display:inline-block;"></span>
-      <span style="font-size:11px;color:#00C4CC;font-weight:600;">Built on industry standards</span>
-    </div>
-  </section>
-
-  <!-- THE GAP -->
-  <section id="gap">
-    <div class="section-center-header">
-      <div class="section-eyebrow">The gap no tool addresses</div>
-      <h2>Three problems. One forward view.</h2>
-    </div>
-    <div class="gap-grid">
-      <div class="gap-card">
-        <div class="gap-number">01</div>
-        <p>Your technical records tell you what happened. No system tells you what's coming.</p>
-      </div>
-      <div class="gap-card">
-        <div class="gap-number">02</div>
-        <p>Lease events and redelivery conditions don't wait for your spreadsheet to catch up.</p>
-      </div>
-      <div class="gap-card">
-        <div class="gap-number">03</div>
-        <p>Shop visit windows and compliance exposure are invisible until it's too late to act.</p>
+      <div></div>
+      <div class="hero-bl-stats">
+        <div class="hero-bl-stat"><div class="l">Forward view</div><div class="v teal" style="font-size:22px;letter-spacing:0.04em;">ROLLING</div><div class="s">Rolling forward projection</div></div>
+        <div class="hero-bl-stat"><div class="l">Redelivery exposure</div><div class="v red">42<span style="font-size:14px;color:rgba(255,255,255,0.5);">d</span></div><div class="s">MSN 6291 · action req.</div></div>
+        <div class="hero-bl-stat"><div class="l">Open findings</div><div class="v">6</div><div class="s">3 awaiting review</div></div>
       </div>
     </div>
-  </section>
-
-  <!-- PRODUCT SCREENSHOTS -->
-  <section id="product">
-    <div class="section-center-header">
-      <div class="section-eyebrow" style="text-align:center;">The work, elevated</div>
-      <h2 style="text-align:center;">Built for the data you already have.</h2>
-      <p class="section-sub">Import your existing records. Fletaris projects forward, flags exposure, and surfaces what needs attention — without changing how you work.</p>
-    </div>
-    <div class="transform-wrap">
-      <div class="transform-grid">
-
-        <!-- LEFT: Excel/spreadsheet style -->
-        <div class="transform-panel">
-          <div class="transform-label transform-label-before">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;"><rect width="5" height="5" rx="0.5" fill="#22C55E"/><rect x="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".65"/><rect y="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".65"/><rect x="6" y="6" width="5" height="5" rx="0.5" fill="#22C55E" opacity=".35"/></svg>
-            Fleet_tracking_v3_FINAL_v2.xlsx
-          </div>
-          <div class="transform-body transform-body-before">
-            <table class="xls-table">
-              <thead>
-                <tr>
-                  <th class="xls-rn"></th>
-                  <th>MSN</th><th>Type</th><th>Reg</th><th>C-Check</th><th>Eng1 TSN</th><th>LLP</th><th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="xls-rn">2</td>
-                  <td>7842</td><td>A320-214</td><td>EC-MKL</td>
-                  <td class="xls-warn">???</td>
-                  <td>22,841</td>
-                  <td class="xls-warn">TBC</td>
-                  <td class="xls-note">check v2 tab</td>
-                </tr>
-                <tr class="xls-alt">
-                  <td class="xls-rn">3</td>
-                  <td>6291</td><td>B737-800</td><td>EI-FVL</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-urgent">URGENT</td>
-                  <td class="xls-note">redly 42d?</td>
-                </tr>
-                <tr>
-                  <td class="xls-rn">4</td>
-                  <td>5104</td><td>A320-232</td><td>OE-IQA</td>
-                  <td>2026-09</td><td>18,340</td><td>N</td><td></td>
-                </tr>
-                <tr class="xls-alt xls-faded">
-                  <td class="xls-rn">5</td>
-                  <td>4817</td><td>A321-211</td>
-                  <td class="xls-warn">???</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-note">missing</td>
-                </tr>
-                <tr>
-                  <td class="xls-rn">6</td>
-                  <td>9103</td><td>A330-223</td><td>G-VJCA</td>
-                  <td class="xls-warn">???</td>
-                  <td>44,210</td>
-                  <td class="xls-urgent">OVERDUE</td>
-                  <td class="xls-note">eng file sep</td>
-                </tr>
-                <tr class="xls-alt">
-                  <td class="xls-rn">7</td>
-                  <td class="xls-warn">???</td><td>B777F</td><td class="xls-warn">9V-???</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-note">no data</td>
-                </tr>
-                <tr>
-                  <td class="xls-rn">8</td>
-                  <td>6291</td><td>B737-800</td><td>EI-FVL</td>
-                  <td class="xls-warn">TBC</td>
-                  <td class="xls-warn">31,047?</td>
-                  <td class="xls-warn">TBC</td>
-                  <td class="xls-note">DUPLICATE check</td>
-                </tr>
-                <tr class="xls-alt">
-                  <td class="xls-rn">9</td>
-                  <td>1842</td><td>A319-111</td><td>OY-KBR</td>
-                  <td>2025-11</td>
-                  <td>19,833</td>
-                  <td>N</td>
-                  <td></td>
-                </tr>
-                <tr class="xls-faded">
-                  <td class="xls-rn">10</td>
-                  <td class="xls-warn">???</td><td class="xls-warn">???</td><td class="xls-warn">???</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-warn">—</td>
-                  <td class="xls-note">missing v1</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="xls-footer">4 spreadsheets · inconsistent formats · gaps unknown · no forward view</div>
-          </div>
-        </div>
-
-        <!-- CENTER: Funnel connector — many inputs → Fletaris → one structured view -->
-        <div class="transform-arrow" aria-hidden="true">
-          <svg width="88" height="220" viewBox="0 0 88 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- 5 dashed input lines converging from left into badge -->
-            <line x1="0" y1="82"  x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
-            <line x1="0" y1="96"  x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
-            <line x1="0" y1="110" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
-            <line x1="0" y1="124" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
-            <line x1="0" y1="138" x2="30" y2="110" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 2"/>
-            <!-- Fletaris badge circle -->
-            <circle cx="44" cy="110" r="14" fill="rgba(0,196,204,0.12)" stroke="#00C4CC" stroke-width="1.5"/>
-            <!-- Arrow inside badge -->
-            <path d="M38 110h12M46 106.5l3.5 3.5-3.5 3.5" stroke="#00C4CC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Single solid output line to right -->
-            <line x1="58" y1="110" x2="80" y2="110" stroke="#00C4CC" stroke-width="1.5"/>
-            <path d="M77 107l3 3-3 3" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- "raw in" label top -->
-            <text x="44" y="72" font-family="Poppins,sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.06em">RAW IN</text>
-            <!-- "FLETARIS" label below badge -->
-            <text x="44" y="138" font-family="Poppins,sans-serif" font-size="7.5" font-weight="700" fill="#00C4CC" text-anchor="middle" letter-spacing="0.08em">FLETARIS</text>
-            <!-- "structured" label bottom -->
-            <text x="44" y="155" font-family="Poppins,sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8" text-anchor="middle" letter-spacing="0.06em">STRUCTURED</text>
-          </svg>
-        </div>
-
-        <!-- RIGHT: Bright aircraft card -->
-        <div class="transform-panel">
-          <div class="transform-label transform-label-after">Fletaris — MSN 6291</div>
-          <div class="transform-body transform-body-after">
-
-            <div class="flt-top">
-              <div>
-                <div class="flt-msn">MSN 6291</div>
-                <div class="flt-reg">EI-FVL</div>
-              </div>
-              <div class="flt-type-col">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#94A3B8"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
-                <div class="flt-type">Boeing 737-800</div>
-              </div>
-            </div>
-
-            <div class="flt-fhfc">FH 31,047 · FC 8,204</div>
-            <div class="flt-sep"></div>
-
-            <div class="flt-last-label">Last flight</div>
-            <div class="flt-route">DUB <span class="flt-arrow-route">→</span> LGW</div>
-            <div class="flt-operator">Ryanair (wet-lease)</div>
-            <div class="flt-date">09 Apr 2026</div>
-            <div class="flt-updated">Updated today · Action required</div>
-
-            <div class="flt-sep"></div>
-
-            <div class="flt-redly-label">redelivery in</div>
-            <div class="flt-redly-row">
-              <span class="flt-redly-num">42</span>
-              <span class="flt-redly-unit">days</span>
-            </div>
-
-            <div class="flt-tags">
-              <span class="flt-tag flt-tag-red">AIRFRAME</span>
-              <span class="flt-tag flt-tag-red">AD GAP</span>
-              <span class="flt-tag flt-tag-blue">ENGINE</span>
-              <span class="flt-tag flt-tag-green">LEASE</span>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ASSET LIFECYCLE PHASES SECTION -->
-<section id="asset-lifecycle" style="background:#0B1120;padding:64px 40px 40px;">
-
-  <!-- Header -->
-  <div style="text-align:center;margin-bottom:48px;">
-    <div style="font-family:'Poppins',system-ui,sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#00C4CC;margin-bottom:12px;">The asset lifecycle</div>
-    <h2 style="font-family:'Poppins',system-ui,sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.01em;margin:0 0 16px;line-height:1.2;">From delivery to redelivery.<br>Fletaris covers the full journey.</h2>
-    <p style="font-family:'Outfit',system-ui,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;line-height:1.65;">Every aircraft in your portfolio moves through the same five phases. Most tools only see one. Fletaris sees all of them — and projects forward from wherever your aircraft is today.</p>
   </div>
+  <div class="scroll-cue">SCROLL · CASE FILE 26207</div>
+</section>
 
-  <!-- Phase icons with connector line -->
-  <div style="position:relative;margin-bottom:40px;">
-
-    <!-- Connector line behind icons -->
-    <div style="position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(to right,#2D3F5C,#00C4CC 50%,#2D3F5C);z-index:0;"></div>
-
-    <!-- Five phases -->
-    <div class="alc-phase-row">
-
-      <!-- Phase 1 — Background -->
-      <div class="alc-phase-col">
-        <div class="alc-icon-ring">
-          <div class="alc-phase-num">1</div>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M6 14h16M14 6v16" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round"/>
-            <rect x="4" y="4" width="20" height="20" rx="4" stroke="#00C4CC" stroke-width="1.5" stroke-dasharray="3 2"/>
-          </svg>
+<!-- ───────── DIPTYCH ───────── -->
+<section class="sec dip" id="problem">
+  <div class="sec-w">
+    <div class="sec-band">
+      <div class="sec-serial">/ 02</div>
+      <div>
+        <div class="sec-eyebrow">The gap no tool addresses</div>
+        <h2 class="sec-h">Three problems, <em>one forward view.</em></h2>
+        <p class="sec-lede">Your records tell you what happened. Your spreadsheets tell you what's open. Nothing tells you what's coming — until Fletaris.</p>
+      </div>
+    </div>
+    <div class="dip-grid">
+      <div class="dip-side before">
+        <div class="dip-tag before"><span class="dot"></span>BEFORE · WHAT YOU SEE TODAY</div>
+        <h3 class="dip-headline">A desk of overdue spreadsheets, sticky notes, and a deadline you can't see clearly.</h3>
+        <p class="dip-body">Four spreadsheets, three formats, two people who know which file is current. Redelivery does not postpone for reconciliation.</p>
+        <div class="dip-evidence">
+          <div class="dip-ev-row">
+            <div class="dip-ev-icn"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L12.5 11.5H1.5L7 1.5Z" stroke="#FCA5A5" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 5.5V8.5" stroke="#FCA5A5" stroke-width="1.4" stroke-linecap="round"/><circle cx="7" cy="10.2" r="0.7" fill="#FCA5A5"/></svg></div>
+            <div class="dip-ev-l">Fleet_tracking_v3_FINAL_v2.xlsx — version unknown</div>
+            <div class="dip-ev-r">4 SHEETS</div>
+          </div>
+          <div class="dip-ev-row">
+            <div class="dip-ev-icn"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#FCA5A5" stroke-width="1.4"/><path d="M7 4V7L9 9" stroke="#FCA5A5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="dip-ev-l">"Return in 47 days?" — sticky note, not a system</div>
+            <div class="dip-ev-r">47d ?</div>
+          </div>
+          <div class="dip-ev-row">
+            <div class="dip-ev-icn"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="#FCA5A5" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+            <div class="dip-ev-l">URGENT · OVERDUE · TBC — stamped on records, not tracked</div>
+            <div class="dip-ev-r">3 GAPS</div>
+          </div>
         </div>
-        <div class="alc-phase-name">Background</div>
-        <div class="alc-phase-desc">Asset origination &amp; initial assessment</div>
+      </div>
+      <div class="dip-side after">
+        <div class="dip-tag after"><span class="dot"></span>AFTER · WHAT FLETARIS SHOWS</div>
+        <h3 class="dip-headline">One structured aircraft view. <em>Updated from your records, projected forward.</em></h3>
+        <p class="dip-body">Every aircraft, every component, every milestone — current as of your last import, projected forward.</p>
+        <div class="dip-card">
+          <div class="dip-card-top">
+            <div>
+              <div class="dip-msn">MSN 6291</div>
+              <div class="dip-reg">EI-FVL · Boeing 737-800</div>
+            </div>
+            <span class="dip-pill">UPDATED 14:32</span>
+          </div>
+          <div class="dip-fh">FH <b>31,047</b> · FC <b>8,204</b> · Op. <b>Ryanair (wet-lease)</b></div>
+          <div class="dip-sep"></div>
+          <div class="dip-meta-row">
+            <div>
+              <div class="dip-meta-l">LAST FLIGHT</div>
+              <div class="dip-meta-v">DUB <span style="color:var(--teal);">→</span> LGW</div>
+            </div>
+            <div>
+              <div class="dip-meta-l">RESERVE ADQ.</div>
+              <div class="dip-meta-v">96.2%</div>
+            </div>
+          </div>
+          <div class="dip-sep"></div>
+          <div>
+            <div class="dip-meta-l">REDELIVERY IN</div>
+            <div class="dip-bm">
+              <span class="n">42</span>
+              <span class="u">days</span>
+              <span class="s">Action req.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── LIFECYCLE ───────── -->
+<section class="sec lifecycle" id="lifecycle">
+  <div class="sec-w" style="position:relative;">
+    <div class="sec-band">
+      <div class="sec-serial light">/ 03</div>
+      <div>
+        <div class="sec-eyebrow light">Asset lifecycle intelligence</div>
+        <h2 class="sec-h light">Every event. Every aircraft. <em>Every month forward.</em></h2>
+        <p class="sec-lede light">Maintenance, lease, and compliance commitments mapped against a rolling forward projection — every event, every component, current as of your last records update.</p>
+      </div>
+    </div>
+
+    <div class="lc-stage" id="lc-stage">
+      <!-- header -->
+      <div class="lc-head">
+        <div class="lc-head-l">
+          <div class="lc-mark">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#00C4CC"/></svg>
+          </div>
+          <div class="lc-titles">
+            <div class="lc-msn" id="lc-msn">MSN 7842<span class="reg" id="lc-reg">EC-MKL</span></div>
+            <div class="lc-sub" id="lc-sub">
+              <span>A320-214</span>
+              <span class="div">·</span>
+              <span><b>Iberia Express</b> · wet lease</span>
+              <span class="div">·</span>
+              <span>Lease return <b>Q1 2027</b></span>
+              <span class="div">·</span>
+              <span>Rolling forward view</span>
+            </div>
+          </div>
+        </div>
+        <div class="lc-head-r">
+          <div class="lc-live"><span class="led"></span>LIVE</div>
+          <div class="lc-sync">SYNC 14:32 UTC</div>
+        </div>
       </div>
 
-      <!-- Phase 2 — Pre-delivery -->
-      <div class="alc-phase-col">
-        <div class="alc-icon-ring">
-          <div class="alc-phase-num">2</div>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M5 20l8-8 4 4 6-9" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="22" cy="8" r="2.5" fill="rgba(0,196,204,0.3)" stroke="#00C4CC" stroke-width="1.2"/>
-          </svg>
-        </div>
-        <div class="alc-phase-name">Pre-delivery</div>
-        <div class="alc-phase-desc">Technical records &amp; condition review</div>
+      <!-- tabs -->
+      <div class="lc-head-mid" role="tablist">
+        <div class="lc-tab" data-view="fleet" role="tab">All fleet</div>
+        <div class="lc-tab active" data-view="msn7842" role="tab">MSN 7842</div>
+        <div class="lc-tab" data-view="msn6291" role="tab">MSN 6291</div>
+        <div class="lc-tab" data-view="more" role="tab">+ 3 more</div>
       </div>
 
-      <!-- Phase 3 — Delivery (highlighted) -->
-      <div class="alc-phase-col">
-        <div class="alc-icon-ring alc-icon-active">
-          <div class="alc-phase-num">3</div>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M4 18l7-4 4 2 9-7" stroke="#00C4CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="14" cy="10" r="3" fill="none" stroke="#00C4CC" stroke-width="1.5"/>
-            <path d="M14 13v5" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+      <!-- axis -->
+      <div class="lc-axis">
+        <div class="lc-axis-l">FORWARD WINDOW</div>
+        <div class="lc-axis-cells">
+          <div class="lc-axis-cell q now" data-q="Q2 2026">MAY</div>
+          <div class="lc-axis-cell">JUN</div>
+          <div class="lc-axis-cell">JUL</div>
+          <div class="lc-axis-cell q" data-q="Q3 2026">AUG</div>
+          <div class="lc-axis-cell">SEP</div>
+          <div class="lc-axis-cell">OCT</div>
+          <div class="lc-axis-cell q" data-q="Q4 2026">NOV</div>
+          <div class="lc-axis-cell">DEC</div>
+          <div class="lc-axis-cell">JAN</div>
+          <div class="lc-axis-cell q" data-q="Q1 2027">FEB</div>
+          <div class="lc-axis-cell">MAR</div>
+          <div class="lc-axis-cell">APR</div>
         </div>
-        <div class="alc-phase-name" style="color:#00C4CC;">Delivery</div>
-        <div class="alc-phase-desc">Acceptance, handover, lease start</div>
       </div>
 
-      <!-- Phase 4 — In-service -->
-      <div class="alc-phase-col">
-        <div class="alc-icon-ring">
-          <div class="alc-phase-num">4</div>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="8" stroke="#00C4CC" stroke-width="1.5"/>
-            <path d="M14 10v4l3 3" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="alc-phase-name">In-service</div>
-        <div class="alc-phase-desc">Operations, maintenance, compliance</div>
+      <!-- tracks -->
+      <div class="lc-tracks-wrap">
+        <div class="lc-tracks" id="lc-tracks"></div>
       </div>
 
-      <!-- Phase 5 — Redelivery -->
-      <div class="alc-phase-col">
-        <div class="alc-icon-ring">
-          <div class="alc-phase-num">5</div>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M8 14h12M16 10l4 4-4 4" stroke="#00C4CC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="4" y="4" width="20" height="20" rx="4" stroke="#00C4CC" stroke-width="1.5" stroke-dasharray="3 2"/>
-          </svg>
-        </div>
-        <div class="alc-phase-name">Redelivery</div>
-        <div class="alc-phase-desc">Return conditions, transition, remarketing</div>
-      </div>
+      <!-- foot alerts -->
+      <div class="lc-foot" id="lc-foot"></div>
 
+      <!-- legend -->
+      <div class="lc-legend">
+        <div class="lc-leg-l">
+          <span class="lc-leg-item"><span class="sw" style="background:rgba(34,197,94,0.55);border:1px solid rgba(34,197,94,0.85);"></span>Scheduled</span>
+          <span class="lc-leg-item"><span class="sw" style="background:rgba(245,158,11,0.55);border:1px dashed var(--amber);"></span>Action window</span>
+          <span class="lc-leg-item"><span class="sw" style="background:rgba(239,68,68,0.65);border:1px solid rgba(239,68,68,0.9);"></span>Risk</span>
+          <span class="lc-leg-item"><span class="sw" style="background:rgba(0,196,204,0.45);border:1px solid var(--teal);box-shadow:0 0 6px rgba(0,196,204,0.4);"></span>Lease milestone</span>
+          <span class="lc-leg-item"><span class="sw" style="background:transparent;border:1px solid rgba(255,255,255,0.3);"></span>Within limits</span>
+        </div>
+        <div class="lc-leg-r" id="lc-leg-r">6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 14 FORWARD EVENTS</div>
+      </div>
     </div>
   </div>
 
-  <!-- Detail cards — one per phase -->
-  <div class="alc-cards-grid">
+  <script>
+  (function(){
+    var VIEWS = {
+      msn7842:{
+        msn:'MSN 7842',reg:'EC-MKL',
+        sub:'<span>A320-214</span><span class="div">·</span><span><b>Iberia Express</b> · wet lease</span><span class="div">·</span><span>Lease return <b>Q1 2027</b></span><span class="div">·</span><span>Rolling forward view</span>',
+        legR:'6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 14 FORWARD EVENTS',
+        tracks:[
+          {name:'Airframe · C-Check',sub:'last 2024-08 · cycle 9,840',bars:[{cls:'green-dim',l:0,w:70,t:'Within limits'},{cls:'green-solid',l:70,w:14,t:'C-Check',flag:'MILESTONE'},{cls:'green-dim',l:84,w:16,t:'Post-check'}]},
+          {name:'Engine 1 · LLP set',sub:'CFM56-5B · 18,340 cyc remain',bars:[{cls:'amber-dim',l:0,w:50,t:'Approaching limit'},{cls:'amber-solid',l:50,w:18,t:'Shop visit'},{cls:'green-dim',l:68,w:32,t:'Restored'}]},
+          {name:'Engine 2 · shop visit',sub:'CFM56-5B · 9 days perf delta',bars:[{cls:'red-dim',l:0,w:30,t:'Risk window'},{cls:'red-solid',l:30,w:18,t:'Unplanned SV'},{cls:'green-dim',l:48,w:52,t:'Monitoring'}]},
+          {name:'APU · LCF',sub:'42 LCF remain',bars:[{cls:'green-dim',l:0,w:80,t:'Within limits'},{cls:'amber-dim',l:80,w:20,t:'Approaching'}]},
+          {name:'AD compliance',sub:'AD 2024-08-13 open',bars:[{cls:'green-dim',l:0,w:45,t:'Compliant'},{cls:'amber-solid',l:45,w:10,t:'AD 2024-08'},{cls:'green-dim',l:55,w:45,t:'Compliant'}]},
+          {name:'Lease return',sub:'conditions matrix review',bars:[{cls:'teal-dim',l:0,w:88,t:'Monitoring'},{cls:'teal-solid',l:88,w:12,t:'Review window'}]}
+        ],
+        alerts:[
+          {dot:'#22C55E',name:'Airframe',when:'8.5 months',tone:'#86EFAC',body:'C-Check scheduled · within limits'},
+          {dot:'#F59E0B',name:'Engine 1',when:'6.0 months',tone:'#FCD34D',body:'LLP limit reached · action window open'},
+          {dot:'#EF4444',name:'Engine 2',when:'3.5 months',tone:'#FCA5A5',body:'Unplanned shop visit risk · 9d perf delta'},
+          {dot:'#00C4CC',name:'Lease return',when:'11 months',tone:'#00C4CC',body:'Conditions matrix review window'}
+        ]
+      },
+      msn6291:{
+        msn:'MSN 6291',reg:'EI-FVL',
+        sub:'<span>Boeing 737-800</span><span class="div">·</span><span><b>Ryanair</b> · wet lease</span><span class="div">·</span><span>Redelivery in <b>42 days</b></span><span class="div">·</span><span>Action required</span>',
+        legR:'6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 9 FORWARD EVENTS',
+        tracks:[
+          {name:'Airframe · records',sub:'reconciliation pass',bars:[{cls:'amber-solid',l:0,w:14,t:'Reconcile',flag:'42d'},{cls:'green-dim',l:14,w:86,t:'Post-handback'}]},
+          {name:'Engine 1 · LLP',sub:'CFM56-7B · closed',bars:[{cls:'green-dim',l:0,w:100,t:'Compliant'}]},
+          {name:'Engine 2 · LLP',sub:'CFM56-7B · 1 stage pending',bars:[{cls:'red-dim',l:0,w:14,t:'Open'},{cls:'green-dim',l:14,w:86,t:'Resolved'}]},
+          {name:'Cabin records',sub:'STC docs missing',bars:[{cls:'red-solid',l:0,w:14,t:'Open finding',flag:'AUDIT'},{cls:'green-dim',l:14,w:86,t:'Closed'}]},
+          {name:'AD compliance',sub:'2 ADs pending sign-off',bars:[{cls:'amber-dim',l:0,w:14,t:'Pending'},{cls:'green-dim',l:14,w:86,t:'Compliant'}]},
+          {name:'Redelivery handover',sub:'lessee inspection window',bars:[{cls:'teal-solid',l:0,w:14,t:'Handover',flag:'Q2 2026'},{cls:'teal-dim',l:14,w:86,t:'Next lessee'}]}
+        ],
+        alerts:[
+          {dot:'#EF4444',name:'Cabin records',when:'42 days',tone:'#FCA5A5',body:'STC documentation gap · audit risk'},
+          {dot:'#EF4444',name:'Engine 2 LLP',when:'42 days',tone:'#FCA5A5',body:'Stage 3 disc certificate pending'},
+          {dot:'#F59E0B',name:'AD sign-off',when:'42 days',tone:'#FCD34D',body:'2 ADs awaiting lessee sign-off'},
+          {dot:'#00C4CC',name:'Handover',when:'42 days',tone:'#00C4CC',body:'Lessee inspection window opens'}
+        ]
+      },
+      fleet:{
+        msn:'All fleet',reg:'5 aircraft',
+        sub:'<span><b>5 aircraft</b> across 3 lessees</span><span class="div">·</span><span>2 in redelivery window</span><span class="div">·</span><span>1 unplanned shop visit risk</span><span class="div">·</span><span>11 active commitments</span>',
+        legR:'11 ACTIVE TRACKS · <b>5 AIRCRAFT</b> · 47 FORWARD EVENTS',
+        tracks:[
+          {name:'MSN 6291 · 737-800',sub:'EI-FVL · Ryanair',bars:[{cls:'red-solid',l:0,w:14,t:'Redelivery',flag:'42d'},{cls:'teal-dim',l:14,w:86,t:'Next lessee'}]},
+          {name:'MSN 7842 · A320-214',sub:'EC-MKL · Iberia Express',bars:[{cls:'red-dim',l:0,w:30,t:'Engine 2 risk'},{cls:'amber-solid',l:50,w:18,t:'Engine 1 SV'},{cls:'green-solid',l:70,w:14,t:'C-Check'}]},
+          {name:'MSN 8104 · A321neo',sub:'CC-AZA · LATAM',bars:[{cls:'green-dim',l:0,w:60,t:'Within limits'},{cls:'green-solid',l:60,w:12,t:'A-Check'},{cls:'green-dim',l:72,w:28,t:'Within limits'}]},
+          {name:'MSN 5547 · 737 MAX 8',sub:'PR-XMA · GOL',bars:[{cls:'amber-dim',l:0,w:40,t:'LLP approaching'},{cls:'amber-solid',l:40,w:14,t:'Shop visit'},{cls:'green-dim',l:54,w:46,t:'Restored'}]},
+          {name:'MSN 9221 · A330-300',sub:'B-LJF · Cathay',bars:[{cls:'green-dim',l:0,w:78,t:'Within limits'},{cls:'teal-solid',l:78,w:22,t:'Lease review',flag:'Q1 2027'}]}
+        ],
+        alerts:[
+          {dot:'#EF4444',name:'MSN 6291',when:'42 days',tone:'#FCA5A5',body:'Redelivery · action required'},
+          {dot:'#EF4444',name:'MSN 7842 / Eng 2',when:'3.5 months',tone:'#FCA5A5',body:'Unplanned shop visit risk'},
+          {dot:'#F59E0B',name:'MSN 5547 / Eng',when:'5.0 months',tone:'#FCD34D',body:'LLP shop visit scheduled'},
+          {dot:'#00C4CC',name:'MSN 9221',when:'9.5 months',tone:'#00C4CC',body:'Lease review window opens'}
+        ]
+      }
+    };
+    VIEWS.more = VIEWS.fleet;
 
-    <div class="alc-card">
-      <div class="alc-card-eyebrow">Background</div>
-      <ul class="alc-card-list">
-        <li>Appraisal &amp; valuation</li>
-        <li>Market positioning</li>
-        <li>Initial records review</li>
-        <li>Lessee qualification</li>
-      </ul>
+    function render(key){
+      var v = VIEWS[key] || VIEWS.fleet;
+      document.getElementById('lc-msn').innerHTML = v.msn + '<span class="reg">'+v.reg+'</span>';
+      document.getElementById('lc-sub').innerHTML = v.sub;
+      document.getElementById('lc-tracks').innerHTML = v.tracks.map(function(tr){
+        var bars = tr.bars.map(function(b){
+          var flag = b.flag ? '<div class="lc-flag" style="left:0;">'+b.flag+'</div>' : '';
+          return '<div class="lc-bar '+b.cls+'" style="left:'+b.l+'%;width:'+b.w+'%;">'+flag+b.t+'</div>';
+        }).join('');
+        return '<div class="lc-track"><div class="lc-track-l"><div class="lc-track-name">'+tr.name+'</div><div class="lc-track-sub">'+tr.sub+'</div></div><div class="lc-bar-area">'+bars+'</div></div>';
+      }).join('');
+      document.getElementById('lc-foot').innerHTML = v.alerts.map(function(a){
+        return '<div class="lc-alert"><div class="lc-alert-dot" style="background:'+a.dot+';"></div><div class="lc-alert-text"><b style="color:'+a.tone+';">'+a.name+'</b>'+a.body+'<span class="when">'+a.when+'</span></div></div>';
+      }).join('');
+      document.getElementById('lc-leg-r').innerHTML = v.legR;
+    }
+
+    render('msn7842');
+    document.querySelectorAll('.lc-tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        document.querySelectorAll('.lc-tab').forEach(function(t){t.classList.remove('active');});
+        tab.classList.add('active');
+        render(tab.getAttribute('data-view'));
+      });
+    });
+  })();
+  </script>
+</section>
+
+<!-- ───────── PILLARS ───────── -->
+<section class="pillars" id="pillars">
+  <div class="sec-w">
+    <div class="sec-band pl-band">
+      <div class="sec-serial">/ 04</div>
+      <div>
+        <div class="sec-eyebrow">Three pillars</div>
+        <h2 class="sec-h">Technical data,<br/><em>translated into decisions.</em></h2>
+      </div>
     </div>
-
-    <div class="alc-card">
-      <div class="alc-card-eyebrow">Pre-delivery</div>
-      <ul class="alc-card-list">
-        <li>Technical inspection</li>
-        <li>Records audit &amp; gap analysis</li>
-        <li>Delivery conditions set</li>
-        <li>Maintenance reserve baseline</li>
-      </ul>
+    <div class="pl-stack">
+      <div class="pl-col primary">
+        <div class="pl-col-serial">/ 4.1 — FORESIGHT</div>
+        <div class="pl-col-stat" style="display:flex;align-items:flex-end;gap:6px;line-height:0.85;">
+          <svg width="112" height="96" viewBox="0 0 112 96" fill="none" style="flex-shrink:0;">
+            <path d="M4 48 L102 48 M102 48 L74 20 M102 48 L74 76" stroke="#00C4CC" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="pl-col-eyebrow">Rolling forward projection</div>
+        <h3 class="pl-col-h">See what's coming.</h3>
+        <p class="pl-col-p">Project component life limits and shop visit forecasts forward. Know cost exposure before it becomes a constraint.</p>
+      </div>
+      <div class="pl-col">
+        <div class="pl-col-serial">/ 4.2 — VISIBILITY</div>
+        <div class="pl-col-stat">1<span class="small"></span></div>
+        <div class="pl-col-eyebrow">Screen · entire portfolio</div>
+        <h3 class="pl-col-h">One screen, every aircraft.</h3>
+        <p class="pl-col-p">Your fleet on one dashboard, current as of your last import. Airframe, engines, APU, gear, ADs — one place.</p>
+      </div>
+      <div class="pl-col">
+        <div class="pl-col-serial">/ 4.3 — READINESS</div>
+        <div class="pl-col-stat">0</div>
+        <div class="pl-col-eyebrow">Unplanned events at audit</div>
+        <h3 class="pl-col-h">Arrive prepared.</h3>
+        <p class="pl-col-p">Know your compliance and airworthiness posture before your next audit or redelivery. No last-minute surprises.</p>
+      </div>
     </div>
-
-    <div class="alc-card alc-card-active">
-      <div class="alc-card-eyebrow alc-eyebrow-teal">Delivery</div>
-      <ul class="alc-card-list alc-list-teal">
-        <li>Airworthiness baseline locked</li>
-        <li>LLP status documented</li>
-        <li>AD compliance confirmed</li>
-        <li>Lease terms active</li>
-      </ul>
-    </div>
-
-    <div class="alc-card alc-card-active">
-      <div class="alc-card-eyebrow alc-eyebrow-teal">In-service</div>
-      <ul class="alc-card-list alc-list-teal">
-        <li>Scheduled maintenance tracking</li>
-        <li>Reserve reconciliation</li>
-        <li>Shop visit forecasting</li>
-        <li>Compliance monitoring</li>
-      </ul>
-    </div>
-
-    <div class="alc-card alc-card-active">
-      <div class="alc-card-eyebrow alc-eyebrow-teal">Redelivery</div>
-      <ul class="alc-card-list alc-list-teal">
-        <li>24-month countdown active</li>
-        <li>Return condition gap analysis</li>
-        <li>Transition cost projection</li>
-        <li>Next lessee readiness</li>
-      </ul>
-    </div>
-
   </div>
+</section>
 
-  <!-- Fletaris positioning bar -->
-  <div class="alc-position-bar">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:36px;height:36px;background:rgba(0,196,204,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <circle cx="9" cy="9" r="7" stroke="#00C4CC" stroke-width="1.5"/>
-          <path d="M9 5v4l3 3" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+<!-- ───────── COST ───────── -->
+<section class="sec quote">
+  <div class="quote-w">
+    <div class="quote-band">
+      <div class="sec-serial light">/ 05</div>
+      <div>
+        <div class="sec-eyebrow light">The cost of not knowing</div>
+        <h2 class="sec-h light">Unplanned events <em>don't announce themselves.</em></h2>
+        <p class="sec-lede light">Three line items every asset manager carries, and three places Fletaris closes the window.</p>
+      </div>
+    </div>
+    <div class="quote-card-grid">
+      <div class="qc">
+        <div class="qc-tag"><span class="dot" style="background:#EF4444;"></span>REDELIVERY DISPUTES</div>
+        <div class="qc-num red">$2.4M<span class="u">avg.</span></div>
+        <h3 class="qc-h">Position lost at the table</h3>
+        <p class="qc-b">Conditions found at return that weren't tracked forward become leverage for the other side. Every discrepancy is a position already lost.</p>
+        <div class="qc-foot">↑ Projected redelivery exposure forward</div>
+      </div>
+      <div class="qc">
+        <div class="qc-tag"><span class="dot" style="background:#F59E0B;"></span>UNPLANNED SHOP VISITS</div>
+        <div class="qc-num amber">5×<span class="u">premium</span></div>
+        <h3 class="qc-h">More dollars, more days</h3>
+        <p class="qc-b">The premium on an unplanned engine or APU visit versus a scheduled one is significant — in cost, in timing, and in aircraft availability.</p>
+        <div class="qc-foot">↑ Forecast against the forward window</div>
+      </div>
+      <div class="qc">
+        <div class="qc-tag"><span class="dot" style="background:#22C55E;"></span>COMPLIANCE AT AUDIT</div>
+        <div class="qc-num green">100<span class="u">%</span></div>
+        <h3 class="qc-h">Found by you, not by the auditor</h3>
+        <p class="qc-b">A gap found by an auditor instead of by you comes with a deadline, a cost, and a counterparty watching. Posture, not paperwork.</p>
+        <div class="qc-foot">↑ Real-time compliance monitoring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PERSONA ───────── -->
+<section class="sec persona" id="persona">
+  <div class="persona-w">
+    <div class="sec-band persona-band">
+      <div class="sec-serial light">/ 06</div>
+      <div>
+        <div class="sec-eyebrow light">Built for</div>
+        <h2 class="sec-h light">The <em>Technical Asset Manager.</em></h2>
+        <p class="sec-lede light">You carry the technical airworthiness of a portfolio that moves fast. Redeliveries, lease transitions, shop visit windows, reserve reconciliations — all running in parallel.</p>
+      </div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-l">
+        <div class="persona-quote">
+          "I'm not looking for a maintenance system. I have one. I'm looking for the layer above it — the one that tells me what next quarter looks like."
+          <span class="who">— DIRECTOR, TECHNICAL ASSET MANAGEMENT · TIER-1 LESSOR</span>
+        </div>
+        <div class="persona-chips">
+          <span class="chip-1">Aviation Asset Managers</span>
+          <span class="chip-2">Independent CAMOs</span>
+          <span class="chip-2">Transition Managers</span>
+          <span class="chip-2">Fleet Directors</span>
+          <span class="chip-2">Appraisers</span>
+        </div>
       </div>
       <div>
-        <div style="font-family:'Poppins',system-ui,sans-serif;font-size:13px;font-weight:600;color:#F1F5F9;">Fletaris is active across the full in-service and redelivery phases</div>
-        <div style="font-family:'Outfit',system-ui,sans-serif;font-size:11px;color:#64748B;margin-top:2px;">Delivery baseline → in-service tracking → 24-month redelivery countdown</div>
+        <div class="position-card">
+          <div class="pc-head">WHERE FLETARIS SITS</div>
+          <div class="pc-row">
+            <div class="pc-mark"><svg viewBox="0 0 18 18" fill="none"><path d="M3 13L3 6L9 3L15 6V13" stroke="#94A3B8" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 13L9 16L15 13" stroke="#94A3B8" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 3V16" stroke="#94A3B8" stroke-width="1.5"/></svg></div>
+            <div><div class="pc-name">Maintenance &amp; engineering systems</div><div class="pc-desc">Execution-layer tools for engineers and technicians</div></div>
+            <div class="pc-role">Serves the<br/>engineer</div>
+          </div>
+          <div class="pc-row active">
+            <div class="pc-mark"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#00C4CC" stroke-width="1.5"/><path d="M9 5V9L11.5 11.5" stroke="#00C4CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-name">Fletaris</div><div class="pc-desc">Fleet intelligence · Forward projection</div></div>
+            <div class="pc-role">Serves the<br/>asset manager</div>
+          </div>
+          <div class="pc-row">
+            <div class="pc-mark"><svg viewBox="0 0 18 18" fill="none"><rect x="3" y="4" width="12" height="10" rx="1" stroke="#94A3B8" stroke-width="1.5"/><path d="M5 7H13M5 10H9" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div><div class="pc-name">Lessor finance &amp; asset platforms</div><div class="pc-desc">Accounting-layer tools for finance teams</div></div>
+            <div class="pc-role">Serves the<br/>accountant</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span class="alc-pillar-chip">Foresight</span>
-      <span class="alc-pillar-chip">Visibility</span>
-      <span class="alc-pillar-chip">Readiness</span>
     </div>
   </div>
-
 </section>
-<!-- END ASSET LIFECYCLE PHASES SECTION -->
 
-  <!-- ASSET LIFECYCLE PROJECTION SECTION -->
-  <section id="lifecycle" style="background:#1E2D4A;padding:64px 40px;">
-
-    <!-- Section header -->
-    <div style="text-align:center;margin-bottom:40px;">
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#00C4CC;margin-bottom:12px;font-family:'Poppins',system-ui,sans-serif;">Asset lifecycle intelligence</div>
-      <h2 style="font-family:'Poppins',system-ui,sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.01em;margin:0 0 16px;">Every event. Every aircraft.<br>Every month of the forward window.</h2>
-      <p style="font-family:'Outfit',system-ui,sans-serif;font-size:14px;color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto;line-height:1.65;">Fletaris maps your entire fleet's maintenance commitments, lease obligations, and compliance posture against a rolling 12-to-24-month projection — so you see what's coming before it becomes a constraint.</p>
-    </div>
-
-    <!-- Timeline widget -->
-    <div id="lifecycleWidget" style="background:#152032;border:1px solid #2D3F5C;border-radius:12px;padding:28px;max-width:900px;margin:0 auto;">
-
-      <!-- Widget header -->
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;gap:16px;">
-        <div>
-          <div style="font-family:'Poppins',system-ui,sans-serif;font-size:13px;font-weight:600;color:#F1F5F9;">Fleet lifecycle projection — MSN 7842 · A320-214 · EC-MKL</div>
-          <div style="font-family:'Outfit',system-ui,sans-serif;font-size:10px;color:#64748B;margin-top:3px;">Rolling 12-month forward view · Updated from last records import</div>
+<!-- ───────── WAITLIST ───────── -->
+<section class="waitlist" id="waitlist">
+  <div class="waitlist-w">
+    <div class="waitlist-l">
+      <div class="waitlist-pill"><span class="dot"></span>Limited cohort · By invitation</div>
+      <h2>Get <em>early access.</em></h2>
+      <p class="waitlist-lede">We're onboarding a limited number of organizations for our initial release. No sales calls. No demos you didn't ask for.</p>
+      <div class="waitlist-receipts">
+        <div class="wl-rec">
+          <div class="wl-rec-mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="wl-rec-l">No sales calls — direct outreach only</div>
+          <div class="wl-rec-r">/ 01</div>
         </div>
-        <div style="background:rgba(0,196,204,0.12);border:1px solid rgba(0,196,204,0.25);color:#00C4CC;font-family:'Outfit',system-ui,sans-serif;font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;flex-shrink:0;">● LIVE VIEW</div>
-      </div>
-
-      <!-- Month header row -->
-      <div style="display:grid;grid-template-columns:88px 1fr;gap:12px;margin-bottom:4px;">
-        <div></div>
-        <div id="lcMonthHeaders" style="display:grid;grid-template-columns:repeat(12,1fr);"></div>
-      </div>
-
-      <!-- Track rows -->
-      <div class="lc-track">
-        <div class="lc-track-label">Airframe / C-Check</div>
-        <div class="lc-bar-area" id="lcAirframe"></div>
-      </div>
-      <div class="lc-track">
-        <div class="lc-track-label">Engine 1 · LLP Set</div>
-        <div class="lc-bar-area" id="lcEng1"></div>
-      </div>
-      <div class="lc-track">
-        <div class="lc-track-label">Engine 2 · Shop Visit</div>
-        <div class="lc-bar-area" id="lcEng2"></div>
-      </div>
-      <div class="lc-track">
-        <div class="lc-track-label">APU / Lease Return</div>
-        <div class="lc-bar-area" id="lcApu"></div>
-      </div>
-
-      <!-- Alert summary row -->
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-        <div class="lc-alert">
-          <div class="lc-alert-dot" style="background:#22C55E;"></div>
-          <div class="lc-alert-text"><strong style="color:#4ADE80;display:block;margin-bottom:2px;">Airframe</strong>C-Check in 8.5 months — scheduled</div>
+        <div class="wl-rec">
+          <div class="wl-rec-mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="wl-rec-l">Onboarding led by founders</div>
+          <div class="wl-rec-r">/ 02</div>
         </div>
-        <div class="lc-alert">
-          <div class="lc-alert-dot" style="background:#F59E0B;"></div>
-          <div class="lc-alert-text"><strong style="color:#FCD34D;display:block;margin-bottom:2px;">Engine 1</strong>LLP limit at 6 months — action window open</div>
-        </div>
-        <div class="lc-alert">
-          <div class="lc-alert-dot" style="background:#EF4444;"></div>
-          <div class="lc-alert-text"><strong style="color:#FCA5A5;display:block;margin-bottom:2px;">Engine 2</strong>Unplanned shop visit risk · 3.5 months</div>
-        </div>
-        <div class="lc-alert">
-          <div class="lc-alert-dot" style="background:#00C4CC;"></div>
-          <div class="lc-alert-text"><strong style="color:#00C4CC;display:block;margin-bottom:2px;">Lease return</strong>Conditions review due in 11 months</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <!-- END ASSET LIFECYCLE PROJECTION SECTION -->
-
-  <!-- PILLARS (continues navy background — no visual break from lifecycle) -->
-  <section id="pillars">
-    <div class="section-center-header">
-      <div class="section-eyebrow" style="color:#00C4CC;text-align:center;">Three value pillars</div>
-      <h2 style="color:#fff;text-align:center;">Translate technical data into business decisions.</h2>
-    </div>
-    <div class="pillars-grid">
-      <div class="pillar-card" style="border-top:3px solid #00C4CC;">
-        <div class="pillar-eyebrow" style="color:#00C4CC;">Foresight · The differentiator</div>
-        <h3>See what's coming.</h3>
-        <p>Project component life limits and shop visit forecasts 12 to 24 months forward. Know your cost exposure before it becomes an operational constraint.</p>
-      </div>
-      <div class="pillar-card" style="border-top:3px solid rgba(0,196,204,0.35);">
-        <div class="pillar-eyebrow" style="color:#64748B;">Visibility · The foundation</div>
-        <h3>One screen. Entire portfolio.</h3>
-        <p>Your entire fleet on one dashboard, current as of your last records update. Airframe, engines, APU, landing gear, ADs — all in one place.</p>
-      </div>
-      <div class="pillar-card" style="border-top:3px solid rgba(0,196,204,0.35);">
-        <div class="pillar-eyebrow" style="color:#64748B;">Readiness · The outcome</div>
-        <h3>Arrive prepared.</h3>
-        <p>Know your compliance and airworthiness posture before your next audit or redelivery. No last-minute surprises. No exposure you didn't see coming.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- COST OF NOT KNOWING -->
-  <section id="cost">
-    <div class="cost-grid">
-      <div class="cost-left">
-        <div class="section-eyebrow">The cost of not knowing</div>
-        <h2>Unplanned events don't announce themselves.</h2>
-        <div style="width:40px;height:3px;background:#00C4CC;margin-top:16px;border-radius:2px;"></div>
-      </div>
-      <div class="cost-right">
-        <div class="cost-row">
-          <div style="width:36px;height:36px;background:#FEF2F2;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2L14 13H2L8 2Z" stroke="#EF4444" stroke-width="1.5" stroke-linejoin="round"/>
-              <line x1="8" y1="6" x2="8" y2="9.5" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="8" cy="11.5" r="0.75" fill="#EF4444"/>
-            </svg>
-          </div>
-          <div>
-            <div class="cost-title">Redelivery disputes</div>
-            <p class="cost-body">Conditions found at aircraft return that weren't tracked forward become negotiating leverage for the other side. Every discrepancy discovered at redelivery is a position already lost.</p>
-            <span class="cost-callout">↑ Fletaris projects redelivery exposure 12–24 months out</span>
-          </div>
-        </div>
-        <div class="cost-row">
-          <div style="width:36px;height:36px;background:#FFF7ED;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="8" cy="8" r="6" stroke="#F59E0B" stroke-width="1.5"/>
-              <line x1="8" y1="5" x2="8" y2="9" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="8" cy="11" r="0.75" fill="#F59E0B"/>
-            </svg>
-          </div>
-          <div>
-            <div class="cost-title">Unplanned shop visits</div>
-            <p class="cost-body">The premium on an unplanned engine or APU shop visit versus a scheduled one is significant — in cost, in timing, and in aircraft availability. Visibility over the forward window eliminates the surprise.</p>
-            <span class="cost-callout">↑ Fletaris forecasts shop visits against the 12-month window</span>
-          </div>
-        </div>
-        <div class="cost-row cost-row-last">
-          <div style="width:36px;height:36px;background:#F0FDF4;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8l3 3 7-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="cost-title">Compliance gaps at audit</div>
-            <p class="cost-body">An airworthiness gap found by an auditor instead of found by you comes with a deadline, a cost, and a counterparty watching. Being prepared is a posture, not a document.</p>
-            <span class="cost-callout">↑ Fletaris monitors compliance posture in real time</span>
-          </div>
+        <div class="wl-rec">
+          <div class="wl-rec-mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="wl-rec-l">Records imported, never resold</div>
+          <div class="wl-rec-r">/ 03</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- WHO IT'S FOR -->
-  <section id="persona">
-    <div class="persona-grid">
-      <div class="persona-left">
-        <div class="section-eyebrow">Built for</div>
-        <h2>The Technical Asset Manager</h2>
-        <p style="font-size:14px;color:#64748B;line-height:1.65;margin-bottom:24px;">You carry the technical airworthiness of a portfolio that moves fast. Redeliveries, lease transitions, shop visit windows, reserve reconciliations — all running in parallel. Fletaris is built around your work, not around the airline operator's.</p>
-        <div class="persona-chips">
-          <span class="chip-primary">Aviation Asset Managers</span>
-          <span class="chip-secondary">Independent CAMOs</span>
-          <span class="chip-secondary">Transition Managers</span>
-          <span class="chip-secondary">Fleet Directors</span>
-          <span class="chip-secondary">Appraisers</span>
+    <form id="waitlist-form" class="form-card">
+      <div class="form-card-head">REQUEST ACCESS<span class="step">STEP 1 / 1</span></div>
+      <div class="form-row">
+        <div class="fld"><label>First name</label><input id="firstname" placeholder="Maria"/></div>
+        <div class="fld"><label>Last name</label><input id="lastname" placeholder="Rodriguez"/></div>
+      </div>
+      <div class="fld" id="group-email"><label>Work email *</label><input id="email" type="email" placeholder="m.rodriguez@avcap.com" required/></div>
+      <div class="fld"><label>Company</label><input id="company" placeholder="Aero Capital Partners"/></div>
+      <div class="fld" id="group-fleetsize"><label>Fleet size *</label>
+        <div class="select-wrap">
+          <select id="fleetsize" required>
+            <option value="" disabled selected>Select fleet size</option>
+            <option>1 – 10 aircraft</option>
+            <option>11 – 30 aircraft</option>
+            <option>31 – 80 aircraft</option>
+            <option>80+ aircraft</option>
+          </select>
         </div>
       </div>
-      <div class="persona-right">
-        <div class="position-card">
-          <div class="section-eyebrow" style="margin-bottom:16px;">Where Fletaris sits</div>
-          <div class="position-row position-muted">
-            <div class="position-dot" style="background:#94A3B8;"></div>
-            <div class="position-text">
-              <div class="position-name">Maintenance &amp; engineering systems</div>
-              <div class="position-desc">Execution-layer tools for engineers and technicians</div>
-            </div>
-            <div class="position-role">Serves the<br>engineer</div>
-          </div>
-          <div class="position-row position-active">
-            <div class="position-dot" style="background:#00C4CC;"></div>
-            <div class="position-text">
-              <div class="position-name" style="color:#00C4CC;">Fletaris</div>
-              <div class="position-desc" style="color:rgba(255,255,255,0.45);">Fleet intelligence · Forward projection</div>
-            </div>
-            <div class="position-role" style="color:#00C4CC;font-weight:600;">Serves the<br>asset manager</div>
-          </div>
-          <div class="position-row position-muted">
-            <div class="position-dot" style="background:#94A3B8;"></div>
-            <div class="position-text">
-              <div class="position-name">Lessor finance &amp; asset management platforms</div>
-              <div class="position-desc">Accounting-layer tools for finance teams</div>
-            </div>
-            <div class="position-role">Serves the<br>accountant</div>
-          </div>
+      <div id="form-error-banner" style="display:none;">Something went wrong. Please try again.</div>
+      <button type="submit" class="btn-submit">Join the waitlist
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+
+    <div id="form-success" style="display:none;">
+      <div class="s-title">You're on the list.</div>
+      <div class="s-body">Direct outreach only — you'll hear from us if your portfolio is the right fit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-top">
+      <img class="foot-logo" src="images/logo-horizontal-darkbg.png" alt="Fletaris"/>
+      <div class="foot-tagline">Intelligence layer for <b>regulated asset management</b></div>
+      <div class="foot-status"><span class="dot"></span>SYSTEMS NOMINAL · LAST SYNC 14:32 UTC</div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-l">
+        <p class="foot-copy">© 2026 Uchuva Tech. All rights reserved.</p>
+        <p class="foot-tm">Fletaris™ is a trademark of Uchuva Tech.</p>
+      </div>
+      <div class="foot-r">
+        <a href="mailto:operations@fletaris.com">operations@fletaris.com</a>
+        <div class="foot-vbar"></div>
+        <div class="foot-pb">
+          <span class="foot-pb-l">Powered by</span>
+          <img src="images/uchuva.png" alt="Uchuva"/>
+          <span class="foot-pb-name">Uchuva</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- WAITLIST -->
-  <section id="waitlist" class="waitlist-section">
-    <div class="waitlist-inner">
-      <div class="badge-pill" style="justify-content:center;margin-bottom:20px;">
-        <span class="badge-dot"></span>Limited cohort · By invitation
-      </div>
-      <h2 style="color:#fff;font-size:28px;font-weight:700;letter-spacing:-0.01em;margin-bottom:12px;">Get early access</h2>
-      <p style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.65;margin-bottom:32px;">We're onboarding a limited number of organizations for our initial release. No sales calls. No demos you didn't ask for. If your portfolio is the right fit, you'll hear from us directly.</p>
-
-      <div class="form-card" role="region" aria-label="Waitlist signup form">
-        <form id="waitlist-form" novalidate aria-label="Early access request form">
-          <div id="form-error-banner" style="display:none;color:#FCA5A5;font-size:0.85rem;margin-bottom:12px;">Something went wrong. Please try again or email us at operations@fletaris.com.</div>
-          <div class="form-row">
-            <div class="form-group" id="group-firstname">
-              <label for="firstname">First name</label>
-              <input type="text" id="firstname" name="firstname" placeholder="Maria" autocomplete="given-name" />
-            </div>
-            <div class="form-group" id="group-lastname">
-              <label for="lastname">Last name</label>
-              <input type="text" id="lastname" name="lastname" placeholder="Rodriguez" autocomplete="family-name" />
-            </div>
-          </div>
-          <div class="form-group" id="group-email">
-            <label for="email">Work email <span aria-hidden="true" style="color:#FCA5A5;">*</span></label>
-            <input type="email" id="email" name="email" placeholder="m.rodriguez@avcap.com" autocomplete="email" required aria-required="true" />
-            <span class="error-msg" role="alert">Please enter a valid work email address.</span>
-          </div>
-          <div class="form-group" id="group-company">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" placeholder="Aero Capital Partners" autocomplete="organization" />
-          </div>
-          <div class="form-group" id="group-fleetsize">
-            <label for="fleetsize">Fleet size <span aria-hidden="true" style="color:#FCA5A5;">*</span></label>
-            <div class="select-wrap">
-              <select id="fleetsize" name="fleetsize" required aria-required="true">
-                <option value="" disabled selected>Select fleet size</option>
-                <option value="1-10">1 – 10 aircraft</option>
-                <option value="11-30">11 – 30 aircraft</option>
-                <option value="31-80">31 – 80 aircraft</option>
-                <option value="80+">80+ aircraft</option>
-              </select>
-            </div>
-            <span class="error-msg" role="alert">Please select your fleet size.</span>
-          </div>
-          <button type="submit" class="btn-submit" aria-label="Submit waitlist request">Join the waitlist</button>
-        </form>
-        <div class="form-success" id="form-success" aria-live="polite" role="status" style="display:none;">
-          <div class="success-check" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#00C4CC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-          <h3>You're on the list.</h3>
-          <p>We'll reach out directly if your portfolio is a match for the initial cohort.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <p class="footer-copy">&copy; 2026 Uchuva Tech. All rights reserved.</p>
-        <p class="footer-tm">Fletaris&trade; is a trademark of Uchuva Tech. All rights reserved.</p>
-      </div>
-      <div class="footer-right">
-        <a href="mailto:operations@fletaris.com" class="footer-contact">operations@fletaris.com</a>
-        <div class="footer-divider"></div>
-        <div class="powered-by">
-          <span class="powered-label">Powered by</span>
-          <img src="images/uchuva.png" alt="Uchuva" class="uchuva-logo">
-          <span class="powered-name">Uchuva</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/app.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>
