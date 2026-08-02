@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Preflight is off (see tailwind.config.ts) so /air's original CSS stays untouched.
+   This reset is scoped to .hub-page only — the new multi-vertical hub route —
+   so it never touches /air's ported markup, which relies on browser defaults
+   in a few places (e.g. .dip-body has no explicit margin). */
+.hub-page h1,
+.hub-page h2,
+.hub-page h3,
+.hub-page h4,
+.hub-page h5,
+.hub-page h6,
+.hub-page p {
+  margin: 0;
+}
+
+.hub-page ul,
+.hub-page ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hub-page button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hub-page input,
+.hub-page select,
+.hub-page textarea {
+  font: inherit;
+  color: inherit;
+}
+
+.hub-page svg {
+  display: block;
+}
+
+/* Waitlist error state — toggled by the untouched /js/app.js via classList,
+   same behavior as /air's original .fld.has-error rule. */
+.hub-page #group-email.has-error input,
+.hub-page #group-fleetsize.has-error select {
+  border-color: #ef4444 !important;
+}
+
+::selection {
+  background: rgba(0, 196, 204, 0.25);
+}
+
+@keyframes carouselFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
