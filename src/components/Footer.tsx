@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { PRIVACY_POLICY_URL } from '@/lib/waitlist';
 
 const VERTICALS = [
   { label: 'Air', href: '/air', live: true },
@@ -58,13 +59,17 @@ export default function Footer() {
             <p className="font-body text-[11px] text-white/32">Fletaris™ is a trademark of Uchuva Tech.</p>
           </div>
           <div className="flex items-center gap-4">
+            <a href={PRIVACY_POLICY_URL} className="font-sans text-xs font-semibold text-brand-teal">
+              Privacy
+            </a>
+            <div className="w-px h-3.5 bg-white/15" />
             <a href="mailto:operations@fletaris.com" className="font-sans text-xs font-semibold text-brand-teal">
               operations@fletaris.com
             </a>
             <div className="w-px h-3.5 bg-white/15" />
             <div className="flex items-center gap-1.5">
               <span className="font-body text-[11px] text-white/45">Powered by</span>
-              <Image src="/images/uchuva.png" alt="Uchuva" width={14} height={14} className="h-3.5 w-auto" />
+              <Image src="/images/uchuva-sm.png" alt="Uchuva" width={14} height={14} className="h-3.5 w-auto" />
               <span className="font-sans text-[11px] font-semibold text-white/70">Uchuva</span>
             </div>
           </div>

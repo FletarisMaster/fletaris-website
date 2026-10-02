@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import TopNav from '@/components/TopNav';
+import AirLifecycleTabs from '@/components/AirLifecycleTabs';
+import WaitlistBehavior from '@/components/WaitlistBehavior';
 import { AIR_BODY_HTML } from './airBody';
 import './air.css';
 
@@ -14,8 +16,8 @@ export default function AirPage() {
     <div className="air-page">
       <TopNav />
       <div dangerouslySetInnerHTML={{ __html: AIR_BODY_HTML }} />
-      <script src="/js/air-lifecycle.js" defer />
-      <script src="/js/app.js" defer />
+      <AirLifecycleTabs />
+      <WaitlistBehavior />
     </div>
   );
 }

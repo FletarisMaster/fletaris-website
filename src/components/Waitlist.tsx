@@ -1,8 +1,9 @@
-// §07 — the highest-risk section per the spec. The form fields, element IDs,
-// validation, and submission handler are IDENTICAL to /air's — this loads the
-// exact same unmodified /js/app.js against restyled markup. Nothing about the
-// submission logic itself has changed; this is a second instance of it, not
-// an edit to the existing one.
+import WaitlistBehavior from '@/components/WaitlistBehavior';
+import { PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
+
+// §07 — the highest-risk section per the spec. The form fields and element IDs are
+// IDENTICAL to /air's, and both forms are driven by the same binder
+// (src/lib/waitlist.ts via <WaitlistBehavior />) against differently styled markup.
 const TRUST_LINES = [
   'Onboarding led by founders',
   'Records imported, never resold',
@@ -144,6 +145,8 @@ export default function Waitlist() {
               </select>
             </div>
 
+            <div data-turnstile-slot="" className="[&:not(:empty)]:mb-3.5" />
+
             <div
               id="form-error-banner"
               style={{ display: 'none' }}
@@ -154,7 +157,8 @@ export default function Waitlist() {
 
             <button
               type="submit"
-              className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 hover:shadow-[0_8px_24px_-4px_rgba(0,196,204,0.5)] transition-all inline-flex items-center justify-center gap-2.5"
+              disabled
+              className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 hover:shadow-[0_8px_24px_-4px_rgba(0,196,204,0.5)] transition-all inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-default"
             >
               Join the waitlist
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -167,6 +171,13 @@ export default function Waitlist() {
                 />
               </svg>
             </button>
+
+            <p className="mt-3.5 text-center font-body text-xs leading-[1.55] text-text-on-dark-dim">
+              {WAITLIST_PRIVACY_LINE}{' '}
+              <a href={PRIVACY_POLICY_URL} className="text-brand-teal underline underline-offset-2">
+                Privacy Policy
+              </a>
+            </p>
           </form>
 
           <div
@@ -188,7 +199,7 @@ export default function Waitlist() {
         </div>
       </div>
 
-      <script src="/js/app.js" defer />
+      <WaitlistBehavior />
     </section>
   );
 }

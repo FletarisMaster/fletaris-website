@@ -69,7 +69,7 @@ a {
   display: block;
 }
 
-/* Waitlist error state — toggled by the untouched /js/app.js via classList,
+/* Waitlist error state — toggled by src/lib/waitlist.ts via classList,
    same behavior as /air's original .fld.has-error rule. */
 .hub-page #group-email.has-error input,
 .hub-page #group-fleetsize.has-error select {
