@@ -1,8 +1,10 @@
 // Verbatim port of the original index.html body content (hero through the original
 // footer), minus the old <nav> (replaced by the shared TopNav) and the inline
-// lifecycle-widget <script> (moved to /public/js/air-lifecycle.js since scripts
+// lifecycle-widget <script> (ported to the AirLifecycleTabs client component, since scripts
 // injected via dangerouslySetInnerHTML never execute). A "back to hub" strip is
 // spliced in just above the original footer per the build spec §1.3.
+
+import { PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
 
 // Browsers always re-serialize self-closing tags on non-void elements (and even
 // drop the slash on void ones) when read back via .innerHTML — so a raw XHTML-style
@@ -393,10 +395,12 @@ const RAW_AIR_BODY_HTML = `
           </select>
         </div>
       </div>
+      <div class="turnstile-slot" data-turnstile-slot=""></div>
       <div id="form-error-banner" style="display:none;">Something went wrong. Please try again.</div>
-      <button type="submit" class="btn-submit">Join the waitlist
+      <button type="submit" class="btn-submit" disabled="">Join the waitlist
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
+      <p class="form-privacy">${WAITLIST_PRIVACY_LINE} <a href="${PRIVACY_POLICY_URL}">Privacy Policy</a></p>
     </form>
 
     <div id="form-success" style="display:none;">
@@ -437,11 +441,13 @@ const RAW_AIR_BODY_HTML = `
         <p class="foot-tm">Fletaris™ is a trademark of Uchuva Tech.</p>
       </div>
       <div class="foot-r">
+        <a href="${PRIVACY_POLICY_URL}">Privacy</a>
+        <div class="foot-vbar"></div>
         <a href="mailto:operations@fletaris.com">operations@fletaris.com</a>
         <div class="foot-vbar"></div>
         <div class="foot-pb">
           <span class="foot-pb-l">Powered by</span>
-          <img src="/images/uchuva.png" alt="Uchuva"/>
+          <img src="/images/uchuva-sm.png" alt="Uchuva"/>
           <span class="foot-pb-name">Uchuva</span>
         </div>
       </div>
