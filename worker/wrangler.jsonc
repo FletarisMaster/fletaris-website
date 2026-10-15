@@ -8,9 +8,9 @@
   "vars": {
     // Comma-separated origins allowed to POST (CORS). Local dev overrides this in .dev.vars.
     "ALLOWED_ORIGINS": "https://fletaris.com,https://www.fletaris.com,https://fletaris-site.pages.dev",
-    // "true" once the extra Notion columns exist (README "Notion database"). Until then the
-    // Worker writes only the original five fields, so deploying can't break the live form.
-    "NOTION_EXTENDED_FIELDS": "false",
+    // "true": the extra Notion columns exist (added 2026-10-15). Set "false" to fall back to
+    // writing only the original six columns.
+    "NOTION_EXTENDED_FIELDS": "true",
     // Retention (Privacy Policy §7): entries older than this are moved to Notion's trash.
     "RETENTION_DAYS": "365"
   },

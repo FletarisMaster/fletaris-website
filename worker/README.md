@@ -71,7 +71,7 @@ Database: **Fletaris early acces list** (Notion). Existing `Fleet Size` options 
 | `NOTION_DB_ID` | dashboard **variable** (plain, not secret) | not in `wrangler.jsonc` because the repo is public |
 | `TURNSTILE_SECRET` | secret, optional | unset = no Turnstile check |
 | `ALLOWED_ORIGINS` | var (`wrangler.jsonc`) | comma-separated |
-| `NOTION_EXTENDED_FIELDS` | var | `"false"` until the extra columns exist |
+| `NOTION_EXTENDED_FIELDS` | var | `"true"` (columns added 2026-10-15); `"false"` writes only the original six |
 | `RETENTION_DAYS` | var | `"365"` |
 
 Plain `wrangler deploy` **deletes** dashboard variables not in `wrangler.jsonc`, which would remove `NOTION_DB_ID` and break every signup. `npm run deploy` passes `--keep-vars` to prevent that. Always deploy with `npm run deploy`, or convert `NOTION_DB_ID` to a secret (`npx wrangler secret put NOTION_DB_ID`, then delete the variable).
@@ -101,10 +101,10 @@ Each step keeps signups working.
    allowed `https://fletaris-site.pages.dev`, which is kept in `ALLOWED_ORIGINS`.
 2. **Test against a copy.** Duplicate the Notion database, share it with the integration, put it
    in `.dev.vars`, then `npm run dev` and submit from the local site. Check that the row looks right.
-3. **Add the new columns** (table above) to the live database, and check the integration capabilities (see Config).
-4. **Deploy:** `npx wrangler login`, set `NOTION_EXTENDED_FIELDS` to `"true"` in
-   `wrangler.jsonc` (leave it `"false"` if step 3 isn't done yet), and run `npm run deploy`.
-   The existing `NOTION_TOKEN` / `NOTION_DB_ID` secrets stay in place, and the Worker keeps
+3. ~~**Add the new columns**~~ Done 2026-10-15 (Vertical: select; Source page, UTM, Policy version: text). Integration "Fletaris Waitlist Form" already has Read/Update/Insert content.
+4. **Deploy:** `cd worker`, `npx wrangler login`, then `npm run deploy` (`NOTION_EXTENDED_FIELDS` is
+   already `"true"`).
+   The existing `NOTION_TOKEN` secret and `NOTION_DB_ID` variable stay in place, and the Worker keeps
    its name and URL, so the site doesn't change. To undo: `npx wrangler rollback`.
 5. **Turnstile:** Cloudflare → Turnstile → *Add widget* (hostname `fletaris.com`, Managed). Put
    the site key in the website's `.env.production` (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`), deploy
