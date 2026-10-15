@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="max-w-content mx-auto px-5 sm:px-7 py-6">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
           <Image
-            src="/images/logo-horizontal-darkbg.png"
+            src="/images/logo-horizontal-darkbg.webp"
             alt="Fletaris"
             width={140}
             height={24}

@@ -89,7 +89,7 @@ export default function AssetCarousel() {
         >
           {hasImage ? (
             <Image
-              src={`/images/hub/${active}.jpg`}
+              src={`/images/hub/${active}.webp`}
               alt={entry.imageAlt}
               fill
               sizes="(min-width: 1140px) 1140px, 100vw"

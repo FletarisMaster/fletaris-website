@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Self-hosted brand fonts (latin subset, OFL; see public/fonts/LICENSE.txt). Outfit and
+   JetBrains Mono are variable fonts, so one file covers every weight the pages use. */
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/outfit-latin-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono-latin-var.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }

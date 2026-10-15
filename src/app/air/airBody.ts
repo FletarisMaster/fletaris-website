@@ -429,7 +429,7 @@ const RAW_AIR_BODY_HTML = `
 <footer class="foot">
   <div class="foot-inner">
     <div class="foot-top">
-      <img class="foot-logo" src="/images/logo-horizontal-darkbg.png" alt="Fletaris"/>
+      <img class="foot-logo" src="/images/logo-horizontal-darkbg.webp" alt="Fletaris"/>
       <div class="foot-tagline">Intelligence layer for <b>regulated asset management</b></div>
     </div>
     <div class="foot-bottom">

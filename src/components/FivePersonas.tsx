@@ -29,7 +29,7 @@ export default function FivePersonas() {
                 className="grid grid-cols-1 md:grid-cols-[220px_260px_1fr] gap-x-8 gap-y-3 items-center py-7 border-b border-hub-line"
               >
                 <Image
-                  src={`/images/logos/fletaris-${p.key}.png`}
+                  src={`/images/logos/fletaris-${p.key}.webp`}
                   alt={`Fletaris ${v.label}`}
                   width={174}
                   height={63}
