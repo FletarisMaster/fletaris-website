@@ -4,15 +4,15 @@ Receives the waitlist form from fletaris.com (hub `/` and `/air`) and stores the
 **Notion**. Live at `https://fletaris-waitlist.uchuva-tech.workers.dev`.
 
 > **Status (2026-10-15):** this folder is a rewrite of the Worker, built and tested locally
-> but **not deployed**. The live Worker still runs the older code that only exists in the
-> Cloudflare dashboard. Before the first deploy, follow [Rollout](#rollout). Deploying with
-> the wrong Notion column names would make every signup fail.
+> but **not deployed**. The live Worker still runs the older code from the Cloudflare
+> dashboard. This rewrite writes the same Notion columns and reads the same secrets
+> (`NOTION_TOKEN`, `NOTION_DB_ID`), so it can replace it directly. See [Rollout](#rollout).
 
 ## What it does
 
 | Step | Behaviour |
 |---|---|
-| CORS | Only origins in `ALLOWED_ORIGINS` (prod: `https://fletaris.com`, `https://www.fletaris.com`). Others get 403. |
+| CORS | Only origins in `ALLOWED_ORIGINS` (prod: `https://fletaris.com`, `https://www.fletaris.com`, `https://fletaris-site.pages.dev`). Others get 403. |
 | Size / JSON | Body over 8 KB → 413; invalid JSON → 400. |
 | Validation | `email` (valid, lower-cased) and `fleetsize` required; `vertical` must be `air·drone·land·sea·space` if sent. Fails → 400 `{error:"invalid", fields:[…]}`. |
 | Honeypot | A hidden `website` field. If it's filled in, the Worker answers 200 and stores nothing. |
@@ -45,17 +45,21 @@ deploying the site first is safe.
 Column names and types are set in [`src/config.ts`](src/config.ts) and **must match the
 database exactly**:
 
-| Key | Column (default) | Type | When |
+| Key | Column | Type | When |
 |---|---|---|---|
-| name | `Name` | title | always ("First Last", or the email if both are blank) |
-| email | `Email` | email | always (also used for duplicate checks) |
-| company | `Company` | text | always |
-| fleetSize | `Fleet size` | select | always |
+| name | `Name` | title | always ("First Last", or the email if both are blank; the old Worker wrote "Unknown") |
+| lastName | `Last Name` | text | always (when given) |
+| email | `Work Email` | email | always (also used for duplicate checks) |
+| company | `Company` | text | always (when given) |
+| fleetSize | `Fleet Size` | select | always |
+| submittedAt | `Submitted At` | date | always (UTC date) |
 | vertical | `Vertical` | select | `NOTION_EXTENDED_FIELDS=true` |
 | source | `Source page` | text | 〃 |
 | utm | `UTM` | text | 〃 (`source / medium / campaign`) |
-| consentAt | `Consent at` | date | 〃 |
 | policyVersion | `Policy version` | text | 〃 |
+
+The six columns above `Vertical` are the ones the old dashboard Worker wrote (copied from its
+source, 2026-10-15). `Submitted At` plus `Policy version` form the consent record.
 
 Database name: _fill in_.
 
@@ -64,7 +68,7 @@ Database name: _fill in_.
 | Name | Kind | Notes |
 |---|---|---|
 | `NOTION_TOKEN` | secret | Notion internal integration token, shared with the waitlist database |
-| `NOTION_DATABASE_ID` | secret | |
+| `NOTION_DB_ID` | secret | |
 | `TURNSTILE_SECRET` | secret, optional | unset = no Turnstile check |
 | `ALLOWED_ORIGINS` | var (`wrangler.jsonc`) | comma-separated |
 | `NOTION_EXTENDED_FIELDS` | var | `"false"` until the extra columns exist |
@@ -90,19 +94,16 @@ gitignored.
 
 Each step keeps signups working.
 
-1. **Capture the live Worker.** In the Cloudflare dashboard, open Workers & Pages →
-   `fletaris-waitlist` → *Edit code*. Save a copy of the code (e.g. as `worker/legacy/worker.js`
-   for reference), and note:
-   - the Notion column names and types it writes → fix `CORE_PROPS` in `src/config.ts`;
-   - the names of its secrets (Settings → Variables). If they aren't `NOTION_TOKEN` /
-     `NOTION_DATABASE_ID`, either rename them in `src/config.ts` or add the secrets under these names.
+1. ~~**Capture the live Worker.**~~ Done 2026-10-15: column names and secret names
+   (`NOTION_TOKEN`, `NOTION_DB_ID`) are mirrored in `src/config.ts`. The old Worker also
+   allowed `https://fletaris-site.pages.dev`, which is kept in `ALLOWED_ORIGINS`.
 2. **Test against a copy.** Duplicate the Notion database, share it with the integration, put it
    in `.dev.vars`, then `npm run dev` and submit from the local site. Check that the row looks right.
 3. **Add the new columns** (table above) to the live database.
-4. **Deploy:** `npx wrangler login`, then `npx wrangler secret put NOTION_TOKEN` (and the others
-   if needed), set `NOTION_EXTENDED_FIELDS` to `"true"` in `wrangler.jsonc`, and run
-   `npm run deploy`. Same name → same URL, so the site doesn't change. To undo:
-   `npx wrangler rollback`.
+4. **Deploy:** `npx wrangler login`, set `NOTION_EXTENDED_FIELDS` to `"true"` in
+   `wrangler.jsonc` (leave it `"false"` if step 3 isn't done yet), and run `npm run deploy`.
+   The existing `NOTION_TOKEN` / `NOTION_DB_ID` secrets stay in place, and the Worker keeps
+   its name and URL, so the site doesn't change. To undo: `npx wrangler rollback`.
 5. **Turnstile:** Cloudflare → Turnstile → *Add widget* (hostname `fletaris.com`, Managed). Put
    the site key in the website's `.env.production` (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`), deploy
    Pages, **then** `npx wrangler secret put TURNSTILE_SECRET`. From then on, requests without a

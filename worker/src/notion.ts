@@ -65,9 +65,11 @@ export function buildProperties(s: Signup, extended: boolean, now: Date): Record
 
   const fullName = [s.firstname, s.lastname].filter(Boolean).join(' ');
   set(CORE_PROPS.name, fullName || s.email);
+  set(CORE_PROPS.lastName, s.lastname);
   set(CORE_PROPS.email, s.email);
   set(CORE_PROPS.company, s.company);
   set(CORE_PROPS.fleetSize, s.fleetsize);
+  set(CORE_PROPS.submittedAt, now.toISOString().slice(0, 10));
 
   if (extended) {
     set(EXTENDED_PROPS.vertical, s.vertical);
@@ -75,7 +77,6 @@ export function buildProperties(s: Signup, extended: boolean, now: Date): Record
     if (s.utm) {
       set(EXTENDED_PROPS.utm, [s.utm.source, s.utm.medium, s.utm.campaign].map((x) => x ?? '-').join(' / '));
     }
-    set(EXTENDED_PROPS.consentAt, now.toISOString());
     set(EXTENDED_PROPS.policyVersion, s.policyVersion);
   }
   return props;
@@ -92,7 +93,7 @@ interface QueryResult {
 }
 
 export async function existsByEmail(env: Env, email: string): Promise<boolean> {
-  const r = await notion<QueryResult>(env, `/databases/${env.NOTION_DATABASE_ID}/query`, 'POST', {
+  const r = await notion<QueryResult>(env, `/databases/${env.NOTION_DB_ID}/query`, 'POST', {
     filter: emailFilter(email),
     page_size: 1,
   });
@@ -101,7 +102,7 @@ export async function existsByEmail(env: Env, email: string): Promise<boolean> {
 
 export async function createEntry(env: Env, s: Signup, now = new Date()): Promise<void> {
   await notion(env, '/pages', 'POST', {
-    parent: { database_id: env.NOTION_DATABASE_ID },
+    parent: { database_id: env.NOTION_DB_ID },
     properties: buildProperties(s, env.NOTION_EXTENDED_FIELDS === 'true', now),
   });
 }
@@ -114,7 +115,7 @@ export async function createEntry(env: Env, s: Signup, now = new Date()): Promis
 export async function trashOlderThan(env: Env, cutoff: Date, max = 200): Promise<number> {
   let trashed = 0;
   while (trashed < max) {
-    const r = await notion<QueryResult>(env, `/databases/${env.NOTION_DATABASE_ID}/query`, 'POST', {
+    const r = await notion<QueryResult>(env, `/databases/${env.NOTION_DB_ID}/query`, 'POST', {
       filter: { timestamp: 'created_time', created_time: { before: cutoff.toISOString() } },
       page_size: Math.min(100, max - trashed),
     });

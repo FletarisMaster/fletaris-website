@@ -7,7 +7,7 @@ import { parseSignup } from '../src/validate';
 const ORIGIN = 'https://fletaris.com';
 const baseEnv: Env = {
   NOTION_TOKEN: 'test-token',
-  NOTION_DATABASE_ID: 'db123',
+  NOTION_DB_ID: 'db123',
   ALLOWED_ORIGINS: 'https://fletaris.com,https://www.fletaris.com',
   NOTION_EXTENDED_FIELDS: 'false',
 };
@@ -52,10 +52,10 @@ describe('parseSignup', () => {
 describe('buildProperties', () => {
   it('writes only core columns unless extended fields are on', () => {
     const s = { ...(parseSignup({ ...valid, vertical: 'air', source: '/air' }) as any).value };
-    expect(Object.keys(buildProperties(s, false, new Date()))).toEqual(['Name', 'Email', 'Company', 'Fleet size']);
+    expect(Object.keys(buildProperties(s, false, new Date()))).toEqual(['Name', 'Work Email', 'Company', 'Fleet Size', 'Submitted At']);
     const ext = buildProperties(s, true, new Date('2026-10-15T00:00:00Z'));
     expect(ext['Vertical']).toEqual({ select: { name: 'air' } });
-    expect(ext['Consent at']).toEqual({ date: { start: '2026-10-15T00:00:00.000Z' } });
+    expect(ext['Submitted At']).toEqual({ date: { start: '2026-10-15' } });
   });
 });
 
