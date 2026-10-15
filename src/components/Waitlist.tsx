@@ -70,6 +70,7 @@ export default function Waitlist() {
 
           <form
             id="waitlist-form"
+            noValidate
             className="relative bg-hub-card border border-brand-teal/25 rounded-lg p-8 shadow-[0_24px_64px_-24px_rgba(0,196,204,0.25)] overflow-hidden"
           >
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent" />
@@ -85,21 +86,23 @@ export default function Waitlist() {
 
             <div className="grid grid-cols-2 gap-3.5">
               <div className="mb-4">
-                <label className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+                <label htmlFor="firstname" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
                   First name
                 </label>
                 <input
                   id="firstname"
+                  autoComplete="given-name"
                   placeholder="Maria"
                   className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
                 />
               </div>
               <div className="mb-4">
-                <label className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+                <label htmlFor="lastname" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
                   Last name
                 </label>
                 <input
                   id="lastname"
+                  autoComplete="family-name"
                   placeholder="Rodriguez"
                   className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
                 />
@@ -107,36 +110,43 @@ export default function Waitlist() {
             </div>
 
             <div id="group-email" className="mb-4">
-              <label className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+              <label htmlFor="email" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
                 Work email *
               </label>
               <input
                 id="email"
                 type="email"
                 required
+                autoComplete="email"
+                aria-describedby="email-error"
                 placeholder="m.rodriguez@avcap.com"
                 className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
               />
+              <p id="email-error" data-field-error="" hidden className="mt-2 font-body text-[13px] text-[#FCA5A5]">
+                Enter a valid work email, like name@company.com.
+              </p>
             </div>
 
             <div className="mb-4">
-              <label className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+              <label htmlFor="company" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
                 Company
               </label>
               <input
                 id="company"
+                autoComplete="organization"
                 placeholder="Aero Capital Partners"
                 className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
               />
             </div>
 
             <div id="group-fleetsize" className="mb-4">
-              <label className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+              <label htmlFor="fleetsize" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
                 Fleet size *
               </label>
               <select
                 id="fleetsize"
                 required
+                aria-describedby="fleetsize-error"
                 defaultValue=""
                 className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors appearance-none"
               >
@@ -148,12 +158,16 @@ export default function Waitlist() {
                 <option>31 – 80 aircraft</option>
                 <option>80+ aircraft</option>
               </select>
+              <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[13px] text-[#FCA5A5]">
+                Choose your fleet size.
+              </p>
             </div>
 
             <div data-turnstile-slot="" className="[&:not(:empty)]:mb-3.5" />
 
             <div
               id="form-error-banner"
+              role="alert"
               style={{ display: 'none' }}
               className="bg-status-red/10 border border-status-red/40 rounded px-4 py-3 font-mono text-xs text-status-red mb-3.5"
             >

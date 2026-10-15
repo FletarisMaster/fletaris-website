@@ -376,18 +376,18 @@ const RAW_AIR_BODY_HTML = `
       </div>
     </div>
 
-    <form id="waitlist-form" class="form-card">
+    <form id="waitlist-form" class="form-card" novalidate>
       <div class="form-card-head">REQUEST ACCESS<span class="step">STEP 1 / 1</span></div>
       <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"/></div>
       <div class="form-row">
-        <div class="fld"><label>First name</label><input id="firstname" placeholder="Maria"/></div>
-        <div class="fld"><label>Last name</label><input id="lastname" placeholder="Rodriguez"/></div>
+        <div class="fld"><label for="firstname">First name</label><input id="firstname" placeholder="Maria" autocomplete="given-name"/></div>
+        <div class="fld"><label for="lastname">Last name</label><input id="lastname" placeholder="Rodriguez" autocomplete="family-name"/></div>
       </div>
-      <div class="fld" id="group-email"><label>Work email *</label><input id="email" type="email" placeholder="m.rodriguez@avcap.com" required/></div>
-      <div class="fld"><label>Company</label><input id="company" placeholder="Aero Capital Partners"/></div>
-      <div class="fld" id="group-fleetsize"><label>Fleet size *</label>
+      <div class="fld" id="group-email"><label for="email">Work email *</label><input id="email" type="email" placeholder="m.rodriguez@avcap.com" required autocomplete="email" aria-describedby="email-error"/><p class="fld-error" id="email-error" data-field-error="" hidden>Enter a valid work email, like name@company.com.</p></div>
+      <div class="fld"><label for="company">Company</label><input id="company" placeholder="Aero Capital Partners" autocomplete="organization"/></div>
+      <div class="fld" id="group-fleetsize"><label for="fleetsize">Fleet size *</label>
         <div class="select-wrap">
-          <select id="fleetsize" required>
+          <select id="fleetsize" required aria-describedby="fleetsize-error">
             <option value="" disabled selected>Select fleet size</option>
             <option>1 – 10 aircraft</option>
             <option>11 – 30 aircraft</option>
@@ -395,9 +395,10 @@ const RAW_AIR_BODY_HTML = `
             <option>80+ aircraft</option>
           </select>
         </div>
+        <p class="fld-error" id="fleetsize-error" data-field-error="" hidden>Choose your fleet size.</p>
       </div>
       <div class="turnstile-slot" data-turnstile-slot=""></div>
-      <div id="form-error-banner" style="display:none;">Something went wrong. Please try again.</div>
+      <div id="form-error-banner" role="alert" style="display:none;">Something went wrong. Please try again.</div>
       <button type="submit" class="btn-submit" disabled="">Join the waitlist
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>

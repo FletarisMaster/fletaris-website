@@ -49,7 +49,8 @@ a {
   list-style: none;
 }
 
-.hub-page button {
+/* :where() keeps this reset below Tailwind utilities, so a button's own p-* / bg-* classes apply. */
+:where(.hub-page) button {
   font: inherit;
   color: inherit;
   background: none;
@@ -58,9 +59,11 @@ a {
   cursor: pointer;
 }
 
-.hub-page input,
-.hub-page select,
-.hub-page textarea {
+/* Same here: at .hub-page specificity this beat text-text-on-dark, so typed text was black on
+   the dark form fields. */
+:where(.hub-page) input,
+:where(.hub-page) select,
+:where(.hub-page) textarea {
   font: inherit;
   color: inherit;
 }

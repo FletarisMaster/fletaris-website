@@ -116,7 +116,16 @@ export function bindWaitlistForm(): () => void {
   const btnText = btnLabel?.textContent ?? '';
   const slot = form.querySelector<HTMLElement>('[data-turnstile-slot]');
   const field = (id: string) => (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null)?.value ?? '';
-  const setErr = (id: string, on: boolean) => document.getElementById(id)?.classList.toggle('has-error', on);
+  // Marks a field group invalid: red border (has-error), aria-invalid on its control, and its
+  // [data-field-error] message shown. The control's aria-describedby points at that message.
+  const setErr = (groupId: string, on: boolean) => {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+    group.classList.toggle('has-error', on);
+    group.querySelector('input, select')?.setAttribute('aria-invalid', String(on));
+    const msg = group.querySelector<HTMLElement>('[data-field-error]');
+    if (msg) msg.hidden = !on;
+  };
 
   let cancelled = false;
   let widgetId: string | null = null;
@@ -192,7 +201,13 @@ export function bindWaitlistForm(): () => void {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       if (cancelled) return;
       form!.style.display = 'none';
-      if (success) success.style.display = 'block';
+      if (success) {
+        success.style.display = 'block';
+        // The form (and the focused button) just disappeared: move focus to the confirmation so
+        // keyboard and screen-reader users land on it and hear it.
+        success.setAttribute('tabindex', '-1');
+        success.focus();
+      }
     } catch {
       if (cancelled) return;
       setBusy(false);
