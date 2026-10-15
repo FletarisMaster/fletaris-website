@@ -104,8 +104,7 @@ export default function Atom() {
             <svg
               viewBox="100 80 850 590"
               width="100%"
-              height="auto"
-              style={{ overflow: 'visible', display: 'block' }}
+              style={{ overflow: 'visible', display: 'block', height: 'auto' }}
               role="img"
               aria-label="Radial diagram of five Fletaris verticals connected to a shared fleet intelligence core"
             >
