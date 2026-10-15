@@ -11,7 +11,6 @@ export interface CarouselEntry {
   key: VerticalKey;
   assetId: string;
   rows: [CarouselRow, CarouselRow, CarouselRow];
-  illustrative: boolean;
   imageAlt: string;
 }
 
@@ -27,7 +26,6 @@ export const CAROUSEL_DATA: Record<VerticalKey, CarouselEntry> = {
       { prefix: 'Redelivery in', value: '42 days', color: 'amber' },
       { value: '6', suffix: 'open findings' },
     ],
-    illustrative: false,
     imageAlt: 'Narrowbody aircraft on maintenance stand',
   },
   drone: {
@@ -38,7 +36,6 @@ export const CAROUSEL_DATA: Record<VerticalKey, CarouselEntry> = {
       { prefix: 'Operator authorization expires in', value: '60 days', color: 'amber' },
       { value: '3', suffix: 'incident reports' },
     ],
-    illustrative: true,
     imageAlt: 'Industrial survey drone in the field',
   },
   land: {
@@ -49,7 +46,6 @@ export const CAROUSEL_DATA: Record<VerticalKey, CarouselEntry> = {
       { prefix: 'RTM inspection due', value: 'Q4' },
       { value: '2', suffix: 'defects open' },
     ],
-    illustrative: true,
     imageAlt: 'Commercial vehicle fleet in a depot yard',
   },
   sea: {
@@ -60,7 +56,6 @@ export const CAROUSEL_DATA: Record<VerticalKey, CarouselEntry> = {
       { prefix: 'Special survey opens in', value: '7 months' },
       { value: '3', suffix: 'class conditions' },
     ],
-    illustrative: true,
     imageAlt: 'Bulk carrier vessel alongside in port',
   },
   space: {
@@ -71,7 +66,6 @@ export const CAROUSEL_DATA: Record<VerticalKey, CarouselEntry> = {
       { prefix: 'Licence renewal', value: 'Q2 2027' },
       { value: '4.2 years', suffix: 'to deorbit obligation' },
     ],
-    illustrative: true,
     imageAlt: 'Communications satellite in low Earth orbit',
   },
 };

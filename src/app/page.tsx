@@ -1,5 +1,4 @@
 import TopNav from '@/components/TopNav';
-import CaseFileStamp from '@/components/CaseFileStamp';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import Atom from '@/components/Atom';
@@ -14,7 +13,6 @@ export default function HubPage() {
   return (
     <div className="hub-page">
       <HoverSyncProvider>
-        <CaseFileStamp />
         <TopNav />
         <main>
           <Hero />

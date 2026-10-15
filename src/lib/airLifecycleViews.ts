@@ -1,6 +1,6 @@
 // Mock data for /air's lifecycle widget, moved verbatim out of public/js/air-lifecycle.js.
-// MOCKUP: the operators and registrations are placeholders, to be replaced with fictional
-// ones in F36 (tasks/todo.md, website finding 4).
+// Example data only (F36 D2): aircraft are identified by MSN and type, never by a real
+// operator or registration.
 
 export interface LifecycleBar { cls: string; l: number; w: number; t: string; flag?: string }
 export interface LifecycleTrack { name: string; sub: string; bars: LifecycleBar[] }
@@ -17,13 +17,13 @@ export interface LifecycleView {
 
 const fleet: LifecycleView = {
   "msn": "All fleet",
-  "reg": "5 aircraft",
+  "reg": "Example data",
   "sub": "<span><b>5 aircraft</b> across 3 lessees</span><span class=\"div\">·</span><span>2 in redelivery window</span><span class=\"div\">·</span><span>1 unplanned shop visit risk</span><span class=\"div\">·</span><span>11 active commitments</span>",
   "legR": "11 ACTIVE TRACKS · <b>5 AIRCRAFT</b> · 47 FORWARD EVENTS",
   "tracks": [
     {
       "name": "MSN 6291 · 737-800",
-      "sub": "EI-FVL · Ryanair",
+      "sub": "On lease · redelivery due",
       "bars": [
         {
           "cls": "red-solid",
@@ -42,7 +42,7 @@ const fleet: LifecycleView = {
     },
     {
       "name": "MSN 7842 · A320-214",
-      "sub": "EC-MKL · Iberia Express",
+      "sub": "On lease · engine watch",
       "bars": [
         {
           "cls": "red-dim",
@@ -66,7 +66,7 @@ const fleet: LifecycleView = {
     },
     {
       "name": "MSN 8104 · A321neo",
-      "sub": "CC-AZA · LATAM",
+      "sub": "On lease",
       "bars": [
         {
           "cls": "green-dim",
@@ -90,7 +90,7 @@ const fleet: LifecycleView = {
     },
     {
       "name": "MSN 5547 · 737 MAX 8",
-      "sub": "PR-XMA · GOL",
+      "sub": "On lease",
       "bars": [
         {
           "cls": "amber-dim",
@@ -114,7 +114,7 @@ const fleet: LifecycleView = {
     },
     {
       "name": "MSN 9221 · A330-300",
-      "sub": "B-LJF · Cathay",
+      "sub": "On lease",
       "bars": [
         {
           "cls": "green-dim",
@@ -167,8 +167,8 @@ const fleet: LifecycleView = {
 export const LIFECYCLE_VIEWS: Record<string, LifecycleView> = {
   msn7842: {
     "msn": "MSN 7842",
-    "reg": "EC-MKL",
-    "sub": "<span>A320-214</span><span class=\"div\">·</span><span><b>Iberia Express</b> · wet lease</span><span class=\"div\">·</span><span>Lease return <b>Q1 2027</b></span><span class=\"div\">·</span><span>Rolling forward view</span>",
+    "reg": "Example data",
+    "sub": "<span>A320-214</span><span class=\"div\">·</span><span>On lease</span><span class=\"div\">·</span><span>Lease return <b>Q1 2027</b></span><span class=\"div\">·</span><span>Rolling forward view</span>",
     "legR": "6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 14 FORWARD EVENTS",
     "tracks": [
       {
@@ -338,8 +338,8 @@ export const LIFECYCLE_VIEWS: Record<string, LifecycleView> = {
   },
   msn6291: {
     "msn": "MSN 6291",
-    "reg": "EI-FVL",
-    "sub": "<span>Boeing 737-800</span><span class=\"div\">·</span><span><b>Ryanair</b> · wet lease</span><span class=\"div\">·</span><span>Redelivery in <b>42 days</b></span><span class=\"div\">·</span><span>Action required</span>",
+    "reg": "Example data",
+    "sub": "<span>Boeing 737-800</span><span class=\"div\">·</span><span>On lease</span><span class=\"div\">·</span><span>Redelivery in <b>42 days</b></span><span class=\"div\">·</span><span>Action required</span>",
     "legR": "6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 9 FORWARD EVENTS",
     "tracks": [
       {

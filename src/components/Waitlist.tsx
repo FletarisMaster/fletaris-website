@@ -80,7 +80,7 @@ export default function Waitlist() {
               <input id="website" name="website" tabIndex={-1} autoComplete="off" />
             </div>
             <div className="flex items-center justify-between mb-6">
-              <span className="font-sans text-sm font-semibold text-text-on-dark">REQUEST ACCESS</span>
+              <span className="font-sans text-sm font-semibold text-text-on-dark">REQUEST EARLY ACCESS</span>
               <span className="font-mono text-[11px] text-brand-teal tracking-[0.06em]">STEP 1 / 1</span>
             </div>
 
@@ -179,7 +179,7 @@ export default function Waitlist() {
               disabled
               className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 hover:shadow-[0_8px_24px_-4px_rgba(0,196,204,0.5)] transition-all inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-default"
             >
-              Join the waitlist
+              Request early access
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path
                   d="M2 8H14M14 8L9 3M14 8L9 13"

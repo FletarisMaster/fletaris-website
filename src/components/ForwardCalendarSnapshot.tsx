@@ -128,9 +128,8 @@ export default function ForwardCalendarSnapshot() {
         </div>
         <div className="flex flex-col items-end gap-1.5 shrink-0">
           <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-surface-muted border border-surface-border rounded-sm px-2 py-1">
-            Illustrative
+            Example data
           </span>
-          <span className="font-mono text-[9.5px] text-surface-muted">SYNC 14:32 UTC</span>
         </div>
       </div>
 
