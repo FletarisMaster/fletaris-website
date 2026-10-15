@@ -113,16 +113,7 @@ export default function AssetCarousel() {
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal/70 to-transparent" />
               <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-white/10">
                 <span className="font-mono text-xs uppercase tracking-[0.06em] text-white/70">{entry.assetId}</span>
-                {entry.illustrative ? (
-                  <span className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-white/40">
-                    Illustrative
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em] text-status-green">
-                    <span className="w-1.5 h-1.5 rounded-full bg-status-green shadow-[0_0_6px_#22C55E]" />
-                    Live
-                  </span>
-                )}
+                <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/60">Example data</span>
               </div>
               <div className="px-5 pb-4 pt-1">
                 {entry.rows.map((row, i) => (

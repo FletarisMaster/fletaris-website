@@ -88,7 +88,7 @@ export default function TopNav() {
             href="#waitlist"
             className="font-sans text-[12px] font-semibold uppercase tracking-[0.08em] text-brand-teal border border-brand-teal px-4 py-2 hover:bg-brand-teal hover:text-hub-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
           >
-            Request access
+            Request early access
           </a>
         </div>
 
@@ -146,7 +146,7 @@ export default function TopNav() {
               onClick={() => setOpen(false)}
               className="font-sans text-sm font-semibold uppercase tracking-[0.08em] text-brand-teal border border-brand-teal px-4 py-3 text-center"
             >
-              Request access
+              Request early access
             </a>
           </div>
         </div>

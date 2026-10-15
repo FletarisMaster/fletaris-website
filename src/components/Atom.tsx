@@ -340,11 +340,11 @@ export default function Atom() {
               >
                 {entry.ctaLabel} <span>→</span>
               </Link>
-            ) : (
+            ) : entry.ctaLabel ? (
               <div className="mt-6 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-text-on-dark-dim">
                 {entry.ctaLabel}
               </div>
-            )}
+            ) : null}
             <div
               className="mt-5 font-mono text-[9.5px] uppercase tracking-[0.13em] text-hub-dim"
               style={{ visibility: active === 'core' ? 'visible' : 'hidden' }}

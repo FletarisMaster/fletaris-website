@@ -47,8 +47,8 @@ export const READOUT: Record<NodeKey, ReadoutEntry> = {
     built: false,
     line: 'Technical data in. Foresight out.',
     meta: ['Life limits · Compliance · History'],
-    ctaLabel: 'About Uchuva Tech',
-    ctaHref: null, // no /about page in this build — see checkpoint note
+    ctaLabel: '',
+    ctaHref: null,
   },
   air: {
     code: '01',

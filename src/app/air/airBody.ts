@@ -35,7 +35,6 @@ const RAW_AIR_BODY_HTML = `
         <span class="lbl">FLEET FORESIGHT FOR ASSET MANAGERS</span>
         <span class="ln"></span>
       </div>
-      <div class="hero-vol">FILE — FLT/26207.MR/2026.05</div>
     </div>
     <h1 class="hero-title">
       Your fleet's<br/>
@@ -60,7 +59,7 @@ const RAW_AIR_BODY_HTML = `
       </div>
     </div>
   </div>
-  <div class="scroll-cue">SCROLL · CASE FILE 26207</div>
+  <div class="scroll-cue">Example data</div>
 </section>
 
 <!-- ───────── DIPTYCH ───────── -->
@@ -105,16 +104,16 @@ const RAW_AIR_BODY_HTML = `
           <div class="dip-card-top">
             <div>
               <div class="dip-msn">MSN 6291</div>
-              <div class="dip-reg">EI-FVL · Boeing 737-800</div>
+              <div class="dip-reg">Boeing 737-800</div>
             </div>
-            <span class="dip-pill">UPDATED 14:32</span>
+            <span class="dip-pill">EXAMPLE DATA</span>
           </div>
-          <div class="dip-fh">FH <b>31,047</b> · FC <b>8,204</b> · Op. <b>Ryanair (wet-lease)</b></div>
+          <div class="dip-fh">FH <b>31,047</b> · FC <b>8,204</b> · On lease</div>
           <div class="dip-sep"></div>
           <div class="dip-meta-row">
             <div>
-              <div class="dip-meta-l">LAST FLIGHT</div>
-              <div class="dip-meta-v">DUB <span style="color:var(--teal);">→</span> LGW</div>
+              <div class="dip-meta-l">ENGINES</div>
+              <div class="dip-meta-v">2 × CFM56-7B</div>
             </div>
             <div>
               <div class="dip-meta-l">RESERVE ADQ.</div>
@@ -156,11 +155,11 @@ const RAW_AIR_BODY_HTML = `
             <svg viewBox="0 0 24 24" fill="none"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#00C4CC"/></svg>
           </div>
           <div class="lc-titles">
-            <div class="lc-msn" id="lc-msn">MSN 7842<span class="reg" id="lc-reg">EC-MKL</span></div>
+            <div class="lc-msn" id="lc-msn">MSN 7842<span class="reg" id="lc-reg">Example data</span></div>
             <div class="lc-sub" id="lc-sub">
               <span>A320-214</span>
               <span class="div">·</span>
-              <span><b>Iberia Express</b> · wet lease</span>
+              <span>On lease</span>
               <span class="div">·</span>
               <span>Lease return <b>Q1 2027</b></span>
               <span class="div">·</span>
@@ -169,8 +168,6 @@ const RAW_AIR_BODY_HTML = `
           </div>
         </div>
         <div class="lc-head-r">
-          <div class="lc-live"><span class="led"></span>LIVE</div>
-          <div class="lc-sync">SYNC 14:32 UTC</div>
         </div>
       </div>
 
@@ -270,32 +267,32 @@ const RAW_AIR_BODY_HTML = `
     <div class="quote-band">
       <div class="sec-serial light">/ 05</div>
       <div>
-        <div class="sec-eyebrow light">The cost of not knowing</div>
-        <h2 class="sec-h light">Unplanned events <em>don't announce themselves.</em></h2>
-        <p class="sec-lede light">Three line items every asset manager carries, and three places Fletaris closes the window.</p>
+        <div class="sec-eyebrow light">Why it matters now</div>
+        <h2 class="sec-h light">The fleet is doubling. <em>The spreadsheets aren't.</em></h2>
+        <p class="sec-lede light">More aircraft, more leases, and more asset value resting on what the technical record can prove.</p>
       </div>
     </div>
     <div class="quote-card-grid">
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#EF4444;"></span>REDELIVERY DISPUTES</div>
-        <div class="qc-num red">$2.4M<span class="u">avg.</span></div>
-        <h3 class="qc-h">Position lost at the table</h3>
-        <p class="qc-b">Conditions found at return that weren't tracked forward become leverage for the other side. Every discrepancy is a position already lost.</p>
-        <div class="qc-foot">↑ Projected redelivery exposure forward</div>
+        <div class="qc-tag"><span class="dot"></span>FLEET GROWTH</div>
+        <div class="qc-num">~49K<span class="u">by 2044</span></div>
+        <h3 class="qc-h">The fleet you track is doubling</h3>
+        <p class="qc-b">About 25,000 commercial aircraft were in service at the end of 2024. Airbus forecasts about 49,000 by 2044: twice the records, twice the commitments to project forward.</p>
+        <div class="qc-src">Source: Airbus Global Market Forecast 2025–2044</div>
       </div>
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#F59E0B;"></span>UNPLANNED SHOP VISITS</div>
-        <div class="qc-num amber">5×<span class="u">premium</span></div>
-        <h3 class="qc-h">More dollars, more days</h3>
-        <p class="qc-b">The premium on an unplanned engine or APU visit versus a scheduled one is significant — in cost, in timing, and in aircraft availability.</p>
-        <div class="qc-foot">↑ Forecast against the forward window</div>
+        <div class="qc-tag"><span class="dot"></span>LEASED FLEET</div>
+        <div class="qc-num">~50%<span class="u">leased</span></div>
+        <h3 class="qc-h">Half the fleet changes hands on a schedule</h3>
+        <p class="qc-b">Roughly half of the world's commercial fleet is leased. Every lease ends in a redelivery, and every redelivery is settled on the technical record.</p>
+        <div class="qc-src">Source: industry estimates, 2025 (range: nearly half to ~58%)</div>
       </div>
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#22C55E;"></span>COMPLIANCE AT AUDIT</div>
-        <div class="qc-num green">100<span class="u">%</span></div>
-        <h3 class="qc-h">Found by you, not by the auditor</h3>
-        <p class="qc-b">A gap found by an auditor instead of by you comes with a deadline, a cost, and a counterparty watching. Posture, not paperwork.</p>
-        <div class="qc-foot">↑ Real-time compliance monitoring</div>
+        <div class="qc-tag"><span class="dot"></span>LESSOR PORTFOLIOS</div>
+        <div class="qc-num">~$318B<span class="u">top 31 lessors</span></div>
+        <h3 class="qc-h">Asset value rides on the record</h3>
+        <p class="qc-b">The 31 largest lessors hold about 10,200 aircraft with an estimated portfolio value of $318B. What an aircraft is worth at return depends on what its records prove.</p>
+        <div class="qc-src">Source: AvBench Aircraft Lessors Portfolio Review, Jan 2026 (data: ch-aviation)</div>
       </div>
     </div>
   </div>
@@ -315,8 +312,7 @@ const RAW_AIR_BODY_HTML = `
     <div class="persona-grid">
       <div class="persona-l">
         <div class="persona-quote">
-          "I'm not looking for a maintenance system. I have one. I'm looking for the layer above it — the one that tells me what next quarter looks like."
-          <span class="who">— DIRECTOR, TECHNICAL ASSET MANAGEMENT · TIER-1 LESSOR</span>
+          Not another maintenance system. You already have one. Fletaris is the layer above it: the one that tells you what next quarter looks like.
         </div>
         <div class="persona-chips">
           <span class="chip-1">Aviation Asset Managers</span>
@@ -377,7 +373,7 @@ const RAW_AIR_BODY_HTML = `
     </div>
 
     <form id="waitlist-form" class="form-card" novalidate>
-      <div class="form-card-head">REQUEST ACCESS<span class="step">STEP 1 / 1</span></div>
+      <div class="form-card-head">REQUEST EARLY ACCESS<span class="step">STEP 1 / 1</span></div>
       <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"/></div>
       <div class="form-row">
         <div class="fld"><label for="firstname">First name</label><input id="firstname" placeholder="Maria" autocomplete="given-name"/></div>
@@ -399,7 +395,7 @@ const RAW_AIR_BODY_HTML = `
       </div>
       <div class="turnstile-slot" data-turnstile-slot=""></div>
       <div id="form-error-banner" role="alert" style="display:none;">Something went wrong. Please try again.</div>
-      <button type="submit" class="btn-submit" disabled="">Join the waitlist
+      <button type="submit" class="btn-submit" disabled="">Request early access
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <p class="form-privacy">${WAITLIST_PRIVACY_LINE} <a href="${PRIVACY_POLICY_URL}">Privacy Policy</a></p>
@@ -435,7 +431,6 @@ const RAW_AIR_BODY_HTML = `
     <div class="foot-top">
       <img class="foot-logo" src="/images/logo-horizontal-darkbg.png" alt="Fletaris"/>
       <div class="foot-tagline">Intelligence layer for <b>regulated asset management</b></div>
-      <div class="foot-status"><span class="dot"></span>SYSTEMS NOMINAL · LAST SYNC 14:32 UTC</div>
     </div>
     <div class="foot-bottom">
       <div class="foot-l">
@@ -449,8 +444,8 @@ const RAW_AIR_BODY_HTML = `
         <div class="foot-vbar"></div>
         <div class="foot-pb">
           <span class="foot-pb-l">Powered by</span>
-          <img src="/images/uchuva-sm.png" alt="Uchuva"/>
-          <span class="foot-pb-name">Uchuva</span>
+          <img src="/images/uchuva-tech-mark.png" alt="" width="16" height="16"/>
+          <span class="foot-pb-name">Uchuva Tech</span>
         </div>
       </div>
     </div>

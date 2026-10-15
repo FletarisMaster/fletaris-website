@@ -26,10 +26,6 @@ export default function Footer() {
           <p className="font-body text-[13px] text-white/60">
             Intelligence layer for <b className="font-sans font-semibold text-brand-teal">regulated asset management</b>
           </p>
-          <div className="flex items-center gap-2 font-mono text-[11px] text-white/45 tracking-[0.04em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-status-green shadow-[0_0_6px_#22C55E]" />
-            SYSTEMS NOMINAL · LAST SYNC 14:32 UTC
-          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-6 py-6 border-b border-white/15">
@@ -69,8 +65,8 @@ export default function Footer() {
             <div className="w-px h-3.5 bg-white/15" />
             <div className="flex items-center gap-1.5">
               <span className="font-body text-[11px] text-white/45">Powered by</span>
-              <Image src="/images/uchuva-sm.png" alt="Uchuva" width={14} height={14} className="h-3.5 w-auto" />
-              <span className="font-sans text-[11px] font-semibold text-white/70">Uchuva</span>
+              <Image src="/images/uchuva-tech-mark.png" alt="" width={16} height={16} className="h-4 w-4" />
+              <span className="font-sans text-[11px] font-semibold text-white/70">Uchuva Tech</span>
             </div>
           </div>
         </div>
