@@ -73,6 +73,11 @@ export default function Waitlist() {
             className="relative bg-hub-card border border-brand-teal/25 rounded-lg p-8 shadow-[0_24px_64px_-24px_rgba(0,196,204,0.25)] overflow-hidden"
           >
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent" />
+            {/* Honeypot: hidden from people, filled in by bots; the Worker drops those entries. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+            </div>
             <div className="flex items-center justify-between mb-6">
               <span className="font-sans text-sm font-semibold text-text-on-dark">REQUEST ACCESS</span>
               <span className="font-mono text-[11px] text-brand-teal tracking-[0.06em]">STEP 1 / 1</span>

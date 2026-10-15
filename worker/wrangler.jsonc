@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Same name as the live Worker: `npm run deploy` REPLACES it. Read README "Rollout" first.
+  "name": "fletaris-waitlist",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "vars": {
+    // Comma-separated origins allowed to POST (CORS). Local dev overrides this in .dev.vars.
+    "ALLOWED_ORIGINS": "https://fletaris.com,https://www.fletaris.com",
+    // "true" once the extra Notion columns exist (README "Notion database"). Until then the
+    // Worker writes only the original five fields, so deploying can't break the live form.
+    "NOTION_EXTENDED_FIELDS": "false",
+    // Retention (Privacy Policy §7): entries older than this are moved to Notion's trash.
+    "RETENTION_DAYS": "365"
+  },
+  // Daily at 03:17 UTC: delete waitlist entries past the retention window.
+  "triggers": { "crons": ["17 3 * * *"] }
+  // Secrets (wrangler secret put …, never in this file): NOTION_TOKEN, NOTION_DATABASE_ID,
+  // TURNSTILE_SECRET (optional: unset = no verification).
+}
