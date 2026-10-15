@@ -2,6 +2,8 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   // Same name as the live Worker: `npm run deploy` REPLACES it. Read README "Rollout" first.
   "name": "fletaris-waitlist",
+  // Uchuva Tech account (the login also sees a personal account; deploys must not go there).
+  "account_id": "f7442758aa02f0b67f54df1b1cbe6118",
   "main": "src/index.ts",
   "compatibility_date": "2026-10-01",
   "observability": { "enabled": true },
