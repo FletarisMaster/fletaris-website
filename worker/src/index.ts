@@ -46,9 +46,18 @@ async function handlePost(request: Request, env: Env, origin: string): Promise<R
     if (!ok) return json({ error: 'verification_failed' }, 403, origin);
   }
 
+  // A repeat signup is answered like a new one (no "already registered" leak) and not stored
+  // twice. The check needs the integration's "Read content" capability; if it fails, store the
+  // entry anyway: a duplicate row beats a lost signup.
+  let duplicate = false;
   try {
-    // A repeat signup is answered like a new one (no "already registered" leak) and not stored twice.
-    if (!(await existsByEmail(env, signup.email))) await createEntry(env, signup);
+    duplicate = await existsByEmail(env, signup.email);
+  } catch (e) {
+    console.error('duplicate check failed', e instanceof NotionError ? `${e.status} ${e.code}` : String(e));
+  }
+
+  try {
+    if (!duplicate) await createEntry(env, signup);
   } catch (e) {
     // Status and Notion error code only: never log the submitted personal data.
     console.error('notion write failed', e instanceof NotionError ? `${e.status} ${e.code}` : String(e));

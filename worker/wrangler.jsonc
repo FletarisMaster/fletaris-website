@@ -16,6 +16,7 @@
   },
   // Daily at 03:17 UTC: delete waitlist entries past the retention window.
   "triggers": { "crons": ["17 3 * * *"] }
-  // Secrets (wrangler secret put …, never in this file): NOTION_TOKEN, NOTION_DB_ID,
-  // TURNSTILE_SECRET (optional: unset = no verification).
+  // Set in the dashboard, never in this file (the repo is public): NOTION_TOKEN (secret),
+  // NOTION_DB_ID (a plain variable on the live Worker; `npm run deploy` passes --keep-vars so
+  // it survives), TURNSTILE_SECRET (secret, optional: unset = no verification).
 }

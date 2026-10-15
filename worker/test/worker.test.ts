@@ -98,6 +98,18 @@ describe('fetch handler', () => {
     expect((await worker.fetch!(new Request('https://worker.test/') as any, baseEnv)).status).toBe(405);
   });
 
+  it('still stores the signup when the duplicate check is refused', async () => {
+    const urls: string[] = [];
+    vi.stubGlobal('fetch', async (url: string) => {
+      urls.push(url);
+      if (url.endsWith('/query')) return Response.json({ code: 'restricted_resource' }, { status: 403 });
+      return Response.json({ id: 'new' });
+    });
+    const res = await worker.fetch!(post(valid) as any, baseEnv);
+    expect(res.status).toBe(200);
+    expect(urls.at(-1)).toBe('https://api.notion.com/v1/pages');
+  });
+
   it('returns 502 when Notion fails', async () => {
     vi.stubGlobal('fetch', async () => Response.json({ code: 'validation_error' }, { status: 400 }));
     const res = await worker.fetch!(post(valid) as any, baseEnv);

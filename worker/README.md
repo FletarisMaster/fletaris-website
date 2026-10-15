@@ -61,20 +61,22 @@ database exactly**:
 The six columns above `Vertical` are the ones the old dashboard Worker wrote (copied from its
 source, 2026-10-15). `Submitted At` plus `Policy version` form the consent record.
 
-Database name: _fill in_.
+Database: **Fletaris early acces list** (Notion). Existing `Fleet Size` options are `1 - 10` etc.; the form sends `1 – 10 aircraft` etc., so Notion adds those as new options on first use (no error). Tidy the options when the form is redesigned for all verticals.
 
 ## Config
 
 | Name | Kind | Notes |
 |---|---|---|
 | `NOTION_TOKEN` | secret | Notion internal integration token, shared with the waitlist database |
-| `NOTION_DB_ID` | secret | |
+| `NOTION_DB_ID` | dashboard **variable** (plain, not secret) | not in `wrangler.jsonc` because the repo is public |
 | `TURNSTILE_SECRET` | secret, optional | unset = no Turnstile check |
 | `ALLOWED_ORIGINS` | var (`wrangler.jsonc`) | comma-separated |
 | `NOTION_EXTENDED_FIELDS` | var | `"false"` until the extra columns exist |
 | `RETENTION_DAYS` | var | `"365"` |
 
-`wrangler deploy` replaces plain vars with the ones in `wrangler.jsonc`. Secrets are kept.
+Plain `wrangler deploy` **deletes** dashboard variables not in `wrangler.jsonc`, which would remove `NOTION_DB_ID` and break every signup. `npm run deploy` passes `--keep-vars` to prevent that. Always deploy with `npm run deploy`, or convert `NOTION_DB_ID` to a secret (`npx wrangler secret put NOTION_DB_ID`, then delete the variable).
+
+The Notion integration needs **Read**, **Update** and **Insert content** capabilities (notion.so/my-integrations → the integration → Capabilities). The old Worker only inserted. Without Read, the duplicate check is skipped (signups still save); without Update, the retention job fails.
 
 ## Local development
 
@@ -99,7 +101,7 @@ Each step keeps signups working.
    allowed `https://fletaris-site.pages.dev`, which is kept in `ALLOWED_ORIGINS`.
 2. **Test against a copy.** Duplicate the Notion database, share it with the integration, put it
    in `.dev.vars`, then `npm run dev` and submit from the local site. Check that the row looks right.
-3. **Add the new columns** (table above) to the live database.
+3. **Add the new columns** (table above) to the live database, and check the integration capabilities (see Config).
 4. **Deploy:** `npx wrangler login`, set `NOTION_EXTENDED_FIELDS` to `"true"` in
    `wrangler.jsonc` (leave it `"false"` if step 3 isn't done yet), and run `npm run deploy`.
    The existing `NOTION_TOKEN` / `NOTION_DB_ID` secrets stay in place, and the Worker keeps
