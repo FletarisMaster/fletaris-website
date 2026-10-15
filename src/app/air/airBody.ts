@@ -378,6 +378,7 @@ const RAW_AIR_BODY_HTML = `
 
     <form id="waitlist-form" class="form-card">
       <div class="form-card-head">REQUEST ACCESS<span class="step">STEP 1 / 1</span></div>
+      <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"/></div>
       <div class="form-row">
         <div class="fld"><label>First name</label><input id="firstname" placeholder="Maria"/></div>
         <div class="fld"><label>Last name</label><input id="lastname" placeholder="Rodriguez"/></div>

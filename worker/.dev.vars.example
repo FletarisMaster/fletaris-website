@@ -1,0 +1,8 @@
+# Copy to .dev.vars for `npm run dev` (never commit .dev.vars).
+# Use a TEST Notion database here, not the live waitlist.
+NOTION_TOKEN=
+NOTION_DB_ID=
+# Turnstile test secret that always passes: 1x0000000000000000000000000000000AA
+TURNSTILE_SECRET=
+ALLOWED_ORIGINS=http://localhost:3100,http://localhost:3000
+NOTION_EXTENDED_FIELDS=true

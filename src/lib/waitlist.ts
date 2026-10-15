@@ -16,6 +16,9 @@ export const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || 
 /** The Privacy Policy lives on the app host (F02). */
 export const PRIVACY_POLICY_URL = 'https://app.fletaris.com/legal/privacy';
 
+/** Privacy Policy version shown at the form; sent with each signup as the consent record. */
+export const PRIVACY_POLICY_VERSION = '1.1.0';
+
 export const WAITLIST_CONTACT_EMAIL = 'operations@fletaris.com';
 
 /** The notice under both forms (Sam, 2026-10-02). Followed by a "Privacy Policy" link. */
@@ -60,6 +63,37 @@ function loadTurnstile(): Promise<TurnstileApi> {
   return turnstileLoading;
 }
 
+const UTM_KEY = 'fletaris-utm';
+
+/**
+ * UTM tags from the landing URL. Kept for the browser session so a visitor who lands on `/`
+ * with tags and signs up on `/air` is still attributed. Storage can throw (private mode).
+ */
+function campaignTags(): { source?: string; medium?: string; campaign?: string } | undefined {
+  const q = new URLSearchParams(window.location.search);
+  const fromUrl = {
+    source: q.get('utm_source') || undefined,
+    medium: q.get('utm_medium') || undefined,
+    campaign: q.get('utm_campaign') || undefined,
+  };
+  try {
+    if (fromUrl.source || fromUrl.medium || fromUrl.campaign) {
+      sessionStorage.setItem(UTM_KEY, JSON.stringify(fromUrl));
+      return fromUrl;
+    }
+    const saved = sessionStorage.getItem(UTM_KEY);
+    return saved ? JSON.parse(saved) : undefined;
+  } catch {
+    return fromUrl.source || fromUrl.medium || fromUrl.campaign ? fromUrl : undefined;
+  }
+}
+
+/** `/air` → "air". The hub (`/`) isn't a vertical, so it sends none. */
+function verticalFromPath(path: string): string | undefined {
+  const seg = path.split('/')[1];
+  return ['air', 'drone', 'land', 'sea', 'space'].includes(seg) ? seg : undefined;
+}
+
 function isEmail(v: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 }
@@ -72,6 +106,8 @@ function isEmail(v: string): boolean {
 export function bindWaitlistForm(): () => void {
   const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
   if (!form) return () => {};
+  campaignTags(); // capture landing-page UTM tags now, before a client-side nav drops the query
+
 
   const success = document.getElementById('form-success');
   const errBanner = document.getElementById('form-error-banner');
@@ -145,6 +181,11 @@ export function bindWaitlistForm(): () => void {
           email: field('email').trim(),
           company: field('company').trim(),
           fleetsize: field('fleetsize'),
+          vertical: verticalFromPath(window.location.pathname),
+          source: window.location.pathname,
+          utm: campaignTags(),
+          policyVersion: PRIVACY_POLICY_VERSION,
+          website: field('website'),
           turnstileToken,
         }),
       });
