@@ -312,8 +312,7 @@ const RAW_AIR_BODY_HTML = `
     <div class="persona-grid">
       <div class="persona-l">
         <div class="persona-quote">
-          "I'm not looking for a maintenance system. I have one. I'm looking for the layer above it — the one that tells me what next quarter looks like."
-          <span class="who">— DIRECTOR, TECHNICAL ASSET MANAGEMENT · TIER-1 LESSOR</span>
+          Not another maintenance system. You already have one. Fletaris is the layer above it: the one that tells you what next quarter looks like.
         </div>
         <div class="persona-chips">
           <span class="chip-1">Aviation Asset Managers</span>
