@@ -39,7 +39,7 @@ export default function TopNav() {
       <div className="max-w-content mx-auto px-5 sm:px-7 h-16 flex items-center justify-between">
         <Link href="/" className="shrink-0" aria-label="Fletaris home">
           <Image
-            src="/images/logo-horizontal-darkbg.png"
+            src="/images/logo-horizontal-darkbg.webp"
             alt="Fletaris"
             width={140}
             height={24}

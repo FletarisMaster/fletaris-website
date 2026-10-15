@@ -1,25 +1,22 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { SITE_URL } from '@/lib/site';
 
-// next/font/google requires a build-time fetch to fonts.googleapis.com, which is
-// blocked by TLS interception in this environment. Loaded via <link> instead —
-// matches how the original static site loaded these same three families.
+// Site-wide defaults. Each page sets its own title, description, canonical URL and Open Graph
+// card (src/lib/site.ts → pageMetadata), so no page inherits another page's canonical.
 export const metadata: Metadata = {
-  title: 'Fletaris — Fleet intelligence software for regulated asset managers',
-  description:
-    "Fletaris is fleet intelligence software and a forward-projection solution for regulated asset managers — covering aircraft, drones, trucks, vessels, and satellites. If you're responsible for assets that carry life limits, answer to a regulator, and underwrite commitments you've already signed, Fletaris projects what your technical data means for what's coming.",
+  metadataBase: new URL(SITE_URL),
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
+        {/* Fonts are self-hosted (public/fonts, @font-face in globals.css): no request to Google.
+            Preload the two faces the first screen of each page renders with. */}
+        <link rel="preload" href="/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/poppins-latin-700.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>{children}</body>
     </html>
