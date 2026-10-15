@@ -206,7 +206,6 @@
 /* ───────── cost / quote ───────── */
 .air-page .quote{position:relative;padding:140px 40px;background:var(--navy-deep);overflow:hidden;}
 .air-page .quote::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,196,204,0.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
-.air-page .quote::after{content:"";position:absolute;top:0;left:50%;width:800px;height:500px;transform:translate(-50%,-20%);background:radial-gradient(ellipse, rgba(239,68,68,0.10), transparent 65%);pointer-events:none;}
 .air-page .quote-w{position:relative;max-width:1320px;margin:0 auto;}
 .air-page .quote-band{display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;margin-bottom:64px;}
 .air-page .quote-band .sec-h{color:#fff;}
@@ -214,15 +213,13 @@
 .air-page .quote-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--navy-line);border:1px solid var(--navy-line);border-radius:14px;overflow:hidden;}
 .air-page .qc{background:var(--navy-base);padding:40px 36px;display:flex;flex-direction:column;}
 .air-page .qc-tag{font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px;margin-bottom:24px;}
-.air-page .qc-tag .dot{width:6px;height:6px;border-radius:50%;}
-.air-page .qc-num{font-family:var(--fh);font-size:96px;font-weight:700;line-height:0.85;letter-spacing:-0.04em;font-variant-numeric:tabular-nums;margin-bottom:8px;}
-.air-page .qc-num .u{font-size:28px;color:rgba(255,255,255,0.6);font-weight:500;letter-spacing:0;margin-left:6px;}
-.air-page .qc-num.red{color:#FCA5A5;}
-.air-page .qc-num.amber{color:#FCD34D;}
-.air-page .qc-num.green{color:#4ADE80;}
+.air-page .qc-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+.air-page .qc-num{color:var(--teal);font-family:var(--fh);font-size:clamp(56px,6vw,88px);font-weight:700;line-height:0.85;letter-spacing:-0.04em;font-variant-numeric:tabular-nums;margin-bottom:8px;}
+.air-page .qc-num .u{display:block;margin-top:12px;font-family:var(--fm);font-size:12px;font-weight:600;line-height:1.4;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);}
 .air-page .qc-h{font-family:var(--fh);font-size:18px;font-weight:600;color:#fff;line-height:1.3;margin:0 0 10px;}
 .air-page .qc-b{font-family:var(--fb);font-size:14px;line-height:1.55;color:rgba(255,255,255,0.72);margin:0 0 auto;flex:1;}
-.air-page .qc-foot{margin-top:24px;font-family:var(--fm);font-size:11px;color:var(--teal);font-weight:600;border-top:1px solid rgba(0,196,204,0.22);padding-top:14px;display:flex;align-items:center;gap:8px;}
+/* Source line under each figure (F36 D3: every number on the site carries its source). */
+.air-page .qc-src{margin-top:24px;font-family:var(--fb);font-size:12px;line-height:1.5;color:rgba(255,255,255,0.6);border-top:1px solid var(--navy-line);padding-top:14px;}
 
 /* ───────── persona ───────── */
 .air-page .persona{background:var(--navy-deep);padding:120px 40px;}
@@ -327,6 +324,8 @@
 
 /* ───────── responsive ───────── */
 @media(max-width:900px){
+  /* Stack the section number above the heading: beside it, an 80px column squeezed headings off-screen at 375px. */
+  .air-page .sec-band,.air-page .quote-band{grid-template-columns:1fr;gap:12px;}
   .air-page .nav-links{display:none;}
   .air-page .hero{padding:100px 24px 60px;}
   .air-page .hero-meta{grid-template-columns:1fr;gap:12px;}

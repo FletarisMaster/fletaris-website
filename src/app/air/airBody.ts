@@ -267,32 +267,32 @@ const RAW_AIR_BODY_HTML = `
     <div class="quote-band">
       <div class="sec-serial light">/ 05</div>
       <div>
-        <div class="sec-eyebrow light">The cost of not knowing</div>
-        <h2 class="sec-h light">Unplanned events <em>don't announce themselves.</em></h2>
-        <p class="sec-lede light">Three line items every asset manager carries, and three places Fletaris closes the window.</p>
+        <div class="sec-eyebrow light">Why it matters now</div>
+        <h2 class="sec-h light">The fleet is doubling. <em>The spreadsheets aren't.</em></h2>
+        <p class="sec-lede light">More aircraft, more leases, and more asset value resting on what the technical record can prove.</p>
       </div>
     </div>
     <div class="quote-card-grid">
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#EF4444;"></span>REDELIVERY DISPUTES</div>
-        <div class="qc-num red">$2.4M<span class="u">avg.</span></div>
-        <h3 class="qc-h">Position lost at the table</h3>
-        <p class="qc-b">Conditions found at return that weren't tracked forward become leverage for the other side. Every discrepancy is a position already lost.</p>
-        <div class="qc-foot">↑ Projected redelivery exposure forward</div>
+        <div class="qc-tag"><span class="dot"></span>FLEET GROWTH</div>
+        <div class="qc-num">~49K<span class="u">by 2044</span></div>
+        <h3 class="qc-h">The fleet you track is doubling</h3>
+        <p class="qc-b">About 25,000 commercial aircraft were in service at the end of 2024. Airbus forecasts about 49,000 by 2044: twice the records, twice the commitments to project forward.</p>
+        <div class="qc-src">Source: Airbus Global Market Forecast 2025–2044</div>
       </div>
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#F59E0B;"></span>UNPLANNED SHOP VISITS</div>
-        <div class="qc-num amber">5×<span class="u">premium</span></div>
-        <h3 class="qc-h">More dollars, more days</h3>
-        <p class="qc-b">The premium on an unplanned engine or APU visit versus a scheduled one is significant — in cost, in timing, and in aircraft availability.</p>
-        <div class="qc-foot">↑ Forecast against the forward window</div>
+        <div class="qc-tag"><span class="dot"></span>LEASED FLEET</div>
+        <div class="qc-num">~50%<span class="u">leased</span></div>
+        <h3 class="qc-h">Half the fleet changes hands on a schedule</h3>
+        <p class="qc-b">Roughly half of the world's commercial fleet is leased. Every lease ends in a redelivery, and every redelivery is settled on the technical record.</p>
+        <div class="qc-src">Source: industry estimates, 2025 (range: nearly half to ~58%)</div>
       </div>
       <div class="qc">
-        <div class="qc-tag"><span class="dot" style="background:#22C55E;"></span>COMPLIANCE AT AUDIT</div>
-        <div class="qc-num green">100<span class="u">%</span></div>
-        <h3 class="qc-h">Found by you, not by the auditor</h3>
-        <p class="qc-b">A gap found by an auditor instead of by you comes with a deadline, a cost, and a counterparty watching. Posture, not paperwork.</p>
-        <div class="qc-foot">↑ Real-time compliance monitoring</div>
+        <div class="qc-tag"><span class="dot"></span>LESSOR PORTFOLIOS</div>
+        <div class="qc-num">~$318B<span class="u">top 31 lessors</span></div>
+        <h3 class="qc-h">Asset value rides on the record</h3>
+        <p class="qc-b">The 31 largest lessors hold about 10,200 aircraft with an estimated portfolio value of $318B. What an aircraft is worth at return depends on what its records prove.</p>
+        <div class="qc-src">Source: AvBench Aircraft Lessors Portfolio Review, Jan 2026 (data: ch-aviation)</div>
       </div>
     </div>
   </div>
