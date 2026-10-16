@@ -26,15 +26,16 @@ const config: Config = {
           black: '#020202',
           white: '#FFFFFF',
         },
-        // Neutral dark scale for the multi-vertical hub — teal stays the only hue
+        // Dark scale for the public site: the brand's dark-mode tokens (navy-biased, not neutral
+        // grey), shared by the hub and /air. Teal stays the only accent hue. (F36 D7)
         hub: {
-          base: '#0A0C10',
-          raised: '#101319',
-          card: '#151920',
-          line: '#2A2E36',
-          grid: '#181B21',
-          ring: '#262A32',
-          dim: '#5C626C',
+          base: '#0B1120', // brand dark base
+          raised: '#111827', // brand dark page
+          card: '#1C2638', // brand dark card
+          line: '#2D3F5C', // brand dark border
+          grid: '#152032', // brand dark header: background grid lines
+          ring: '#26384A', // brand navy-alt: atom orbit rings
+          dim: '#7D8BA3', // small mono labels; 5.4:1 on base (was #5C626C, 3.2:1)
         },
         surface: {
           page: '#F8FAFC',
@@ -45,8 +46,8 @@ const config: Config = {
         text: {
           primary: '#020202',
           secondary: '#64748B',
-          'on-dark': '#F5FAFB',
-          'on-dark-dim': '#8B929E',
+          'on-dark': '#F1F5F9', // brand dark text primary
+          'on-dark-dim': '#94A3B8', // brand dark text secondary
         },
         status: {
           green: '#22C55E',

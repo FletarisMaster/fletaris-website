@@ -108,30 +108,13 @@ export default function Atom() {
               role="img"
               aria-label="Radial diagram of five Fletaris verticals connected to a shared fleet intelligence core"
             >
-              <defs>
-                <radialGradient id="gAir" cx="34%" cy="30%" r="72%">
-                  <stop offset="0%" stopColor="#5FE3E8" />
-                  <stop offset="55%" stopColor="#00A8B0" />
-                  <stop offset="100%" stopColor="#00727A" />
-                </radialGradient>
-                <radialGradient id="gDrone" cx="34%" cy="30%" r="72%">
-                  <stop offset="0%" stopColor="#4FD8DE" />
-                  <stop offset="55%" stopColor="#00B3BA" />
-                  <stop offset="100%" stopColor="#007A82" />
-                </radialGradient>
-                <radialGradient id="gShadow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#000" stopOpacity="0.55" />
-                  <stop offset="100%" stopColor="#000" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-
               {/* background grid */}
               <g opacity={0.55}>
                 {Array.from({ length: Math.floor(VIEW_W / GRID_STEP) + 1 }, (_, i) => i * GRID_STEP).map((x) => (
-                  <line key={`gx${x}`} x1={x} y1={0} x2={x} y2={VIEW_H} stroke="#181B21" strokeWidth={1} />
+                  <line key={`gx${x}`} x1={x} y1={0} x2={x} y2={VIEW_H} stroke="#152032" strokeWidth={1} />
                 ))}
                 {Array.from({ length: Math.floor(VIEW_H / GRID_STEP) + 1 }, (_, i) => i * GRID_STEP).map((y) => (
-                  <line key={`gy${y}`} x1={0} y1={y} x2={VIEW_W} y2={y} stroke="#181B21" strokeWidth={1} />
+                  <line key={`gy${y}`} x1={0} y1={y} x2={VIEW_W} y2={y} stroke="#152032" strokeWidth={1} />
                 ))}
               </g>
 
@@ -144,7 +127,7 @@ export default function Atom() {
                     cy={CORE_GEOMETRY.cy}
                     r={r}
                     fill="none"
-                    stroke="#262A32"
+                    stroke="#26384A"
                     strokeWidth={1}
                     opacity={(0.95 - i * 0.19).toFixed(2)}
                   />
@@ -233,16 +216,9 @@ export default function Atom() {
                       cursor={isAir ? 'pointer' : 'default'}
                     >
                       {n.solid ? (
-                        <>
-                          <ellipse
-                            cx={n.cx + 4}
-                            cy={n.cy + n.r * 0.92}
-                            rx={n.r * 0.86}
-                            ry={n.r * 0.22}
-                            fill="url(#gShadow)"
-                          />
-                          <circle cx={n.cx} cy={n.cy} r={n.r} fill={`url(#${n.key === 'air' ? 'gAir' : 'gDrone'})`} />
-                        </>
+                        // Flat fills, no shading or drop shadow (brand: no gradients). Built = full
+                        // teal; in development = teal at 60%.
+                        <circle cx={n.cx} cy={n.cy} r={n.r} fill="#00C4CC" fillOpacity={n.key === 'air' ? 1 : 0.6} />
                       ) : (
                         <circle cx={n.cx} cy={n.cy} r={n.r} fill="none" stroke="#00C4CC" strokeWidth={2.75} />
                       )}
@@ -254,7 +230,7 @@ export default function Atom() {
                         fontSize={17}
                         fontWeight={600}
                         letterSpacing="0.1em"
-                        fill="#F5FAFB"
+                        fill="#F1F5F9"
                       >
                         {n.short.toUpperCase()}
                       </text>
@@ -265,7 +241,7 @@ export default function Atom() {
                         fontFamily="'JetBrains Mono', monospace"
                         fontSize={13}
                         letterSpacing="0.1em"
-                        fill={n.built ? '#00C4CC' : '#8B929E'}
+                        fill={n.built ? '#00C4CC' : '#94A3B8'}
                       >
                         {n.statusLabel}
                       </text>
@@ -356,15 +332,6 @@ export default function Atom() {
 
         {/* Mobile stack — replaces the SVG below 720px */}
         <div className="sm:hidden mt-8">
-          <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
-            <defs>
-              <radialGradient id="gAirMobile" cx="34%" cy="30%" r="72%">
-                <stop offset="0%" stopColor="#5FE3E8" />
-                <stop offset="55%" stopColor="#00A8B0" />
-                <stop offset="100%" stopColor="#00727A" />
-              </radialGradient>
-            </defs>
-          </svg>
           {ATOM_NODES.map((n) => {
             const r = READOUT[n.key];
             const dotSize = n.solid ? (n.key === 'air' ? 15 : 10) : 8;
@@ -374,7 +341,7 @@ export default function Atom() {
               <>
                 <svg width="34" height="34" viewBox="0 0 34 34" className="shrink-0 mt-0.5">
                   {n.solid ? (
-                    <circle cx="17" cy="17" r={dotSize} fill={n.key === 'air' ? 'url(#gAirMobile)' : '#00A8B0'} />
+                    <circle cx="17" cy="17" r={dotSize} fill="#00C4CC" fillOpacity={n.key === 'air' ? 1 : 0.6} />
                   ) : (
                     <circle cx="17" cy="17" r={dotSize} fill="none" stroke="#00C4CC" strokeWidth={2.75} />
                   )}

@@ -104,13 +104,11 @@ export default function AssetCarousel() {
               </span>
             </div>
           )}
-          {/* navy duotone + legibility gradient, per §8.3 */}
-          <div className="absolute inset-0 bg-brand-navy/35" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+          {/* flat navy tint (no gradient): the data card carries its own solid background */}
+          <div className="absolute inset-0 bg-hub-base/45" />
 
           <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-            <div className="relative w-full max-w-[380px] bg-hub-base/80 backdrop-blur-md border border-white/10 rounded overflow-hidden">
-              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal/70 to-transparent" />
+            <div className="relative w-full max-w-[380px] bg-hub-base/95 border border-hub-line border-t-brand-teal rounded overflow-hidden">
               <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-white/10">
                 <span className="font-mono text-xs uppercase tracking-[0.06em] text-white/70">{entry.assetId}</span>
                 <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/60">Example data</span>

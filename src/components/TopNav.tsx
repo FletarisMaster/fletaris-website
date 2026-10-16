@@ -35,7 +35,7 @@ export default function TopNav() {
   // No backdrop-blur on the nav: a filter makes it the containing block for the menu panel,
   // which then collapsed to the nav's own height and hid every link but the first.
   return (
-    <nav className="sticky top-0 z-50 bg-hub-base border-b border-hub-line">
+    <nav className="tw sticky top-0 z-50 bg-hub-base border-b border-hub-line">
       <div className="max-w-content mx-auto px-5 sm:px-7 h-16 flex items-center justify-between">
         <Link href="/" className="shrink-0" aria-label="Fletaris home">
           <Image

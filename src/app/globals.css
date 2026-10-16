@@ -66,47 +66,46 @@ a {
   text-decoration: none;
 }
 
-/* Preflight is off (see tailwind.config.ts) so /air's original CSS stays untouched.
-   This reset is scoped to .hub-page only — the new multi-vertical hub route —
-   so it never touches /air's ported markup, which relies on browser defaults
-   in a few places (e.g. .dip-body has no explicit margin). */
-.hub-page h1,
-.hub-page h2,
-.hub-page h3,
-.hub-page h4,
-.hub-page h5,
-.hub-page h6,
-.hub-page p {
+/* Preflight is off (see tailwind.config.ts) so /air's original CSS stays untouched. This is
+   the part of Preflight the Tailwind components need, scoped to .tw (the hub page, plus the
+   shared TopNav / Footer so they look the same on /air). Every selector is wrapped in :where()
+   so it has zero specificity: Tailwind utilities (mt-6, border, hidden…) always win over it.
+   Once /air is components too (F36 PR 4b), this becomes plain Preflight. */
+:where(.tw) *,
+:where(.tw) *::before,
+:where(.tw) *::after {
+  /* Without a border style, Tailwind's `border` utility drew nothing. */
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+:where(.tw) :is(h1, h2, h3, h4, h5, h6, p, figure, blockquote) {
   margin: 0;
 }
 
-.hub-page ul,
-.hub-page ol {
+:where(.tw) :is(ul, ol) {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* :where() keeps this reset below Tailwind utilities, so a button's own p-* / bg-* classes apply. */
-:where(.hub-page) button {
+:where(.tw) button {
   font: inherit;
   color: inherit;
   background: none;
-  border: none;
   padding: 0;
   cursor: pointer;
 }
 
-/* Same here: at .hub-page specificity this beat text-text-on-dark, so typed text was black on
-   the dark form fields. */
-:where(.hub-page) input,
-:where(.hub-page) select,
-:where(.hub-page) textarea {
+:where(.tw) input,
+:where(.tw) select,
+:where(.tw) textarea {
   font: inherit;
   color: inherit;
 }
 
-.hub-page svg {
+:where(.tw) svg {
   display: block;
 }
 
@@ -115,6 +114,16 @@ a {
 .hub-page #group-email.has-error input,
 .hub-page #group-fleetsize.has-error select {
   border-color: #ef4444 !important;
+}
+
+/* Scroll reveal (src/components/Reveal.tsx). Only the section's content moves; its background
+   stays put, so nothing flashes behind it. The pending state is set from JS only. */
+[data-reveal] section > * {
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+[data-reveal='pending'] section > * {
+  opacity: 0;
+  transform: translateY(16px);
 }
 
 ::selection {

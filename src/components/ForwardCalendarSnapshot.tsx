@@ -107,8 +107,7 @@ const STATUS_TEXT: Record<Status, string> = {
 
 export default function ForwardCalendarSnapshot() {
   return (
-    <div className="relative bg-surface-card border-2 border-brand-navy/15 rounded-lg overflow-hidden shadow-[0_16px_48px_-24px_rgba(30,45,74,0.35)]">
-      <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-brand-teal to-transparent" />
+    <div className="relative bg-surface-card border-2 border-brand-navy/15 border-t-brand-teal rounded-lg overflow-hidden">
 
       {/* header */}
       <div className="flex items-center justify-between gap-4 px-5 sm:px-8 py-5 border-b border-surface-border">

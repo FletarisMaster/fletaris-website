@@ -23,23 +23,19 @@ function CheckIcon() {
 export default function Waitlist() {
   return (
     <section className="relative bg-hub-base overflow-hidden" id="waitlist">
-      {/* ambient texture — subtle grid + teal glow behind the form, echoing the atom */}
+      {/* ambient texture: the same flat line grid as the atom (no glow) */}
       <div
         className="absolute inset-0 opacity-[0.4] pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(#181B21 1px, transparent 1px), linear-gradient(90deg, #181B21 1px, transparent 1px)',
+            'linear-gradient(#152032 1px, transparent 1px), linear-gradient(90deg, #152032 1px, transparent 1px)',
           backgroundSize: '68px 68px',
         }}
-      />
-      <div
-        className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[520px] h-[520px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(0,196,204,0.10), transparent 70%)' }}
       />
 
       <div className="relative max-w-content mx-auto px-5 sm:px-7 py-[clamp(32px,5vw,72px)]">
         <div className="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-brand-teal border border-brand-teal/30 bg-brand-teal/10 rounded-full px-3.5 py-1.5 mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-teal shadow-[0_0_6px_rgba(0,196,204,0.6)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-teal" />
           Limited cohort · By invitation
         </div>
 
@@ -71,9 +67,8 @@ export default function Waitlist() {
           <form
             id="waitlist-form"
             noValidate
-            className="relative bg-hub-card border border-brand-teal/25 rounded-lg p-8 shadow-[0_24px_64px_-24px_rgba(0,196,204,0.25)] overflow-hidden"
+            className="relative bg-hub-card border border-hub-line border-t-2 border-t-brand-teal rounded-lg p-8 overflow-hidden"
           >
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent" />
             {/* Honeypot: hidden from people, filled in by bots; the Worker drops those entries. */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
               <label htmlFor="website">Website</label>
@@ -177,7 +172,7 @@ export default function Waitlist() {
             <button
               type="submit"
               disabled
-              className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 hover:shadow-[0_8px_24px_-4px_rgba(0,196,204,0.5)] transition-all inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-default"
+              className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 transition-colors inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-default"
             >
               Request early access
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -202,9 +197,8 @@ export default function Waitlist() {
           <div
             id="form-success"
             style={{ display: 'none' }}
-            className="md:col-start-2 relative bg-hub-card border border-status-green/35 rounded-lg p-9 text-center overflow-hidden"
+            className="md:col-start-2 relative bg-hub-card border border-status-green/35 border-t-2 border-t-status-green rounded-lg p-9 text-center overflow-hidden"
           >
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-status-green to-transparent" />
             <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-status-green/12 border border-status-green/40 mb-4">
               <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8L7 12L13 4" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
