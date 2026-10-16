@@ -10,6 +10,7 @@ import Waitlist from '@/components/Waitlist';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/site';
 import { HoverSyncProvider } from '@/components/HoverSyncContext';
+import Reveal from '@/components/Reveal';
 
 export const metadata: Metadata = pageMetadata({
   path: '/',
@@ -22,19 +23,31 @@ export const metadata: Metadata = pageMetadata({
 
 export default function HubPage() {
   return (
-    <div className="hub-page">
+    <div className="hub-page tw">
       <HoverSyncProvider>
         <TopNav />
         <main>
           <Hero />
-          <Atom />
+          <Reveal>
+            <Atom />
+          </Reveal>
         </main>
       </HoverSyncProvider>
-      <AssetCarousel />
-      <ThreePatterns />
-      <AirProofBand />
-      <FivePersonas />
-      <Waitlist />
+      <Reveal>
+        <AssetCarousel />
+      </Reveal>
+      <Reveal>
+        <ThreePatterns />
+      </Reveal>
+      <Reveal>
+        <AirProofBand />
+      </Reveal>
+      <Reveal>
+        <FivePersonas />
+      </Reveal>
+      <Reveal>
+        <Waitlist />
+      </Reveal>
       <Footer />
     </div>
   );

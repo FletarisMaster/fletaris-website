@@ -12,7 +12,7 @@ const VERTICALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy">
+    <footer className="tw bg-brand-navy">
       <div className="max-w-content mx-auto px-5 sm:px-7 py-6">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
           <Image
