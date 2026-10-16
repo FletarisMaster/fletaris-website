@@ -7,11 +7,11 @@ import { PERSONAS } from '@/lib/personas';
 // roadmap, not five products at once.
 
 const PHOTOS: Record<string, { src: string; alt: string }> = {
-  air: { src: '/images/hub/air.webp', alt: 'A narrowbody airliner on a maintenance stand' },
-  drone: { src: '/images/hub/drone.webp', alt: 'An industrial survey drone in the field' },
-  land: { src: '/images/hub/land.webp', alt: 'A commercial truck fleet in a depot yard' },
-  sea: { src: '/images/hub/sea.webp', alt: 'Cargo vessels at sea' },
-  space: { src: '/images/hub/space.webp', alt: 'A communications satellite in orbit' },
+  air: { src: '/images/hub/air-tile.webp', alt: 'A narrowbody airliner on a maintenance stand' },
+  drone: { src: '/images/hub/drone-tile.webp', alt: 'An industrial survey drone in the field' },
+  land: { src: '/images/hub/land-tile.webp', alt: 'A commercial truck fleet in a depot yard' },
+  sea: { src: '/images/hub/sea-tile.webp', alt: 'Cargo vessels at sea' },
+  space: { src: '/images/hub/space-tile.webp', alt: 'A communications satellite in orbit' },
 };
 
 const STATUS: Record<string, string> = {
