@@ -7,9 +7,11 @@ export interface LifecycleTrack { name: string; sub: string; bars: LifecycleBar[
 export interface LifecycleAlert { dot: string; name: string; when: string; tone: string; body: string }
 export interface LifecycleView {
   msn: string;
+  /** Short tag beside the MSN (always "Example data" on the public site). */
   reg: string;
-  /** Trusted, hard-coded HTML (rendered with innerHTML). */
-  sub: string;
+  /** Header facts, shown separated by "·". **text** renders bold. */
+  sub: string[];
+  /** Legend summary, e.g. "6 ACTIVE TRACKS · **1 AIRCRAFT**". **text** renders bold. */
   legR: string;
   tracks: LifecycleTrack[];
   alerts: LifecycleAlert[];
@@ -18,8 +20,8 @@ export interface LifecycleView {
 const fleet: LifecycleView = {
   "msn": "All fleet",
   "reg": "Example data",
-  "sub": "<span><b>5 aircraft</b> across 3 lessees</span><span class=\"div\">·</span><span>2 in redelivery window</span><span class=\"div\">·</span><span>1 unplanned shop visit risk</span><span class=\"div\">·</span><span>11 active commitments</span>",
-  "legR": "11 ACTIVE TRACKS · <b>5 AIRCRAFT</b> · 47 FORWARD EVENTS",
+  "sub": ["**5 aircraft** across 3 lessees","2 in redelivery window","1 unplanned shop visit risk","11 active commitments"],
+  "legR": "11 ACTIVE TRACKS · **5 AIRCRAFT** · 47 FORWARD EVENTS",
   "tracks": [
     {
       "name": "MSN 6291 · 737-800",
@@ -168,8 +170,8 @@ export const LIFECYCLE_VIEWS: Record<string, LifecycleView> = {
   msn7842: {
     "msn": "MSN 7842",
     "reg": "Example data",
-    "sub": "<span>A320-214</span><span class=\"div\">·</span><span>On lease</span><span class=\"div\">·</span><span>Lease return <b>Q1 2027</b></span><span class=\"div\">·</span><span>Rolling forward view</span>",
-    "legR": "6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 14 FORWARD EVENTS",
+    "sub": ["A320-214","On lease","Lease return **Q1 2027**","Rolling forward view"],
+    "legR": "6 ACTIVE TRACKS · **1 AIRCRAFT** · 14 FORWARD EVENTS",
     "tracks": [
       {
         "name": "Airframe · C-Check",
@@ -339,8 +341,8 @@ export const LIFECYCLE_VIEWS: Record<string, LifecycleView> = {
   msn6291: {
     "msn": "MSN 6291",
     "reg": "Example data",
-    "sub": "<span>Boeing 737-800</span><span class=\"div\">·</span><span>On lease</span><span class=\"div\">·</span><span>Redelivery in <b>42 days</b></span><span class=\"div\">·</span><span>Action required</span>",
-    "legR": "6 ACTIVE TRACKS · <b>1 AIRCRAFT</b> · 9 FORWARD EVENTS",
+    "sub": ["Boeing 737-800","On lease","Redelivery in **42 days**","Action required"],
+    "legR": "6 ACTIVE TRACKS · **1 AIRCRAFT** · 9 FORWARD EVENTS",
     "tracks": [
       {
         "name": "Airframe · records",
@@ -480,5 +482,11 @@ export const LIFECYCLE_VIEWS: Record<string, LifecycleView> = {
     ]
   },
   fleet,
-  more: fleet,
 };
+
+/** Tab order on /air. */
+export const LIFECYCLE_TABS: Array<{ key: string; label: string }> = [
+  { key: 'fleet', label: 'All fleet' },
+  { key: 'msn7842', label: 'MSN 7842' },
+  { key: 'msn6291', label: 'MSN 6291' },
+];

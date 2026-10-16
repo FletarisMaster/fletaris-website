@@ -66,11 +66,10 @@ a {
   text-decoration: none;
 }
 
-/* Preflight is off (see tailwind.config.ts) so /air's original CSS stays untouched. This is
-   the part of Preflight the Tailwind components need, scoped to .tw (the hub page, plus the
-   shared TopNav / Footer so they look the same on /air). Every selector is wrapped in :where()
-   so it has zero specificity: Tailwind utilities (mt-6, border, hidden…) always win over it.
-   Once /air is components too (F36 PR 4b), this becomes plain Preflight. */
+/* Tailwind's Preflight is off (tailwind.config.ts). This is the part of it the components
+   need, applied under .tw (both pages, TopNav and Footer). Every selector is wrapped in
+   :where() so it has zero specificity: Tailwind utilities (mt-6, border, hidden…) always win.
+   Kept scoped rather than switching Preflight on, so nothing outside .tw changes. */
 :where(.tw) *,
 :where(.tw) *::before,
 :where(.tw) *::after {
@@ -124,6 +123,20 @@ a {
 [data-reveal='pending'] section > * {
   opacity: 0;
   transform: translateY(16px);
+}
+
+/* /air hero: the teal "Projected forward." gets its underline drawn left to right on load
+   (a flat single-colour line; under reduced motion the global rule below makes it instant). */
+.air-underline {
+  /* sits just under the baseline (not at the bottom of the line box), so with the headline's
+     tight leading it never cuts into the next line */
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 1.05em / 100% 0.06em;
+  animation: air-underline 900ms ease-out 300ms both;
+}
+@keyframes air-underline {
+  from {
+    background-size: 0% 0.06em;
+  }
 }
 
 ::selection {
