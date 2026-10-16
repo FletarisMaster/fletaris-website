@@ -2,9 +2,8 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
-  // Preflight is disabled: /air ports the original hand-rolled CSS verbatim and must
-  // not be touched by Tailwind's base reset. globals.css carries the minimal reset
-  // the new hub actually needs instead.
+  // Preflight is disabled; globals.css carries the part of it the components need, scoped
+  // to .tw and at zero specificity (F36 PR 4a/4b).
   corePlugins: {
     preflight: false,
   },
@@ -42,10 +41,12 @@ const config: Config = {
           card: '#FFFFFF',
           border: '#E2E8F0',
           muted: '#94A3B8',
+          band: '#F1F5F9', // light section band (direction D)
         },
         text: {
           primary: '#020202',
           secondary: '#64748B',
+          body: '#475569', // running text on light (direction D)
           'on-dark': '#F1F5F9', // brand dark text primary
           'on-dark-dim': '#94A3B8', // brand dark text secondary
         },

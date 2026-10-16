@@ -13,7 +13,7 @@ const VERTICALS = [
 export default function Footer() {
   return (
     <footer className="tw bg-brand-navy">
-      <div className="max-w-content mx-auto px-5 sm:px-7 py-6">
+      <div className="max-w-content mx-auto px-5 sm:px-10 py-8">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
           <Image
             src="/images/logo-horizontal-darkbg.webp"
@@ -34,14 +34,14 @@ export default function Footer() {
               <Link
                 key={v.label}
                 href={v.href}
-                className="font-sans text-[12px] font-semibold uppercase tracking-[0.1em] text-brand-teal"
+                className="font-sans text-[14px] font-semibold text-brand-teal"
               >
                 {v.label}
               </Link>
             ) : (
               <span
                 key={v.label}
-                className="font-sans text-[12px] font-medium uppercase tracking-[0.1em] text-white/35 cursor-default"
+                className="font-sans text-[14px] font-medium text-white/50 cursor-default"
               >
                 {v.label}
               </span>
@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-6 pt-6">
           <div className="flex flex-col gap-1">
             <p className="font-body text-xs text-white/55">© 2026 Uchuva Tech. All rights reserved.</p>
-            <p className="font-body text-[11px] text-white/32">Fletaris™ is a trademark of Uchuva Tech.</p>
+            <p className="font-body text-[11px] text-white/60">Fletaris™ is a trademark of Uchuva Tech.</p>
           </div>
           <div className="flex items-center gap-4">
             <a href={PRIVACY_POLICY_URL} className="font-sans text-xs font-semibold text-brand-teal">
@@ -64,7 +64,7 @@ export default function Footer() {
             </a>
             <div className="w-px h-3.5 bg-white/15" />
             <div className="flex items-center gap-1.5">
-              <span className="font-body text-[11px] text-white/45">Powered by</span>
+              <span className="font-body text-[11px] text-white/60">Powered by</span>
               <Image src="/images/uchuva-tech-mark.png" alt="" width={16} height={16} className="h-4 w-4" />
               <span className="font-sans text-[11px] font-semibold text-white/70">Uchuva Tech</span>
             </div>

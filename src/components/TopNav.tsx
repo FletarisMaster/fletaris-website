@@ -35,8 +35,8 @@ export default function TopNav() {
   // No backdrop-blur on the nav: a filter makes it the containing block for the menu panel,
   // which then collapsed to the nav's own height and hid every link but the first.
   return (
-    <nav className="tw sticky top-0 z-50 bg-hub-base border-b border-hub-line">
-      <div className="max-w-content mx-auto px-5 sm:px-7 h-16 flex items-center justify-between">
+    <nav className="tw sticky top-0 z-50 bg-brand-navy border-b border-white/10">
+      <div className="max-w-content mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
         <Link href="/" className="shrink-0" aria-label="Fletaris home">
           <Image
             src="/images/logo-horizontal-darkbg.webp"
@@ -57,7 +57,8 @@ export default function TopNav() {
                 <span
                   key={v.label}
                   aria-disabled="true"
-                  className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-text-on-dark-dim cursor-default"
+                  className="font-sans text-[14px] font-medium text-[#94A3B8] cursor-default"
+                  title="Coming later"
                 >
                   {v.label}
                 </span>
@@ -67,8 +68,9 @@ export default function TopNav() {
               <Link
                 key={v.label}
                 href={v.href}
-                className={`font-sans text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${
-                  active ? 'text-brand-teal' : 'text-text-on-dark hover:text-brand-teal'
+                aria-current={active ? 'page' : undefined}
+                className={`font-sans text-[14px] font-medium transition-colors ${
+                  active ? 'text-white underline decoration-brand-teal decoration-2 underline-offset-[10px]' : 'text-white hover:text-brand-teal-light'
                 }`}
               >
                 {v.label}
@@ -78,15 +80,15 @@ export default function TopNav() {
         </div>
 
         <div className="hidden md:flex items-center gap-5">
-          <a
-            href="https://app.fletaris.com"
-            className="font-sans text-[12px] font-medium uppercase tracking-[0.1em] text-text-on-dark-dim hover:text-text-on-dark transition-colors"
-          >
+          <a href="#investors" className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors">
+            Investors
+          </a>
+          <a href="https://app.fletaris.com" className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors">
             Sign in
           </a>
           <a
             href="#waitlist"
-            className="font-sans text-[12px] font-semibold uppercase tracking-[0.08em] text-brand-teal border border-brand-teal px-4 py-2 hover:bg-brand-teal hover:text-hub-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
+            className="font-sans text-[14px] font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-4 py-2.5 hover:bg-brand-teal-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Request early access
           </a>
@@ -94,7 +96,7 @@ export default function TopNav() {
 
         <button
           type="button"
-          className="md:hidden flex items-center justify-center -mr-2 p-2 bg-transparent border-0 cursor-pointer text-text-on-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
+          className="md:hidden flex items-center justify-center -mr-2 p-2 bg-transparent border-0 cursor-pointer text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -113,7 +115,7 @@ export default function TopNav() {
       {open && (
         <div
           id="mobile-menu"
-          className="md:hidden absolute inset-x-0 top-full h-[calc(100dvh-4rem)] z-40 bg-hub-base px-5 sm:px-7 py-10 overflow-y-auto"
+          className="md:hidden absolute inset-x-0 top-full h-[calc(100dvh-4rem)] z-40 bg-brand-navy px-5 sm:px-10 py-10 overflow-y-auto"
         >
           <div className="flex flex-col gap-6">
             {VERTICALS.map((v) =>
@@ -122,7 +124,7 @@ export default function TopNav() {
                   key={v.label}
                   href={v.href}
                   onClick={() => setOpen(false)}
-                  className="font-sans text-lg font-medium uppercase tracking-[0.1em] text-text-on-dark"
+                  className="font-sans text-xl font-medium text-white"
                 >
                   {v.label}
                 </Link>
@@ -130,21 +132,24 @@ export default function TopNav() {
                 <span
                   key={v.label}
                   aria-disabled="true"
-                  className="font-sans text-lg font-medium uppercase tracking-[0.1em] text-text-on-dark-dim cursor-default"
+                  className="font-sans text-xl font-medium text-[#94A3B8] cursor-default"
                 >
                   {v.label}
                 </span>
               )
             )}
           </div>
-          <div className="mt-10 pt-10 border-t border-hub-line flex flex-col gap-5">
-            <a href="https://app.fletaris.com" className="font-sans text-sm uppercase tracking-[0.1em] text-text-on-dark-dim">
+          <div className="mt-10 pt-10 border-t border-white/15 flex flex-col gap-5">
+            <a href="#investors" onClick={() => setOpen(false)} className="font-sans text-base text-[#CBD5E1]">
+              Investors
+            </a>
+            <a href="https://app.fletaris.com" className="font-sans text-base text-[#CBD5E1]">
               Sign in
             </a>
             <a
               href="#waitlist"
               onClick={() => setOpen(false)}
-              className="font-sans text-sm font-semibold uppercase tracking-[0.08em] text-brand-teal border border-brand-teal px-4 py-3 text-center"
+              className="font-sans text-base font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-4 py-3 text-center"
             >
               Request early access
             </a>
