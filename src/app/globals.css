@@ -108,35 +108,61 @@ a {
   display: block;
 }
 
-/* Waitlist error state — toggled by src/lib/waitlist.ts via classList,
-   same behavior as /air's original .fld.has-error rule. */
-.hub-page #group-email.has-error input,
-.hub-page #group-fleetsize.has-error select {
-  border-color: #ef4444 !important;
+/* Waitlist error state, toggled by src/lib/waitlist.ts via classList. */
+#group-email.has-error input,
+#group-fleetsize.has-error select {
+  border-color: #b91c1c !important;
 }
 
-/* Scroll reveal (src/components/Reveal.tsx). Only the section's content moves; its background
-   stays put, so nothing flashes behind it. The pending state is set from JS only. */
-[data-reveal] section > * {
-  transition: opacity 400ms ease-out, transform 400ms ease-out;
+/* The forward line draws once across the hero (src/components/site/ForwardLine.tsx). */
+.forward-draw {
+  animation: forward-draw 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) 400ms both;
 }
-[data-reveal='pending'] section > * {
-  opacity: 0;
-  transform: translateY(16px);
-}
-
-/* /air hero: the teal "Projected forward." gets its underline drawn left to right on load
-   (a flat single-colour line; under reduced motion the global rule below makes it instant). */
-.air-underline {
-  /* sits just under the baseline (not at the bottom of the line box), so with the headline's
-     tight leading it never cuts into the next line */
-  background: linear-gradient(currentColor, currentColor) no-repeat 0 1.05em / 100% 0.06em;
-  animation: air-underline 900ms ease-out 300ms both;
-}
-@keyframes air-underline {
+@keyframes forward-draw {
   from {
-    background-size: 0% 0.06em;
+    transform: scaleX(0);
   }
+}
+
+/* The draggable forward line (src/components/site/FleetTimeline.tsx): teal up to the handle. */
+.fleet-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.fleet-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #00c4cc var(--p), rgba(255, 255, 255, 0.2) var(--p));
+}
+.fleet-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #00c4cc var(--p), rgba(255, 255, 255, 0.2) var(--p));
+}
+.fleet-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: #00c4cc;
+  border: 3px solid #1e2d4a;
+  box-shadow: 0 0 0 2px #00c4cc;
+}
+.fleet-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00c4cc;
+  border: 3px solid #1e2d4a;
+  box-shadow: 0 0 0 2px #00c4cc;
+}
+.fleet-range:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 6px;
 }
 
 ::selection {

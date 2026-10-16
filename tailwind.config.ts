@@ -41,10 +41,12 @@ const config: Config = {
           card: '#FFFFFF',
           border: '#E2E8F0',
           muted: '#94A3B8',
+          band: '#F1F5F9', // light section band (direction D)
         },
         text: {
           primary: '#020202',
           secondary: '#64748B',
+          body: '#475569', // running text on light (direction D)
           'on-dark': '#F1F5F9', // brand dark text primary
           'on-dark-dim': '#94A3B8', // brand dark text secondary
         },

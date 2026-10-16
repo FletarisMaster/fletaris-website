@@ -1,150 +1,86 @@
 import WaitlistBehavior from '@/components/WaitlistBehavior';
 import { PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
 
-// §07 — the highest-risk section per the spec. The form fields and element IDs are
-// IDENTICAL to /air's, and both forms are driven by the same binder
-// (src/lib/waitlist.ts via <WaitlistBehavior />) against differently styled markup.
-const TRUST_LINES = [
-  'Onboarding led by founders',
-  'Records imported, never resold',
-  'Direct outreach only',
-];
+// The one signup form, shared by the hub and /air (direction D, light). Element ids are the
+// contract with the binder in src/lib/waitlist.ts (via <WaitlistBehavior />) and with the hero
+// email field (src/components/site/HeroEmail.tsx), which fills #email and focuses #fleetsize.
+// The submit button's first child must stay its text label (the binder swaps it while sending).
 
-function CheckIcon() {
-  return (
-    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-brand-teal/12 border border-brand-teal/40 shrink-0">
-      <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8L7 12L13 4" stroke="#00C4CC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </span>
-  );
-}
+const LABEL = 'block font-sans text-[14px] font-medium text-brand-navy mb-2';
+const FIELD =
+  'w-full bg-white border border-[#94A3B8] rounded-[3px] px-4 py-3.5 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
 
 export default function Waitlist() {
   return (
-    <section className="relative bg-hub-base overflow-hidden" id="waitlist">
-      {/* ambient texture: the same flat line grid as the atom (no glow) */}
-      <div
-        className="absolute inset-0 opacity-[0.4] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(#152032 1px, transparent 1px), linear-gradient(90deg, #152032 1px, transparent 1px)',
-          backgroundSize: '68px 68px',
-        }}
-      />
-
-      <div className="relative max-w-content mx-auto px-5 sm:px-7 py-[clamp(32px,5vw,72px)]">
-        <div className="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-brand-teal border border-brand-teal/30 bg-brand-teal/10 rounded-full px-3.5 py-1.5 mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-teal" />
-          Limited cohort · By invitation
+    <section className="bg-white" id="waitlist">
+      <div className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(72px,9vw,128px)] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <div>
+          <h2
+            className="font-body font-semibold text-brand-navy text-[clamp(30px,3.6vw,46px)] leading-[1.1] tracking-[-0.02em]"
+            style={{ textWrap: 'balance' }}
+          >
+            See your own fleet, projected forward.
+          </h2>
+          <p className="mt-5 font-body text-[18px] leading-[1.6] text-text-body max-w-[480px]">
+            We onboard a small group of lessors and CAMOs ourselves, starting from the records you already keep. No sales
+            sequence: one of the founders will write to you.
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/air/air-records.webp"
+            alt="Towers of paper files with tabs on an office desk"
+            loading="lazy"
+            className="mt-10 w-full max-w-[520px] aspect-[3/2] object-cover block"
+          />
+          <p className="mt-3 font-body text-[13px] text-text-secondary">Where most fleets’ technical data lives today.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-          <div>
-            <h2 className="font-body font-bold uppercase text-text-on-dark leading-[1.05] tracking-[-0.02em] text-[clamp(32px,4.5vw,52px)]">
-              Get early access.
-            </h2>
-            <p className="mt-6 font-body text-text-on-dark-dim text-[16px] leading-[1.6] max-w-[440px]">
-              We&apos;re onboarding a limited number of organizations. No sales calls. No demos you didn&apos;t ask for.
-            </p>
-
-            <div className="mt-10 pt-8 border-t border-hub-line flex flex-col gap-4">
-              {TRUST_LINES.map((text) => (
-                <div key={text} className="flex items-center gap-3.5">
-                  <CheckIcon />
-                  <span className="font-body text-[14px] text-text-on-dark-dim">{text}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-8 pt-6 border-t border-hub-line font-body text-[13px] text-text-on-dark-dim leading-[1.6] max-w-[440px]">
-              Built by a team of industry professionals across aviation, asset
-              management, asset financing, project management, and software
-              development.
-            </p>
-          </div>
-
-          <form
-            id="waitlist-form"
-            noValidate
-            className="relative bg-hub-card border border-hub-line border-t-2 border-t-brand-teal rounded-lg p-8 overflow-hidden"
-          >
+        <div>
+          <form id="waitlist-form" noValidate className="relative border border-surface-border border-t-[3px] border-t-brand-teal bg-white p-7 sm:p-9">
             {/* Honeypot: hidden from people, filled in by bots; the Worker drops those entries. */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
               <label htmlFor="website">Website</label>
               <input id="website" name="website" tabIndex={-1} autoComplete="off" />
             </div>
-            <div className="flex items-center justify-between mb-6">
-              <span className="font-sans text-sm font-semibold text-text-on-dark">REQUEST EARLY ACCESS</span>
-              <span className="font-mono text-[11px] text-brand-teal tracking-[0.06em]">STEP 1 / 1</span>
-            </div>
+            <h3 className="font-body font-semibold text-[22px] text-brand-navy">Request early access</h3>
 
-            <div className="grid grid-cols-2 gap-3.5">
-              <div className="mb-4">
-                <label htmlFor="firstname" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="firstname" className={LABEL}>
                   First name
                 </label>
-                <input
-                  id="firstname"
-                  autoComplete="given-name"
-                  placeholder="Maria"
-                  className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
-                />
+                <input id="firstname" autoComplete="given-name" className={FIELD} />
               </div>
-              <div className="mb-4">
-                <label htmlFor="lastname" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+              <div>
+                <label htmlFor="lastname" className={LABEL}>
                   Last name
                 </label>
-                <input
-                  id="lastname"
-                  autoComplete="family-name"
-                  placeholder="Rodriguez"
-                  className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
-                />
+                <input id="lastname" autoComplete="family-name" className={FIELD} />
               </div>
             </div>
 
-            <div id="group-email" className="mb-4">
-              <label htmlFor="email" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
-                Work email *
+            <div id="group-email" className="mt-4">
+              <label htmlFor="email" className={LABEL}>
+                Work email <span aria-hidden="true">*</span>
               </label>
-              <input
-                id="email"
-                type="email"
-                required
-                autoComplete="email"
-                aria-describedby="email-error"
-                placeholder="m.rodriguez@avcap.com"
-                className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
-              />
-              <p id="email-error" data-field-error="" hidden className="mt-2 font-body text-[13px] text-[#FCA5A5]">
+              <input id="email" type="email" required autoComplete="email" aria-describedby="email-error" placeholder="you@lessor.com" className={FIELD} />
+              <p id="email-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
                 Enter a valid work email, like name@company.com.
               </p>
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="company" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
+            <div className="mt-4">
+              <label htmlFor="company" className={LABEL}>
                 Company
               </label>
-              <input
-                id="company"
-                autoComplete="organization"
-                placeholder="Aero Capital Partners"
-                className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors"
-              />
+              <input id="company" autoComplete="organization" className={FIELD} />
             </div>
 
-            <div id="group-fleetsize" className="mb-4">
-              <label htmlFor="fleetsize" className="block font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-text-on-dark-dim mb-2">
-                Fleet size *
+            <div id="group-fleetsize" className="mt-4">
+              <label htmlFor="fleetsize" className={LABEL}>
+                Fleet size <span aria-hidden="true">*</span>
               </label>
-              <select
-                id="fleetsize"
-                required
-                aria-describedby="fleetsize-error"
-                defaultValue=""
-                className="w-full bg-hub-base border border-hub-line rounded px-4 py-3.5 text-text-on-dark font-body text-sm outline-none focus:border-brand-teal transition-colors appearance-none"
-              >
+              <select id="fleetsize" required defaultValue="" aria-describedby="fleetsize-error" className={`${FIELD} appearance-none`}>
                 <option value="" disabled>
                   Select fleet size
                 </option>
@@ -153,18 +89,18 @@ export default function Waitlist() {
                 <option>31 – 80 aircraft</option>
                 <option>80+ aircraft</option>
               </select>
-              <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[13px] text-[#FCA5A5]">
+              <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
                 Choose your fleet size.
               </p>
             </div>
 
-            <div data-turnstile-slot="" className="[&:not(:empty)]:mb-3.5" />
+            <div data-turnstile-slot="" className="[&:not(:empty)]:mt-4" />
 
             <div
               id="form-error-banner"
               role="alert"
               style={{ display: 'none' }}
-              className="bg-status-red/10 border border-status-red/40 rounded px-4 py-3 font-mono text-xs text-status-red mb-3.5"
+              className="mt-4 bg-[#FEF2F2] border border-[#FECACA] px-4 py-3 font-body text-[14px] text-[#B91C1C]"
             >
               Something went wrong. Please try again.
             </div>
@@ -172,42 +108,24 @@ export default function Waitlist() {
             <button
               type="submit"
               disabled
-              className="w-full bg-brand-teal text-hub-base font-sans text-sm font-bold rounded px-4 py-4 mt-2 hover:bg-brand-teal/90 transition-colors inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-default"
+              className="mt-6 w-full bg-brand-navy text-white font-sans text-[16px] font-semibold rounded-[3px] px-4 py-4 hover:bg-brand-navy-alt transition-colors disabled:opacity-60 disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-teal"
             >
               Request early access
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M2 8H14M14 8L9 3M14 8L9 13"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
             </button>
 
-            <p className="mt-3.5 text-center font-body text-xs leading-[1.55] text-text-on-dark-dim">
+            <p className="mt-4 font-body text-[13px] leading-[1.55] text-text-secondary">
               {WAITLIST_PRIVACY_LINE}{' '}
-              <a href={PRIVACY_POLICY_URL} className="text-brand-teal underline underline-offset-2">
+              <a href={PRIVACY_POLICY_URL} className="text-brand-navy underline underline-offset-2">
                 Privacy Policy
               </a>
             </p>
           </form>
 
-          <div
-            id="form-success"
-            style={{ display: 'none' }}
-            className="md:col-start-2 relative bg-hub-card border border-status-green/35 border-t-2 border-t-status-green rounded-lg p-9 text-center overflow-hidden"
-          >
-            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-status-green/12 border border-status-green/40 mb-4">
-              <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8L7 12L13 4" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <div className="font-body font-bold text-text-on-dark text-xl mb-2.5">You&apos;re on the list.</div>
-            <div className="font-body text-sm text-text-on-dark-dim leading-[1.6]">
-              Direct outreach only — you&apos;ll hear from us if your portfolio is the right fit.
-            </div>
+          <div id="form-success" style={{ display: 'none' }} className="border border-surface-border border-t-[3px] border-t-status-green bg-white p-9">
+            <h3 className="font-body font-semibold text-[22px] text-brand-navy">You’re on the list.</h3>
+            <p className="mt-3 font-body text-[16px] leading-[1.6] text-text-body">
+              One of the founders will write to you if your portfolio is a fit for the first cohort.
+            </p>
           </div>
         </div>
       </div>
