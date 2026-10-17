@@ -4,7 +4,18 @@
 export const VERTICALS = ['air', 'drone', 'land', 'sea', 'space'] as const;
 export type Vertical = (typeof VERTICALS)[number];
 
+/** What the visitor asked for: early access (the waitlist form) or the investor deck. */
+export const KINDS = ['waitlist', 'investor'] as const;
+export type Kind = (typeof KINDS)[number];
+
+/**
+ * Investor deck requests have no fleet size; they are stored with this value in the
+ * `Fleet Size` select instead, so they can be filtered in Notion without a new column.
+ */
+export const INVESTOR_FLEET_SIZE = 'Investor deck';
+
 export interface Signup {
+  kind: Kind;
   email: string;
   fleetsize: string;
   firstname: string;
@@ -39,8 +50,13 @@ export function parseSignup(body: unknown): ParseResult {
   const email = str(b.email, 254)?.toLowerCase();
   if (!email || !EMAIL_RE.test(email)) errors.push('email');
 
-  const fleetsize = str(b.fleetsize, 60);
-  if (!fleetsize) errors.push('fleetsize');
+  const kindRaw = str(b.kind, 20)?.toLowerCase() ?? 'waitlist';
+  const kind = (KINDS as readonly string[]).includes(kindRaw) ? (kindRaw as Kind) : undefined;
+  if (!kind) errors.push('kind');
+
+  // Investors have no fleet: whatever was sent, they get the marker value.
+  const fleetsize = kind === 'investor' ? INVESTOR_FLEET_SIZE : str(b.fleetsize, 60);
+  if (kind === 'waitlist' && !fleetsize) errors.push('fleetsize');
 
   const verticalRaw = str(b.vertical, 20)?.toLowerCase();
   let vertical: Vertical | undefined;
@@ -61,6 +77,7 @@ export function parseSignup(body: unknown): ParseResult {
   return {
     ok: true,
     value: {
+      kind: kind!,
       email: email!,
       fleetsize: fleetsize!,
       firstname: str(b.firstname, 100) ?? '',

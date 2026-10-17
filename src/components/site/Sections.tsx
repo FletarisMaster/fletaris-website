@@ -2,6 +2,8 @@
 // docs/brand/website-brand-decisions.md). Light ground, navy type, teal only as a line or fill,
 // sentence-case headlines, real photos and real product screens.
 
+import InvestorForm from '@/components/site/InvestorForm';
+
 export function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`max-w-content mx-auto px-5 sm:px-10 ${className}`}>{children}</div>;
 }
@@ -159,12 +161,7 @@ export function CompanyAndInvestors() {
           <p className="mt-3 font-body text-[16px] leading-[1.6] text-[#CBD5E1]">
             The investor deck covers the market model, the product and the Founding Partner Programme.
           </p>
-          <a
-            href="mailto:operations@fletaris.com?subject=Investor%20deck%20request"
-            className="mt-6 inline-flex font-sans text-[15px] font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-[18px] py-[13px] hover:bg-brand-teal-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Request the investor deck
-          </a>
+          <InvestorForm />
           <p className="mt-4 font-body text-[14px] text-[#CBD5E1]">Or write to operations@fletaris.com</p>
         </aside>
       </Container>
