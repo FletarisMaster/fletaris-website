@@ -42,6 +42,14 @@ describe('parseSignup', () => {
     expect(parseSignup({ email: 'nope', fleetsize: '' })).toEqual({ ok: false, errors: ['email', 'fleetsize'] });
   });
 
+  it('accepts investor requests without a fleet size and marks them', () => {
+    const r = parseSignup({ kind: 'investor', email: 'p@fund.vc', firstname: 'Pat Lee', company: 'North Fund' });
+    expect(r.ok && r.value.kind).toBe('investor');
+    expect(r.ok && r.value.fleetsize).toBe('Investor deck');
+    expect(parseSignup({ ...valid, fleetsize: 'Investor deck' }).ok && (parseSignup(valid) as any).value.kind).toBe('waitlist');
+    expect(parseSignup({ ...valid, kind: 'press' })).toEqual({ ok: false, errors: ['kind'] });
+  });
+
   it('rejects unknown verticals and flags the honeypot', () => {
     expect(parseSignup({ ...valid, vertical: 'rail' })).toEqual({ ok: false, errors: ['vertical'] });
     const r = parseSignup({ ...valid, website: 'http://spam' });
@@ -73,6 +81,19 @@ describe('fetch handler', () => {
     const res = await worker.fetch!(post(valid) as any, baseEnv);
     expect(res.status).toBe(200);
     expect(calls).toHaveLength(1);
+  });
+
+  it('checks duplicates per kind and stores investor requests under "Investor deck"', async () => {
+    const calls = stubFetch(0);
+    const res = await worker.fetch!(post({ kind: 'investor', email: 'p@fund.vc', firstname: 'Pat Lee', company: 'North Fund' }) as any, baseEnv);
+    expect(res.status).toBe(200);
+    expect(calls[0].body.filter.and[1]).toEqual({ property: 'Fleet Size', select: { equals: 'Investor deck' } });
+    expect(calls[1].body.properties['Fleet Size']).toEqual({ select: { name: 'Investor deck' } });
+    expect(calls[1].body.properties['Name']).toEqual({ title: [{ text: { content: 'Pat Lee' } }] });
+
+    const waitlistCalls = stubFetch(0);
+    await worker.fetch!(post(valid) as any, baseEnv);
+    expect(waitlistCalls[0].body.filter.and[1]).toEqual({ property: 'Fleet Size', select: { does_not_equal: 'Investor deck' } });
   });
 
   it('drops honeypot submissions silently', async () => {

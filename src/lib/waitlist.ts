@@ -27,7 +27,7 @@ export const WAITLIST_PRIVACY_LINE =
 
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
-interface TurnstileApi {
+export interface TurnstileApi {
   render: (
     el: HTMLElement,
     opts: { sitekey: string; theme?: 'dark' | 'light' | 'auto'; size?: 'normal' | 'flexible' | 'compact' }
@@ -45,7 +45,7 @@ declare global {
 
 let turnstileLoading: Promise<TurnstileApi> | null = null;
 
-function loadTurnstile(): Promise<TurnstileApi> {
+export function loadTurnstile(): Promise<TurnstileApi> {
   if (window.turnstile) return Promise.resolve(window.turnstile);
   if (!turnstileLoading) {
     turnstileLoading = new Promise<TurnstileApi>((resolve, reject) => {
@@ -69,7 +69,7 @@ const UTM_KEY = 'fletaris-utm';
  * UTM tags from the landing URL. Kept for the browser session so a visitor who lands on `/`
  * with tags and signs up on `/air` is still attributed. Storage can throw (private mode).
  */
-function campaignTags(): { source?: string; medium?: string; campaign?: string } | undefined {
+export function campaignTags(): { source?: string; medium?: string; campaign?: string } | undefined {
   const q = new URLSearchParams(window.location.search);
   const fromUrl = {
     source: q.get('utm_source') || undefined,
@@ -94,7 +94,7 @@ function verticalFromPath(path: string): string | undefined {
   return ['air', 'drone', 'land', 'sea', 'space'].includes(seg) ? seg : undefined;
 }
 
-function isEmail(v: string): boolean {
+export function isEmail(v: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 }
 
