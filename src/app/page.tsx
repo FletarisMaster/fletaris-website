@@ -14,8 +14,8 @@ export const metadata: Metadata = pageMetadata({
   title: 'Fletaris — Fleet intelligence for assets that carry life limits',
   description:
     'Fletaris turns the technical records behind regulated fleets into a forward view of what each asset will need, cost and owe. Live for aviation today.',
-  ogImage: '/og/hub.jpg',
-  ogAlt: 'Fletaris — fleet intelligence for regulated asset managers',
+  ogImage: '/og/hub.jpg?v=2', // ?v= makes social sites refetch after a redesign
+  ogAlt: 'Fleet intelligence for assets that carry life limits: an A320 on the apron with the Fletaris hangar view, example data',
 });
 
 // The hub in direction D (F36; decisions in docs/brand/website-brand-decisions.md).

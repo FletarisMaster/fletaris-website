@@ -14,8 +14,8 @@ export const metadata: Metadata = pageMetadata({
   title: 'Fletaris Air — Every aircraft’s next 24 months, on one screen',
   description:
     'Fletaris turns the technical records lessors already keep into a forward view of maintenance, redelivery and reserves, and shows what each aircraft will need, cost and owe before it is due.',
-  ogImage: '/og/air.jpg',
-  ogAlt: 'Fletaris Air — your fleet’s technical condition, projected forward',
+  ogImage: '/og/air.jpg?v=2', // ?v= makes social sites refetch after a redesign
+  ogAlt: 'Every aircraft’s next 24 months, on one screen: an A320 on the apron with the Fletaris hangar view, example data',
 });
 
 // /air in direction D (F36; decisions in docs/brand/website-brand-decisions.md).
