@@ -2,6 +2,8 @@
 // docs/brand/website-brand-decisions.md). Light ground, navy type, teal only as a line or fill,
 // sentence-case headlines, real photos and real product screens.
 
+import InvestorForm from '@/components/site/InvestorForm';
+
 export function Container({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`max-w-content mx-auto px-5 sm:px-10 ${className}`}>{children}</div>;
 }
@@ -21,24 +23,29 @@ export function Lede({ children, className = '' }: { children: React.ReactNode; 
   return <p className={`mt-5 font-body text-[18px] leading-[1.6] text-text-body max-w-[640px] ${className}`}>{children}</p>;
 }
 
-/** Hero picture: a real photo with a real product screen laid over its corner (Flexport-style). */
+/**
+ * Hero picture: a real photo with a real product screen laid over its corner (Flexport-style).
+ * Pass `picture` instead of `photo` for a composed picture (the hub's verticals mosaic); it
+ * should fill the same 16:11 frame.
+ */
 export function PhotoWithScreen({
   photo,
   photoAlt,
+  picture,
   screen,
   screenAlt,
   caption,
 }: {
-  photo: string;
-  photoAlt: string;
   screen: string;
   screenAlt: string;
   caption: string;
-}) {
+} & ({ photo: string; photoAlt: string; picture?: never } | { picture: React.ReactNode; photo?: never; photoAlt?: never })) {
   return (
     <figure className="m-0 relative pb-16 md:pb-20">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={photo} alt={photoAlt} className="w-full aspect-[16/11] object-cover object-[center_45%] block grayscale" />
+      {picture ?? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={photo} alt={photoAlt} className="w-full aspect-[16/11] object-cover object-[center_45%] block grayscale" />
+      )}
       <div className="absolute left-0 md:-left-8 bottom-0 w-[70%] md:w-[62%] bg-white border border-[#CBD5E1] p-1.5">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={screen} alt={screenAlt} className="w-full block" />
@@ -159,12 +166,7 @@ export function CompanyAndInvestors() {
           <p className="mt-3 font-body text-[16px] leading-[1.6] text-[#CBD5E1]">
             The investor deck covers the market model, the product and the Founding Partner Programme.
           </p>
-          <a
-            href="mailto:operations@fletaris.com?subject=Investor%20deck%20request"
-            className="mt-6 inline-flex font-sans text-[15px] font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-[18px] py-[13px] hover:bg-brand-teal-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Request the investor deck
-          </a>
+          <InvestorForm />
           <p className="mt-4 font-body text-[14px] text-[#CBD5E1]">Or write to operations@fletaris.com</p>
         </aside>
       </Container>

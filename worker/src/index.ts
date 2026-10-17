@@ -51,7 +51,7 @@ async function handlePost(request: Request, env: Env, origin: string): Promise<R
   // entry anyway: a duplicate row beats a lost signup.
   let duplicate = false;
   try {
-    duplicate = await existsByEmail(env, signup.email);
+    duplicate = await existsByEmail(env, signup.email, signup.kind);
   } catch (e) {
     console.error('duplicate check failed', e instanceof NotionError ? `${e.status} ${e.code}` : String(e));
   }

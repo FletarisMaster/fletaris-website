@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import TopNav from '@/components/TopNav';
 import Footer from '@/components/Footer';
 import Waitlist from '@/components/Waitlist';
@@ -14,8 +15,8 @@ export const metadata: Metadata = pageMetadata({
   title: 'Fletaris Air — Every aircraft’s next 24 months, on one screen',
   description:
     'Fletaris turns the technical records lessors already keep into a forward view of maintenance, redelivery and reserves, and shows what each aircraft will need, cost and owe before it is due.',
-  ogImage: '/og/air.jpg',
-  ogAlt: 'Fletaris Air — your fleet’s technical condition, projected forward',
+  ogImage: '/og/air.jpg?v=2', // ?v= makes social sites refetch after a redesign
+  ogAlt: 'Every aircraft’s next 24 months, on one screen: an A320 on the apron with the Fletaris hangar view, example data',
 });
 
 // /air in direction D (F36; decisions in docs/brand/website-brand-decisions.md).
@@ -139,6 +140,12 @@ export default function AirPage() {
                 { who: 'Transition manager', q: 'What has to close before an aircraft can move to its next lessee', where: 'Return conditions, assistant' },
               ]}
             />
+            <p className="mt-8 font-body text-[16px] text-text-body">
+              Running a procurement or security review?{' '}
+              <Link href="/air/trust" className="text-brand-navy underline underline-offset-2">
+                Where your data is hosted, who processes it, and what happens to it if you leave
+              </Link>
+            </p>
           </Container>
         </section>
 

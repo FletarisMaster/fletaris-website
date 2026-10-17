@@ -1,0 +1,65 @@
+{
+  "source": "fletaris-personal/src/content/legal/subprocessors.ts@da81a32",
+  "dataResidency": {
+    "current": "United States (Neon us-east-1, Vercel)",
+    "planned": "EU (GCP europe-west1) — Phase 2 migration"
+  },
+  "subprocessors": [
+    {
+      "name": "Vercel",
+      "purpose": "Application hosting and compute",
+      "dataCategories": "All customer data (in transit/at rest as processed by the application)",
+      "location": "United States",
+      "status": "ACTIVE",
+      "dpaUrl": "https://vercel.com/legal/dpa"
+    },
+    {
+      "name": "Neon",
+      "purpose": "PostgreSQL database",
+      "dataCategories": "All customer data",
+      "location": "United States (AWS us-east-1)",
+      "status": "ACTIVE",
+      "dpaUrl": "https://neon.tech/dpa"
+    },
+    {
+      "name": "Clerk",
+      "purpose": "Authentication and user management",
+      "dataCategories": "Account identity data (name, email, sign-in events)",
+      "location": "United States",
+      "status": "ACTIVE",
+      "dpaUrl": "https://clerk.com/legal/dpa"
+    },
+    {
+      "name": "Anthropic",
+      "purpose": "AI features (Fleet Assistant, PDF document extraction)",
+      "dataCategories": "Query context data and uploaded-document content, only what a feature needs",
+      "location": "United States",
+      "status": "ACTIVE",
+      "dpaUrl": "https://www.anthropic.com/legal/dpa"
+    },
+    {
+      "name": "FlightAware (AeroAPI)",
+      "purpose": "Flight-data enrichment (estimated utilisation)",
+      "dataCategories": "Aircraft registration (MSN) only",
+      "location": "United States",
+      "status": "ACTIVE",
+      "dpaUrl": null
+    },
+    {
+      "name": "Stripe",
+      "purpose": "Billing and payment processing",
+      "dataCategories": "Billing and subscription data",
+      "location": "United States",
+      "status": "WHEN_ENABLED",
+      "dpaUrl": "https://stripe.com/legal/dpa"
+    },
+    {
+      "name": "Email provider (TBD)",
+      "purpose": "Digest and notification email delivery",
+      "dataCategories": "Account email address, notification content",
+      "location": "To be confirmed",
+      "status": "PLANNED",
+      "dpaUrl": null
+    }
+  ]
+}

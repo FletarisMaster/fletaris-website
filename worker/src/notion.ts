@@ -3,7 +3,7 @@
 // retention job runs its deletes one at a time.
 
 import { CORE_PROPS, EXTENDED_PROPS, type Env, type NotionProp } from './config';
-import type { Signup } from './validate';
+import { INVESTOR_FLEET_SIZE, type Kind, type Signup } from './validate';
 
 const API = 'https://api.notion.com/v1';
 const NOTION_VERSION = '2022-06-28';
@@ -82,9 +82,21 @@ export function buildProperties(s: Signup, extended: boolean, now: Date): Record
   return props;
 }
 
-function emailFilter(email: string) {
-  const p = CORE_PROPS.email as NotionProp;
-  return { property: p.name, [p.type]: { equals: email } };
+/**
+ * Same email and same kind of request. Waitlist entries and investor deck requests share the
+ * database, told apart by `Fleet Size`, so someone on the waitlist can still ask for the deck
+ * (and the other way round) without being dropped as a duplicate.
+ */
+function duplicateFilter(email: string, kind: Kind) {
+  const e = CORE_PROPS.email as NotionProp;
+  const f = CORE_PROPS.fleetSize as NotionProp;
+  const fleet = kind === 'investor' ? { equals: INVESTOR_FLEET_SIZE } : { does_not_equal: INVESTOR_FLEET_SIZE };
+  return {
+    and: [
+      { property: e.name, [e.type]: { equals: email } },
+      { property: f.name, [f.type]: fleet },
+    ],
+  };
 }
 
 interface QueryResult {
@@ -92,9 +104,9 @@ interface QueryResult {
   has_more: boolean;
 }
 
-export async function existsByEmail(env: Env, email: string): Promise<boolean> {
+export async function existsByEmail(env: Env, email: string, kind: Kind = 'waitlist'): Promise<boolean> {
   const r = await notion<QueryResult>(env, `/databases/${env.NOTION_DB_ID}/query`, 'POST', {
-    filter: emailFilter(email),
+    filter: duplicateFilter(email, kind),
     page_size: 1,
   });
   return r.results.length > 0;
