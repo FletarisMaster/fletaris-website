@@ -19,6 +19,14 @@ export const PRIVACY_POLICY_URL = 'https://app.fletaris.com/legal/privacy';
 /** Privacy Policy version shown at the form; sent with each signup as the consent record. */
 export const PRIVACY_POLICY_VERSION = '1.1.0';
 
+// TODO(F36 goal 6): repoint to '/air/trust' once the trust page is published there.
+/** Where the "your data" line by the form links: data ownership and security. */
+export const DATA_TRUST_URL = PRIVACY_POLICY_URL;
+
+/** The "your data" line by both forms (copy pending Sam's approval). Backed by Privacy Policy §7–8. */
+export const DATA_OWNERSHIP_LINE =
+  'Your records stay yours: each organisation’s data is kept isolated and encrypted, every change is logged, and you can export all of it if you leave.';
+
 export const WAITLIST_CONTACT_EMAIL = 'operations@fletaris.com';
 
 /** The notice under both forms (Sam, 2026-10-02). Followed by a "Privacy Policy" link. */

@@ -1,5 +1,5 @@
 import WaitlistBehavior from '@/components/WaitlistBehavior';
-import { PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
+import { DATA_OWNERSHIP_LINE, DATA_TRUST_URL, PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
 
 // The one signup form, shared by the hub and /air (direction D, light). Element ids are the
 // contract with the binder in src/lib/waitlist.ts (via <WaitlistBehavior />) and with the hero
@@ -24,6 +24,12 @@ export default function Waitlist() {
           <p className="mt-5 font-body text-[18px] leading-[1.6] text-text-body max-w-[480px]">
             We onboard a small group of lessors and CAMOs ourselves, starting from the records you already keep. No sales
             sequence: one of the founders will write to you.
+          </p>
+          <p className="mt-4 font-body text-[16px] leading-[1.6] text-text-body max-w-[480px]">
+            {DATA_OWNERSHIP_LINE}{' '}
+            <a href={DATA_TRUST_URL} className="text-brand-navy underline underline-offset-2">
+              How we protect your data
+            </a>
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
