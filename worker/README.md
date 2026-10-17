@@ -27,9 +27,10 @@ Receives the waitlist form from fletaris.com (hub `/` and `/air`) and stores the
 
 | Field | Required | Notes |
 |---|---|---|
+| `kind` | no | `waitlist` (default) or `investor` (the "Request the investor deck" form); anything else → 400 |
 | `email` | yes | work email |
-| `fleetsize` | yes | free text ≤ 60 chars (currently `1 – 10 aircraft` … `80+ aircraft`) |
-| `firstname`, `lastname`, `company` | no | |
+| `fleetsize` | yes, for `waitlist` | free text ≤ 60 chars (currently `1 – 10 aircraft` … `80+ aircraft`). For `investor` it is ignored and stored as `Investor deck` |
+| `firstname`, `lastname`, `company` | no | the investor form sends the whole name as `firstname` and the fund or firm as `company` |
 | `vertical` | no | `air` on `/air`; not sent from the hub |
 | `source` | no | page path the form was sent from |
 | `utm` | no | `{source, medium, campaign}`, from the landing URL and kept for the browser session |
@@ -38,7 +39,16 @@ Receives the waitlist form from fletaris.com (hub `/` and `/air`) and stores the
 | `turnstileToken` | when Turnstile is on | |
 
 The site already sends every field. The **old** live Worker ignores the extra ones, so
-deploying the site first is safe.
+deploying the site first is safe. The investor form also sends `fleetsize: "Investor deck"`,
+so the old Worker stores those requests with the same marker.
+
+### Investor deck requests
+
+They go to the same Notion database, with `Fleet Size` = `Investor deck` (no new column).
+Filter on that value to see them; the Name column holds the full name and Company the fund.
+The duplicate check is per kind (email **and** `Fleet Size` = / ≠ `Investor deck`), so someone
+on the waitlist can still request the deck, and the other way round. Retention is the same
+365 days.
 
 ## Notion database
 

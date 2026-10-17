@@ -19,6 +19,14 @@ export const PRIVACY_POLICY_URL = 'https://app.fletaris.com/legal/privacy';
 /** Privacy Policy version shown at the form; sent with each signup as the consent record. */
 export const PRIVACY_POLICY_VERSION = '1.1.0';
 
+// TODO(F36 goal 6): repoint to '/air/trust' once the trust page is published there.
+/** Where the "your data" line by the form links: data ownership and security. */
+export const DATA_TRUST_URL = PRIVACY_POLICY_URL;
+
+/** The "your data" line by both forms (copy pending Sam's approval). Backed by Privacy Policy §7–8. */
+export const DATA_OWNERSHIP_LINE =
+  'Your records stay yours: each organisation’s data is kept isolated and encrypted, every change is logged, and you can export all of it if you leave.';
+
 export const WAITLIST_CONTACT_EMAIL = 'operations@fletaris.com';
 
 /** The notice under both forms (Sam, 2026-10-02). Followed by a "Privacy Policy" link. */
@@ -27,7 +35,7 @@ export const WAITLIST_PRIVACY_LINE =
 
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
-interface TurnstileApi {
+export interface TurnstileApi {
   render: (
     el: HTMLElement,
     opts: { sitekey: string; theme?: 'dark' | 'light' | 'auto'; size?: 'normal' | 'flexible' | 'compact' }
@@ -45,7 +53,7 @@ declare global {
 
 let turnstileLoading: Promise<TurnstileApi> | null = null;
 
-function loadTurnstile(): Promise<TurnstileApi> {
+export function loadTurnstile(): Promise<TurnstileApi> {
   if (window.turnstile) return Promise.resolve(window.turnstile);
   if (!turnstileLoading) {
     turnstileLoading = new Promise<TurnstileApi>((resolve, reject) => {
@@ -69,7 +77,7 @@ const UTM_KEY = 'fletaris-utm';
  * UTM tags from the landing URL. Kept for the browser session so a visitor who lands on `/`
  * with tags and signs up on `/air` is still attributed. Storage can throw (private mode).
  */
-function campaignTags(): { source?: string; medium?: string; campaign?: string } | undefined {
+export function campaignTags(): { source?: string; medium?: string; campaign?: string } | undefined {
   const q = new URLSearchParams(window.location.search);
   const fromUrl = {
     source: q.get('utm_source') || undefined,
@@ -94,7 +102,7 @@ function verticalFromPath(path: string): string | undefined {
   return ['air', 'drone', 'land', 'sea', 'space'].includes(seg) ? seg : undefined;
 }
 
-function isEmail(v: string): boolean {
+export function isEmail(v: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 }
 

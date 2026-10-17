@@ -51,7 +51,7 @@ export default function TopNav() {
 
         <div className="hidden md:flex items-center gap-8">
           {VERTICALS.map((v) => {
-            const active = pathname === v.href;
+            const active = pathname === v.href || pathname.startsWith(`${v.href}/`);
             if (!v.live) {
               return (
                 <span

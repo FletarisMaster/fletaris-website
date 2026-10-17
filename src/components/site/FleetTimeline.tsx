@@ -205,7 +205,8 @@ export default function FleetTimeline({ heading, lede }: { heading: string; lede
             See this with your own fleet
           </a>
           <a
-            href="mailto:operations@fletaris.com?subject=Investor%20deck%20request"
+            href="#investors"
+            data-investor-cta=""
             className="inline-flex items-center border border-white/40 text-white font-sans text-[15px] font-semibold rounded-[3px] px-5 py-3.5 hover:border-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Request the investor deck
