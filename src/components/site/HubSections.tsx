@@ -14,6 +14,30 @@ const PHOTOS: Record<string, { src: string; alt: string }> = {
   space: { src: '/images/hub/space-tile.webp', alt: 'A communications satellite in orbit' },
 };
 
+/**
+ * The hub's hero picture (so it no longer repeats /air's A320): aviation large and in colour,
+ * the four verticals still to come smaller and in black and white, the same live/not-yet
+ * rule as the verticals row below. Fills PhotoWithScreen's 16:11 frame. The tiles are the
+ * row's own files, so they cost nothing extra further down the page.
+ */
+export function VerticalsMosaic() {
+  const rest = ['drone', 'land', 'sea', 'space'];
+  return (
+    <div
+      role="img"
+      aria-label={`Five kinds of fleet: ${['air', ...rest].map((k) => PHOTOS[k].alt.charAt(0).toLowerCase() + PHOTOS[k].alt.slice(1)).join('; ')}`}
+      className="w-full aspect-[16/11] grid grid-cols-[minmax(0,11fr)_minmax(0,5fr)_minmax(0,5fr)] grid-rows-2 gap-1 bg-white"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={PHOTOS.air.src} alt="" fetchPriority="high" className="row-span-2 w-full h-full object-cover object-[50%_40%] block" />
+      {rest.map((k) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img key={k} src={PHOTOS[k].src} alt="" className="w-full h-full object-cover block grayscale" />
+      ))}
+    </div>
+  );
+}
+
 const STATUS: Record<string, string> = {
   'BUILT · V1': 'Live',
   'IN DEVELOPMENT': 'In development',
