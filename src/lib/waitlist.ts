@@ -96,7 +96,7 @@ export function campaignTags(): { source?: string; medium?: string; campaign?: s
   }
 }
 
-/** `/air` → "air". The hub (`/`) isn't a vertical, so it sends none. */
+/** `/air` → "air". The hub (`/`) isn't a vertical: it sends what the visitor picked in #vertical. */
 function verticalFromPath(path: string): string | undefined {
   const seg = path.split('/')[1];
   return ['air', 'drone', 'land', 'sea', 'space'].includes(seg) ? seg : undefined;
@@ -167,12 +167,16 @@ export function bindWaitlistForm(): () => void {
     e.preventDefault();
     if (errBanner) errBanner.style.display = 'none';
 
+    // #vertical exists only on the hub; until it's chosen #fleetsize is disabled, so only the
+    // vertical is flagged.
     const emailBad = !isEmail(field('email'));
-    const fleetBad = !field('fleetsize');
+    const verticalBad = !!document.getElementById('vertical') && !field('vertical');
+    const fleetBad = !verticalBad && !field('fleetsize');
     setErr('group-email', emailBad);
+    setErr('group-vertical', verticalBad);
     setErr('group-fleetsize', fleetBad);
-    if (emailBad || fleetBad) {
-      document.getElementById(emailBad ? 'email' : 'fleetsize')?.focus();
+    if (emailBad || verticalBad || fleetBad) {
+      document.getElementById(emailBad ? 'email' : verticalBad ? 'vertical' : 'fleetsize')?.focus();
       return;
     }
 
@@ -198,7 +202,7 @@ export function bindWaitlistForm(): () => void {
           email: field('email').trim(),
           company: field('company').trim(),
           fleetsize: field('fleetsize'),
-          vertical: verticalFromPath(window.location.pathname),
+          vertical: verticalFromPath(window.location.pathname) ?? (field('vertical') || undefined),
           source: window.location.pathname,
           utm: campaignTags(),
           policyVersion: PRIVACY_POLICY_VERSION,
@@ -226,7 +230,7 @@ export function bindWaitlistForm(): () => void {
 
   const clearOnEdit = (groupId: string) => () => setErr(groupId, false);
   const editListeners: Array<[HTMLElement, () => void]> = [];
-  for (const id of ['email', 'fleetsize']) {
+  for (const id of ['email', 'vertical', 'fleetsize']) {
     const el = document.getElementById(id);
     if (!el) continue;
     const fn = clearOnEdit(`group-${id}`);

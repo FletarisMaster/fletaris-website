@@ -23,7 +23,11 @@ export default function HeroEmail({ id = 'hero-email' }: { id?: string }) {
       target.dispatchEvent(new Event('input', { bubbles: true }));
     }
     document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => document.getElementById('fleetsize')?.focus({ preventScroll: true }), 500);
+    // Next empty required field: "What do you manage?" on the hub (fleet size is disabled until
+    // it's answered), fleet size on /air.
+    const vertical = document.getElementById('vertical') as HTMLSelectElement | null;
+    const next = vertical && !vertical.value ? vertical : document.getElementById('fleetsize');
+    setTimeout(() => next?.focus({ preventScroll: true }), 500);
   };
 
   return (

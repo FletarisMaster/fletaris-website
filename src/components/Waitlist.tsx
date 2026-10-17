@@ -1,16 +1,20 @@
+import FleetFields from '@/components/FleetFields';
 import WaitlistBehavior from '@/components/WaitlistBehavior';
+import type { Vertical } from '@/lib/fleet-options';
 import { DATA_OWNERSHIP_LINE, DATA_TRUST_URL, PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
 
 // The one signup form, shared by the hub and /air (direction D, light). Element ids are the
 // contract with the binder in src/lib/waitlist.ts (via <WaitlistBehavior />) and with the hero
-// email field (src/components/site/HeroEmail.tsx), which fills #email and focuses #fleetsize.
+// email field (src/components/site/HeroEmail.tsx), which fills #email and focuses the next empty
+// required field (#vertical on the hub, #fleetsize on /air).
+// `vertical` fixes the vertical (/air → "air"); without it the form asks "What do you manage?".
 // The submit button's first child must stay its text label (the binder swaps it while sending).
 
 const LABEL = 'block font-sans text-[14px] font-medium text-brand-navy mb-2';
 const FIELD =
   'w-full bg-white border border-[#94A3B8] rounded-[3px] px-4 py-3.5 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
 
-export default function Waitlist() {
+export default function Waitlist({ vertical }: { vertical?: Vertical }) {
   return (
     <section className="bg-white" id="waitlist">
       <div className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(72px,9vw,128px)] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
@@ -82,23 +86,7 @@ export default function Waitlist() {
               <input id="company" autoComplete="organization" className={FIELD} />
             </div>
 
-            <div id="group-fleetsize" className="mt-4">
-              <label htmlFor="fleetsize" className={LABEL}>
-                Fleet size <span aria-hidden="true">*</span>
-              </label>
-              <select id="fleetsize" required defaultValue="" aria-describedby="fleetsize-error" className={`${FIELD} appearance-none`}>
-                <option value="" disabled>
-                  Select fleet size
-                </option>
-                <option>1 – 10 aircraft</option>
-                <option>11 – 30 aircraft</option>
-                <option>31 – 80 aircraft</option>
-                <option>80+ aircraft</option>
-              </select>
-              <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
-                Choose your fleet size.
-              </p>
-            </div>
+            <FleetFields vertical={vertical} labelClass={LABEL} fieldClass={FIELD} />
 
             <div data-turnstile-slot="" className="[&:not(:empty)]:mt-4" />
 

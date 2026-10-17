@@ -29,9 +29,9 @@ Receives the waitlist form from fletaris.com (hub `/` and `/air`) and stores the
 |---|---|---|
 | `kind` | no | `waitlist` (default) or `investor` (the "Request the investor deck" form); anything else → 400 |
 | `email` | yes | work email |
-| `fleetsize` | yes, for `waitlist` | free text ≤ 60 chars (currently `1 – 10 aircraft` … `80+ aircraft`). For `investor` it is ignored and stored as `Investor deck` |
+| `fleetsize` | yes, for `waitlist` | free text ≤ 60 chars, unit included (`1 – 10 aircraft` … `80+ aircraft`, `1 – 10 drones` …; full list in `src/lib/fleet-options.ts`). For `investor` it is ignored and stored as `Investor deck` |
 | `firstname`, `lastname`, `company` | no | the investor form sends the whole name as `firstname` and the fund or firm as `company` |
-| `vertical` | no | `air` on `/air`; not sent from the hub |
+| `vertical` | no | `air` on `/air`; on the hub, the visitor's "What do you manage?" choice |
 | `source` | no | page path the form was sent from |
 | `utm` | no | `{source, medium, campaign}`, from the landing URL and kept for the browser session |
 | `policyVersion` | no | Privacy Policy version shown at the form (`1.1.0`) |
