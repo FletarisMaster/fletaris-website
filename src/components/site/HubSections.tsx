@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { VERTICALS } from '@/lib/verticals';
+import { Plane, Truck, Ship, Satellite, type LucideIcon } from 'lucide-react';
+import DroneIcon from '@/components/icons/DroneIcon';
+import { VERTICALS, type VerticalKey } from '@/lib/verticals';
 import { PERSONAS } from '@/lib/personas';
 
 // Hub-only blocks for direction D. Statuses are stated plainly: aviation is live, drones are
@@ -14,6 +16,14 @@ const PHOTOS: Record<string, { src: string; alt: string }> = {
   space: { src: '/images/hub/space-tile.webp', alt: 'A communications satellite in orbit' },
 };
 
+const ICONS: Record<VerticalKey, LucideIcon | typeof DroneIcon> = {
+  air: Plane,
+  drone: DroneIcon,
+  land: Truck,
+  sea: Ship,
+  space: Satellite,
+};
+
 const STATUS: Record<string, string> = {
   'BUILT · V1': 'Live',
   'IN DEVELOPMENT': 'In development',
@@ -26,6 +36,7 @@ export function VerticalsRow() {
       {VERTICALS.map((v) => {
         const p = PERSONAS.find((x) => x.key === v.key);
         const photo = PHOTOS[v.key];
+        const Icon = ICONS[v.key];
         const body = (
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -35,12 +46,13 @@ export function VerticalsRow() {
               loading="lazy"
               className={`w-full aspect-[4/5] object-cover block ${v.live ? '' : 'grayscale opacity-80'}`}
             />
-            <div className="mt-4 flex items-baseline justify-between gap-3">
-              <span className="font-body font-semibold text-[20px] text-brand-navy">{v.assetCategory}</span>
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <Icon size={26} strokeWidth={1.5} className={`shrink-0 ${v.live ? 'text-brand-teal' : 'text-text-secondary'}`} />
               <span className={`font-sans text-[13px] font-medium ${v.live ? 'text-brand-navy underline decoration-brand-teal decoration-2 underline-offset-4' : 'text-text-secondary'}`}>
                 {STATUS[v.status]}
               </span>
             </div>
+            <span className="mt-2 block font-body font-semibold text-[20px] leading-[1.25] text-brand-navy">{v.assetCategory}</span>
             {p && (
               <p className="mt-2 font-body text-[15px] leading-[1.5] text-text-body">
                 For the {p.title.toLowerCase()}: {p.body.charAt(0).toLowerCase() + p.body.slice(1)}.
