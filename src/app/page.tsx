@@ -8,6 +8,7 @@ import FleetTimeline from '@/components/site/FleetTimeline';
 import { CompanyAndInvestors, Container, H2, Lede, MarketStatement, PhotoWithScreen } from '@/components/site/Sections';
 import { ThreePatterns, VerticalsMosaic, VerticalsRow } from '@/components/site/HubSections';
 import { pageMetadata } from '@/lib/site';
+import { FLEETS } from '@/lib/timelineFleets';
 
 export const metadata: Metadata = pageMetadata({
   path: '/',
@@ -80,8 +81,9 @@ export default function HubPage() {
         </section>
 
         <FleetTimeline
-          heading="Start with aviation. Drag the line and watch an example fleet come due."
-          lede="Eight aircraft from Fletaris Air’s example portfolio. Move from today to 24 months ahead and see which aircraft come back, and which will not be ready on the date."
+          heading="Pick a fleet. Drag the line and watch it come due."
+          lede="Aircraft are the live product’s example portfolio. Drones, trucks, vessels and satellites are illustrative fleets showing the same method. Move from today to 24 months ahead and see what comes due, and what will not be ready on the date."
+          fleets={[FLEETS.air, FLEETS.drone, FLEETS.land, FLEETS.sea, FLEETS.space]}
         />
 
         <section className="bg-surface-band">
