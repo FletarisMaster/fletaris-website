@@ -143,7 +143,7 @@ export default function AirPage() {
         </section>
 
         <CompanyAndInvestors />
-        <Waitlist />
+        <Waitlist vertical="air" />
       </main>
       <Footer />
     </div>

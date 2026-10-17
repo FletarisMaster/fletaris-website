@@ -110,6 +110,7 @@ a {
 
 /* Waitlist error state, toggled by src/lib/waitlist.ts via classList. */
 #group-email.has-error input,
+#group-vertical.has-error select,
 #group-fleetsize.has-error select {
   border-color: #b91c1c !important;
 }
