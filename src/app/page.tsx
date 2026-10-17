@@ -6,7 +6,7 @@ import HeroEmail from '@/components/site/HeroEmail';
 import ForwardLine from '@/components/site/ForwardLine';
 import FleetTimeline from '@/components/site/FleetTimeline';
 import { CompanyAndInvestors, Container, H2, Lede, MarketStatement, PhotoWithScreen } from '@/components/site/Sections';
-import { ThreePatterns, VerticalsRow } from '@/components/site/HubSections';
+import { ThreePatterns, VerticalsMosaic, VerticalsRow } from '@/components/site/HubSections';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
@@ -53,11 +53,10 @@ export default function HubPage() {
                 </p>
               </div>
               <PhotoWithScreen
-                photo="/images/hub/air.webp"
-                photoAlt="An A320 on a wet apron with maintenance stairs at the forward door"
+                picture={<VerticalsMosaic />}
                 screen="/media/fletaris-air-poster.webp"
                 screenAlt="The Fletaris hangar view in the live product, with example data"
-                caption="Fletaris Air, live today: the hangar view with example data"
+                caption="Aviation is live today: the Fletaris Air hangar view, with example data"
               />
             </div>
             <ForwardLine
