@@ -125,47 +125,6 @@ a {
   }
 }
 
-/* The draggable forward line (src/components/site/FleetTimeline.tsx): teal up to the handle. */
-.fleet-range {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 28px;
-  background: transparent;
-  cursor: pointer;
-}
-.fleet-range::-webkit-slider-runnable-track {
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(to right, #00c4cc var(--p), rgba(255, 255, 255, 0.2) var(--p));
-}
-.fleet-range::-moz-range-track {
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(to right, #00c4cc var(--p), rgba(255, 255, 255, 0.2) var(--p));
-}
-.fleet-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  margin-top: -10px;
-  border-radius: 50%;
-  background: #00c4cc;
-  border: 3px solid #1e2d4a;
-  box-shadow: 0 0 0 2px #00c4cc;
-}
-.fleet-range::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #00c4cc;
-  border: 3px solid #1e2d4a;
-  box-shadow: 0 0 0 2px #00c4cc;
-}
-.fleet-range:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 6px;
-}
-
 ::selection {
   background: rgba(0, 196, 204, 0.25);
 }

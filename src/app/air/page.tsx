@@ -9,6 +9,7 @@ import DemoVideo from '@/components/site/DemoVideo';
 import FleetTimeline from '@/components/site/FleetTimeline';
 import { CompanyAndInvestors, Container, H2, Lede, MarketStatement, PhotoWithScreen, RolesTable, ThreeQuestions } from '@/components/site/Sections';
 import { pageMetadata } from '@/lib/site';
+import { FLEETS } from '@/lib/timelineFleets';
 
 export const metadata: Metadata = pageMetadata({
   path: '/air',
@@ -117,6 +118,7 @@ export default function AirPage() {
         <FleetTimeline
           heading="Drag the line. Watch an example fleet come due."
           lede="Eight aircraft from the product’s example portfolio. Move from today to 24 months ahead and see what Fletaris sees: which aircraft come back, and which will not be ready on the date."
+          fleets={[FLEETS.air]}
         />
 
         <MarketStatement />
