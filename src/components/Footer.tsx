@@ -54,10 +54,14 @@ export default function Footer() {
             <p className="font-body text-xs text-white/55">© 2026 Uchuva Tech. All rights reserved.</p>
             <p className="font-body text-[11px] text-white/60">Fletaris™ is a trademark of Uchuva Tech.</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
             <a href={PRIVACY_POLICY_URL} className="font-sans text-xs font-semibold text-brand-teal">
               Privacy
             </a>
+            <div className="w-px h-3.5 bg-white/15" />
+            <Link href="/air/trust" className="font-sans text-xs font-semibold text-brand-teal">
+              Security
+            </Link>
             <div className="w-px h-3.5 bg-white/15" />
             <a href="mailto:operations@fletaris.com" className="font-sans text-xs font-semibold text-brand-teal">
               operations@fletaris.com
