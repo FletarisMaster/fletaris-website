@@ -138,7 +138,9 @@ export function RolesTable({ rows }: { rows: Array<{ who: string; q: string; whe
 /** Company and investors (the section lessor sites always have). No founder names yet. */
 export function CompanyAndInvestors() {
   return (
-    <section className="bg-surface-band">
+    // #investors sits on the section, not the form panel: the panel stacks below the copy on
+    // mobile, so anchoring it skipped the heading. scroll-mt-16 clears the sticky nav.
+    <section className="bg-surface-band scroll-mt-16" id="investors">
       <Container className="py-[clamp(72px,9vw,120px)] grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
         <div>
           <H2>Built by engineers who have sat on the lessor side of a redelivery.</H2>
@@ -161,7 +163,7 @@ export function CompanyAndInvestors() {
             </li>
           </ul>
         </div>
-        <aside className="bg-brand-navy text-white p-9 border-t-4 border-brand-teal" id="investors">
+        <aside className="bg-brand-navy text-white p-9 border-t-4 border-brand-teal">
           <h3 className="font-body font-semibold text-[26px] leading-[1.2]">For investors</h3>
           <p className="mt-3 font-body text-[16px] leading-[1.6] text-[#CBD5E1]">
             The investor deck covers the market model, the product and the Founding Partner Programme.
