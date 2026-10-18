@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import SoonLabel from '@/components/SoonLabel';
 import { PRIVACY_POLICY_URL } from '@/lib/waitlist';
 
 const VERTICALS = [
-  { label: 'Air', href: '/air', live: true },
-  { label: 'Drone', href: '/drone', live: false },
-  { label: 'Land', href: '/land', live: false },
-  { label: 'Sea', href: '/sea', live: false },
-  { label: 'Space', href: '/space', live: false },
+  { label: 'Air', href: '/air', live: true, soon: '' },
+  { label: 'Drone', href: '/drone', live: false, soon: 'Next up' },
+  { label: 'Land', href: '/land', live: false, soon: 'Coming soon' },
+  { label: 'Sea', href: '/sea', live: false, soon: 'Coming soon' },
+  { label: 'Space', href: '/space', live: false, soon: 'Coming soon' },
 ] as const;
 
 export default function Footer() {
@@ -39,12 +40,13 @@ export default function Footer() {
                 {v.label}
               </Link>
             ) : (
-              <span
+              <SoonLabel
                 key={v.label}
-                className="font-sans text-[14px] font-medium text-white/50 cursor-default"
-              >
-                {v.label}
-              </span>
+                label={v.label}
+                soon={v.soon}
+                placement="above"
+                className="font-sans text-[14px] font-medium text-white/50"
+              />
             )
           )}
         </div>
@@ -56,7 +58,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
             <a href={PRIVACY_POLICY_URL} className="font-sans text-xs font-semibold text-brand-teal">
-              Privacy
+              Legal
             </a>
             <div className="w-px h-3.5 bg-white/15" />
             <Link href="/air/trust" className="font-sans text-xs font-semibold text-brand-teal">

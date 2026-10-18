@@ -4,13 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import SoonLabel from '@/components/SoonLabel';
 
 const VERTICALS = [
-  { label: 'Air', href: '/air', live: true },
-  { label: 'Drone', href: '/drone', live: false },
-  { label: 'Land', href: '/land', live: false },
-  { label: 'Sea', href: '/sea', live: false },
-  { label: 'Space', href: '/space', live: false },
+  { label: 'Air', href: '/air', live: true, soon: '' },
+  { label: 'Drone', href: '/drone', live: false, soon: 'Next up' },
+  { label: 'Land', href: '/land', live: false, soon: 'Coming soon' },
+  { label: 'Sea', href: '/sea', live: false, soon: 'Coming soon' },
+  { label: 'Space', href: '/space', live: false, soon: 'Coming soon' },
 ] as const;
 
 export default function TopNav() {
@@ -54,14 +55,12 @@ export default function TopNav() {
             const active = pathname === v.href || pathname.startsWith(`${v.href}/`);
             if (!v.live) {
               return (
-                <span
+                <SoonLabel
                   key={v.label}
-                  aria-disabled="true"
-                  className="font-sans text-[14px] font-medium text-[#94A3B8] cursor-default"
-                  title="Coming later"
-                >
-                  {v.label}
-                </span>
+                  label={v.label}
+                  soon={v.soon}
+                  className="font-sans text-[14px] font-medium text-[#94A3B8]"
+                />
               );
             }
             return (
@@ -135,6 +134,7 @@ export default function TopNav() {
                   className="font-sans text-xl font-medium text-[#94A3B8] cursor-default"
                 >
                   {v.label}
+                  <span className="ml-3 font-sans text-[13px] font-semibold text-brand-teal-light">{v.soon}</span>
                 </span>
               )
             )}
