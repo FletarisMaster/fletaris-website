@@ -6,7 +6,7 @@ import HeroEmail from '@/components/site/HeroEmail';
 import ForwardLine from '@/components/site/ForwardLine';
 import FleetTimeline from '@/components/site/FleetTimeline';
 import { CompanyAndInvestors, Container, H2, Lede, MarketStatement, PhotoWithScreen } from '@/components/site/Sections';
-import { ThreePatterns, VerticalsMosaic, VerticalsRow } from '@/components/site/HubSections';
+import { PhysicalWorld, ThreePatterns, VerticalsMosaic, VerticalsRow } from '@/components/site/HubSections';
 import { pageMetadata } from '@/lib/site';
 import { FLEETS } from '@/lib/timelineFleets';
 
@@ -90,6 +90,21 @@ export default function HubPage() {
           <Container className="py-[clamp(72px,9vw,120px)]">
             <H2>Different assets. The same three questions.</H2>
             <ThreePatterns />
+          </Container>
+        </section>
+
+        <section className="bg-white" id="monitor">
+          <Container className="py-[clamp(72px,9vw,120px)]">
+            <p className="font-sans text-[13px] font-medium text-brand-navy">
+              <span className="underline decoration-brand-teal decoration-2 underline-offset-4">In development</span>
+            </p>
+            <H2 className="mt-4">Fletaris on the asset, not only on the screen.</H2>
+            <Lede>
+              The Fletaris monitor is a small device fixed to the asset. It measures the asset’s condition on its own and
+              sends it to Fletaris, so the intelligence and foresight follow the asset as it is every day, not only when
+              someone visits.
+            </Lede>
+            <PhysicalWorld />
           </Container>
         </section>
 
