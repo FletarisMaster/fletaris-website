@@ -50,7 +50,7 @@ export default function FleetFields({
               </option>
             ))}
           </select>
-          <p id="vertical-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
+          <p id="vertical-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#991B1B]">
             Choose what you manage.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function FleetFields({
             <option key={s}>{s}</option>
           ))}
         </select>
-        <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
+        <p id="fleetsize-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#991B1B]">
           Choose your fleet size.
         </p>
       </div>

@@ -14,16 +14,18 @@ const VERTICALS = [
 export default function Footer() {
   return (
     <footer className="tw bg-brand-navy">
-      <div className="max-w-content mx-auto px-5 sm:px-10 py-8">
+      <div className="max-w-content mx-auto px-5 sm:px-10 py-8 border-t border-white/15">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
-          <Image
-            src="/images/logo-horizontal-darkbg.webp"
-            alt="Fletaris"
-            width={140}
-            height={24}
-            className="h-6 w-auto"
-            style={{ width: 'auto', height: '1.5rem' }}
-          />
+          <Link href="/" aria-label="Fletaris home" className="rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal">
+            <Image
+              src="/images/logo-stacked-darkbg.png"
+              alt="Fletaris"
+              width={360}
+              height={282}
+              className="h-20 w-auto"
+              style={{ width: 'auto', height: '5rem' }}
+            />
+          </Link>
           <p className="font-body text-[13px] text-white/60">
             Intelligence layer for <b className="font-sans font-semibold text-brand-teal">regulated asset management</b>
           </p>
@@ -35,7 +37,7 @@ export default function Footer() {
               <Link
                 key={v.label}
                 href={v.href}
-                className="font-sans text-[14px] font-semibold text-brand-teal"
+                className="inline-block py-1.5 font-sans text-[14px] font-semibold text-brand-teal"
               >
                 {v.label}
               </Link>
@@ -57,15 +59,19 @@ export default function Footer() {
             <p className="font-body text-[11px] text-white/60">Fletaris™ is a trademark of Uchuva Tech.</p>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-            <a href={PRIVACY_POLICY_URL} className="font-sans text-xs font-semibold text-brand-teal">
+            <a href={PRIVACY_POLICY_URL} className="inline-block py-2 font-sans text-xs font-semibold text-brand-teal">
               Legal
             </a>
             <div className="w-px h-3.5 bg-white/15" />
-            <Link href="/air/trust" className="font-sans text-xs font-semibold text-brand-teal">
+            <Link href="/air/trust" className="inline-block py-2 font-sans text-xs font-semibold text-brand-teal">
               Security
             </Link>
             <div className="w-px h-3.5 bg-white/15" />
-            <a href="mailto:operations@fletaris.com" className="font-sans text-xs font-semibold text-brand-teal">
+            <Link href="/insights" className="inline-block py-2 font-sans text-xs font-semibold text-brand-teal">
+              Insights
+            </Link>
+            <div className="w-px h-3.5 bg-white/15" />
+            <a href="mailto:operations@fletaris.com" className="inline-block py-2 font-sans text-xs font-semibold text-brand-teal">
               operations@fletaris.com
             </a>
             <div className="w-px h-3.5 bg-white/15" />

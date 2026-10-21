@@ -1,0 +1,26 @@
+Video on fletaris.com. Stock clips are under the Pexels License (free commercial use, editing
+allowed, no attribution required; credited here anyway). Picked 2026-10-21 (F36 direction v2).
+Trimmed and re-encoded to 1280x720 H.264, no audio. Posters (*.jpg) are a frame of each clip.
+
+air-hero.mp4   0-10 s of "Close-Up of Airplane Landing Gear on Tarmac", Joerg Mangelsen
+               https://www.pexels.com/video/close-up-of-airplane-landing-gear-on-tarmac-36129054/
+hub-hero.mp4   five 4.5 s cuts, in order:
+               "Airplane Being Towed on Airport Taxiway", Alexandr Shorban (3-7.5 s)
+               https://www.pexels.com/video/airplane-being-towed-on-airport-taxiway-9512146/
+               "Aerial Drone Spraying Pesticides in Farmland", Magda Ehlers (2-6.5 s)
+               https://www.pexels.com/video/aerial-drone-spraying-pesticides-in-farmland-37280502/
+               "Drone Video of Transport Trucks at Logistic Yard", Alex Kad (3-7.5 s)
+               https://www.pexels.com/video/drone-video-of-transport-trucks-at-logistic-yard-5171156/
+               "An aerial view of a large ship in the ocean", Yusuf BELER (0-4.5 s)
+               https://www.pexels.com/video/an-aerial-view-of-a-large-ship-in-the-ocean-20438712/
+               "View From Satellite on Earth", Colin Jones (0-4.5 s)
+               https://www.pexels.com/video/view-from-satellite-on-earth-10409075/
+../images/air/air-engine.jpg
+               frame at 4 s of "Close-Up of Jet Engine on Runway", Joerg Mangelsen, cropped to
+               remove both tails' livery
+               https://www.pexels.com/video/close-up-of-jet-engine-on-runway-33873344/
+
+cap-*.mp4      cuts from Fletaris's own demo recording (fletaris-air-demo.mp4, example data,
+               fictional fleet), cropped to the panel each caption describes:
+               cap-cost 23.6-27.4 s (content area, scaled to 1280x720), cap-returns 29.5-37.5 s, cap-owes 38-44.5 s.
+fletaris-air-*  the demo itself (fletaris-video, Website cut).

@@ -4,7 +4,7 @@ import type { VerticalKey } from '@/lib/verticals';
 // live product's lease & redelivery waterfall (demo portfolio, evaluated 15 Oct 2026; the same
 // fictional fleet as the demo video). The other four are illustrative: no product exists for them
 // yet, so each says so in its caption. Days are counted from the evaluation date; null means the
-// next due date falls after the 24-month window. Identifiers are invented (D2: no real MSNs,
+// next due date falls after the timeline's window (WINDOW_DAYS). Identifiers are invented (D2: no real MSNs,
 // registrations or hull numbers).
 
 export const EVALUATED = Date.UTC(2026, 9, 15);
@@ -46,7 +46,7 @@ export const FLEETS: Record<VerticalKey, TimelineFleet> = {
       { id: 'MSN 1186', type: 'Airbus A330-300', days: 304, state: 'notready', detail: '15 of 29 return conditions failing' },
       { id: 'MSN 66914', type: 'Boeing 787-9', days: 488, state: 'marginal', detail: '' },
       { id: 'MSN 43991', type: 'Boeing 737 MAX 8', days: 670, state: 'ready', detail: '' },
-      { id: 'MSN 233', type: 'Airbus A350-900', days: null, state: 'notready', detail: 'Returns after this 24-month window' },
+      { id: 'MSN 233', type: 'Airbus A350-900', days: null, state: 'notready', detail: 'Returns after this window' },
     ],
   },
   drone: {
@@ -87,7 +87,7 @@ export const FLEETS: Record<VerticalKey, TimelineFleet> = {
       { id: 'Vessel 07', type: 'Container feeder', days: 160, state: 'marginal', detail: 'Ballast water system upgrade due' },
       { id: 'Vessel 01', type: 'Product tanker', days: 330, state: 'ready', detail: 'Intermediate survey' },
       { id: 'Vessel 05', type: 'Supramax bulk carrier', days: 540, state: 'notready', detail: 'Charter return: hull below redelivery terms' },
-      { id: 'Vessel 09', type: 'Container feeder', days: null, state: 'ready', detail: 'Next survey after this 24-month window' },
+      { id: 'Vessel 09', type: 'Container feeder', days: null, state: 'ready', detail: 'Next survey after this window' },
     ],
   },
   space: {

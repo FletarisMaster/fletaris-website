@@ -5,7 +5,7 @@ import { EVALUATED, WINDOW_DAYS, type DueState, type TimelineFleet } from '@/lib
 
 // The fleet timeline (F36, direction D; option A of the 17 Oct 2026 motion review): a lease
 // calendar with one "now" line, the playhead, that the visitor drags across every asset at once.
-// It is the product's own waterfall view in miniature. Plays once from today to 12 months when it
+// It is the product's own waterfall view in miniature. Plays once from today to a year ahead when it
 // first comes into view (not under reduced motion); after that it only moves when the visitor
 // moves it. With more than one fleet (the hub), a tab per vertical switches the example fleet.
 
@@ -14,10 +14,10 @@ const QUARTERS = [91, 182, 274, 365, 456, 547, 639];
 const AXIS = [0, 182, 365, 547, 730];
 
 const STATE: Record<DueState, { label: string; tag: string; tick: string }> = {
-  late: { label: 'Overdue', tag: 'bg-status-red/15 text-[#FCA5A5]', tick: 'bg-status-red' },
-  notready: { label: 'Not ready', tag: 'bg-status-red/15 text-[#FCA5A5]', tick: 'bg-status-red' },
+  late: { label: 'Overdue', tag: 'bg-status-red/15 text-[#F87171]', tick: 'bg-status-red' },
+  notready: { label: 'Not ready', tag: 'bg-status-red/15 text-[#F87171]', tick: 'bg-status-red' },
   marginal: { label: 'Marginal', tag: 'bg-status-amber/15 text-[#FCD34D]', tick: 'bg-status-amber' },
-  ready: { label: 'Ready', tag: 'bg-status-green/15 text-[#86EFAC]', tick: 'bg-status-green' },
+  ready: { label: 'Ready', tag: 'bg-status-green/15 text-[#4ADE80]', tick: 'bg-status-green' },
 };
 const WAIT_TAG = 'bg-white/10 text-[#94A3B8]';
 
@@ -34,7 +34,18 @@ function monthLabel(days: number) {
 const pct = (days: number) => Math.max(0, Math.min(100, (days / WINDOW_DAYS) * 100));
 const months = (t: number) => Math.round(t / 30.4);
 
-export default function FleetTimeline({ heading, lede, fleets }: { heading: string; lede: string; fleets: TimelineFleet[] }) {
+export default function FleetTimeline({
+  heading,
+  lede,
+  fleets,
+  investorHref = '#investors',
+}: {
+  heading: string;
+  lede: string;
+  fleets: TimelineFleet[];
+  /** the investor block lives on the hub; /air links there ("/#investors") */
+  investorHref?: string;
+}) {
   const [active, setActive] = useState(0);
   const [t, setT] = useState(365); // static HTML shows the 12-month picture
   const [focused, setFocused] = useState(false);
@@ -44,7 +55,7 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
   const overlay = useRef<HTMLDivElement>(null);
   const fleet = fleets[active];
 
-  // Play once from today to 12 months the first time the section is on screen.
+  // Play once from today to a year ahead the first time the section is on screen.
   useEffect(() => {
     const el = ref.current;
     if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver === 'undefined') return;
@@ -82,14 +93,14 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
   const due = fleet.assets.filter((a) => a.days !== null && a.days >= 0 && a.days <= t);
   const kpis = [
     { n: due.length, label: fleet.dueLabel, tone: 'text-brand-teal' },
-    { n: due.filter((a) => a.state === 'notready').length, label: 'Not ready on the date', tone: 'text-[#FCA5A5]' },
+    { n: due.filter((a) => a.state === 'notready').length, label: 'Not ready on the date', tone: 'text-[#F87171]' },
     { n: due.filter((a) => a.state === 'marginal').length, label: 'Marginal', tone: 'text-[#FCD34D]' },
-    { n: fleet.assets.filter((a) => a.state === 'late').length, label: 'Already overdue', tone: 'text-[#FCA5A5]' },
+    { n: fleet.assets.filter((a) => a.state === 'late').length, label: 'Already overdue', tone: 'text-[#F87171]' },
   ];
 
   return (
     <section className="bg-brand-navy text-white" id="fleet-timeline">
-      <div ref={ref} className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(64px,8vw,120px)]">
+      <div ref={ref} className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(64px,7vw,104px)]">
         <h2 className="font-body font-semibold text-[clamp(30px,3.6vw,48px)] leading-[1.1] tracking-[-0.02em] max-w-[820px]" style={{ textWrap: 'balance' }}>
           {heading}
         </h2>
@@ -156,11 +167,11 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
                 return (
                   <li
                     key={a.id}
-                    className={`${ROW} items-center border-t border-white/15 py-2 md:py-0 md:h-[52px] transition-opacity duration-300 ${reached ? 'opacity-100' : 'opacity-60'}`}
+                    className={`${ROW} items-center border-t border-white/15 py-2 md:py-0 md:h-[52px]`}
                   >
                     <div className="font-sans min-w-0">
                       <div className="font-semibold text-[14px] leading-tight truncate">{a.id}</div>
-                      <div className="font-body text-[12.5px] leading-snug text-[#94A3B8] truncate">{a.type}</div>
+                      <div className="font-body text-[13px] leading-snug text-[#94A3B8] truncate">{a.type}</div>
                     </div>
                     <div className="relative h-9" aria-hidden="true">
                       {/* below md the status text wraps under the track, so the playhead is drawn per row */}
@@ -174,17 +185,17 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
                             style={{ left: `${pos}%` }}
                           />
                           <span
-                            className={`absolute top-1/2 -translate-y-1/2 font-mono text-[11.5px] text-[#94A3B8] whitespace-nowrap hidden sm:block ${pos > 80 ? '-translate-x-full -ml-2' : 'ml-2'}`}
+                            className={`absolute top-1/2 -translate-y-1/2 font-mono text-[12px] text-[#94A3B8] whitespace-nowrap hidden sm:block ${pos > 80 ? '-translate-x-full -ml-2' : 'ml-2'}`}
                             style={{ left: `${pos}%` }}
                           >
                             {(a.days as number) < 0 ? `${a.days} d` : monthLabel(a.days as number)}
                           </span>
                         </>
                       ) : (
-                        <span className="absolute right-0 top-1/2 -translate-y-1/2 font-mono text-[11.5px] text-[#94A3B8]">→ later</span>
+                        <span className="absolute right-0 top-1/2 -translate-y-1/2 font-mono text-[12px] text-[#94A3B8]">→ later</span>
                       )}
                     </div>
-                    <div className="col-span-2 md:col-span-1 font-body text-[13.5px] leading-[1.35] text-[#94A3B8] min-w-0 pt-1 md:pt-0">
+                    <div className="col-span-2 md:col-span-1 font-body text-[14px] leading-[1.35] text-[#94A3B8] min-w-0 pt-1 md:pt-0">
                       {!inWindow ? (
                         <>
                           <Tag className={WAIT_TAG}>Later</Tag>
@@ -255,7 +266,7 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
           />
 
           <div className="mt-5 flex flex-wrap items-center gap-2 font-body text-[13px] text-[#94A3B8]">
-            <span className="mr-1">Drag across the calendar, or jump to</span>
+            <span className="w-full sm:w-auto mr-1">Drag across the calendar, or jump to</span>
             {[
               [0, 'Today'],
               [182, '6 mo'],
@@ -283,8 +294,8 @@ export default function FleetTimeline({ heading, lede, fleets }: { heading: stri
             See this with your own fleet
           </a>
           <a
-            href="#investors"
-            data-investor-cta=""
+            href={investorHref}
+            data-investor-cta={investorHref === '#investors' ? '' : undefined}
             className="inline-flex items-center border border-white/40 text-white font-sans text-[15px] font-semibold rounded-[3px] px-5 py-3.5 hover:border-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Request the investor deck

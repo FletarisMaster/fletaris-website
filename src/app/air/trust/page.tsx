@@ -58,7 +58,7 @@ export default function TrustPage() {
   return (
     <div className="tw bg-white">
       <TopNav />
-      <main>
+      <main id="main">
         <section className="bg-white">
           <Container className="pt-[clamp(40px,6vw,88px)] pb-[clamp(32px,4vw,56px)]">
             <p className="font-sans text-[15px] font-medium text-text-secondary">

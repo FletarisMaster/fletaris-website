@@ -17,6 +17,9 @@ const VERTICALS = [
 export default function TopNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  // Every page has the signup form (#waitlist) except /air/trust, which sends people to /air's.
+  const cta = pathname === '/air/trust' ? '/air#waitlist' : '#waitlist';
+  const onAir = pathname === '/air' || pathname.startsWith('/air/');
 
   // While the menu is open: no page scroll behind it, and Escape closes it.
   useEffect(() => {
@@ -36,19 +39,37 @@ export default function TopNav() {
   // No backdrop-blur on the nav: a filter makes it the containing block for the menu panel,
   // which then collapsed to the nav's own height and hid every link but the first.
   return (
-    <nav className="tw sticky top-0 z-50 bg-brand-navy border-b border-white/10">
+    <nav className="tw sticky top-0 z-50 bg-brand-navy border-b border-white/10" aria-label="Main">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:bg-white focus:text-brand-navy focus:px-4 focus:py-2 focus:rounded-[3px] font-sans text-[14px] font-semibold"
+      >
+        Skip to content
+      </a>
       <div className="max-w-content mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
-        <Link href="/" className="shrink-0" aria-label="Fletaris home">
-          <Image
-            src="/images/logo-horizontal-darkbg.webp"
-            alt="Fletaris"
-            width={140}
-            height={24}
-            className="h-6 w-auto"
-            style={{ width: 'auto', height: '1.5rem' }}
-            priority
-          />
-        </Link>
+        {/* The logo always goes back to the hub. On the Air pages, "Air" sits beside it as its own
+            link to /air (the fletaris-air lockup's "Air" is too small to read at nav height). */}
+        <div className="shrink-0 flex items-center">
+          <Link href="/" className="rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal" aria-label="Fletaris home">
+            <Image
+              src="/images/logo-horizontal-darkbg.png"
+              alt=""
+              width={400}
+              height={120}
+              className="h-8 w-auto"
+              style={{ width: 'auto', height: '2rem' }}
+              priority
+            />
+          </Link>
+          {onAir && (
+            <Link
+              href="/air"
+              className="ml-3 pl-3 border-l border-white/25 font-sans text-[20px] font-medium leading-none text-[#CBD5E1] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-[2px]"
+            >
+              Air
+            </Link>
+          )}
+        </div>
 
         <div className="hidden md:flex items-center gap-8">
           {VERTICALS.map((v) => {
@@ -69,7 +90,7 @@ export default function TopNav() {
                 href={v.href}
                 aria-current={active ? 'page' : undefined}
                 className={`font-sans text-[14px] font-medium transition-colors ${
-                  active ? 'text-white underline decoration-brand-teal decoration-2 underline-offset-[10px]' : 'text-white hover:text-brand-teal-light'
+                  active ? 'text-white underline decoration-brand-teal decoration-2 underline-offset-[10px]' : 'text-[#CBD5E1] hover:text-white'
                 }`}
               >
                 {v.label}
@@ -79,14 +100,21 @@ export default function TopNav() {
         </div>
 
         <div className="hidden md:flex items-center gap-5">
-          <a href="#investors" className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors">
+          <Link
+            href="/insights"
+            aria-current={pathname.startsWith('/insights') ? 'page' : undefined}
+            className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors"
+          >
+            Insights
+          </Link>
+          <a href="/#investors" className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors">
             Investors
           </a>
           <a href="https://app.fletaris.com" className="font-sans text-[14px] font-medium text-[#CBD5E1] hover:text-white transition-colors">
             Sign in
           </a>
           <a
-            href="#waitlist"
+            href={cta}
             className="font-sans text-[14px] font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-4 py-2.5 hover:bg-brand-teal-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Request early access
@@ -140,14 +168,17 @@ export default function TopNav() {
             )}
           </div>
           <div className="mt-10 pt-10 border-t border-white/15 flex flex-col gap-5">
-            <a href="#investors" onClick={() => setOpen(false)} className="font-sans text-base text-[#CBD5E1]">
+            <Link href="/insights" onClick={() => setOpen(false)} className="font-sans text-base text-[#CBD5E1]">
+              Insights
+            </Link>
+            <a href="/#investors" onClick={() => setOpen(false)} className="font-sans text-base text-[#CBD5E1]">
               Investors
             </a>
             <a href="https://app.fletaris.com" className="font-sans text-base text-[#CBD5E1]">
               Sign in
             </a>
             <a
-              href="#waitlist"
+              href={cta}
               onClick={() => setOpen(false)}
               className="font-sans text-base font-semibold text-brand-navy bg-brand-teal rounded-[3px] px-4 py-3 text-center"
             >

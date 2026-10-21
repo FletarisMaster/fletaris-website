@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
 
@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   twitter: { card: 'summary_large_image' },
 };
+
+// The browser bar matches the navy nav.
+export const viewport: Viewport = { themeColor: '#1E2D4A' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

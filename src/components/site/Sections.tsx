@@ -1,6 +1,6 @@
-// Direction D building blocks shared by the hub and /air (brand decisions:
-// docs/brand/website-brand-decisions.md). Light ground, navy type, teal only as a line or fill,
-// sentence-case headlines, real photos and real product screens.
+// Building blocks shared by the hub and /air (brand decisions: docs/brand/website-brand-decisions.md).
+// Light ground, navy type, teal only as a line or fill, sentence-case section headlines (caps only
+// in the hero and the closing band, W2), real photos and real product footage.
 
 import InvestorForm from '@/components/site/InvestorForm';
 
@@ -20,77 +20,18 @@ export function H2({ children, className = '' }: { children: React.ReactNode; cl
 }
 
 export function Lede({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <p className={`mt-5 font-body text-[18px] leading-[1.6] text-text-body max-w-[640px] ${className}`}>{children}</p>;
-}
-
-/**
- * Hero picture: a real photo with a real product screen laid over its corner (Flexport-style).
- * Pass `picture` instead of `photo` for a composed picture (the hub's verticals mosaic); it
- * should fill the same 16:11 frame.
- */
-export function PhotoWithScreen({
-  photo,
-  photoAlt,
-  picture,
-  screen,
-  screenAlt,
-  caption,
-}: {
-  screen: string;
-  screenAlt: string;
-  caption: string;
-} & ({ photo: string; photoAlt: string; picture?: never } | { picture: React.ReactNode; photo?: never; photoAlt?: never })) {
   return (
-    <figure className="m-0 relative pb-16 md:pb-20">
-      {picture ?? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={photo} alt={photoAlt} className="w-full aspect-[16/11] object-cover object-[center_45%] block grayscale" />
-      )}
-      <div className="absolute left-0 md:-left-8 bottom-0 w-[70%] md:w-[62%] bg-white border border-[#CBD5E1] p-1.5">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={screen} alt={screenAlt} className="w-full block" />
-      </div>
-      <figcaption className="hidden md:block absolute right-0 bottom-4 max-w-[34%] text-right font-body text-[13px] leading-[1.4] text-text-secondary">
-        {caption}
-      </figcaption>
-    </figure>
+    <p className={`mt-5 font-body text-[18px] leading-[1.6] text-text-body max-w-[640px] ${className}`} style={{ textWrap: 'pretty' }}>
+      {children}
+    </p>
   );
 }
 
-/** Three questions on the forward line, each answered by a real product screen. */
-export function ThreeQuestions({
-  items,
-}: {
-  items: Array<{ when: string; q: string; img: string; alt: string; cap: string }>;
-}) {
-  return (
-    <>
-      <div className="mt-12 border-t-[3px] border-brand-teal" />
-      <div className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {items.map((it) => (
-          <figure key={it.q} className="m-0">
-            <div className="font-sans text-[14px] font-semibold text-brand-navy">{it.when}</div>
-            <h3 className="mt-2 font-body font-semibold text-[23px] leading-[1.25] text-text-primary">{it.q}</h3>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={it.img}
-              alt={it.alt}
-              loading="lazy"
-              className="mt-5 w-full aspect-[16/10] object-cover object-left-top block border border-[#CBD5E1]"
-            />
-            <figcaption className="mt-3 font-body text-[15px] leading-[1.55] text-text-body">{it.cap}</figcaption>
-          </figure>
-        ))}
-      </div>
-    </>
-  );
-}
-
-/** The market, written as a sentence with its sources (W14). Light section. */
+/** The market, written as a sentence with its sources (W14). On the band, so it never runs into the white section above. */
 export function MarketStatement() {
   return (
-    <section className="bg-white">
-      <Container className="py-[clamp(72px,9vw,128px)]">
+    <section className="bg-surface-band">
+      <Container className="py-[clamp(64px,7vw,104px)]">
         <p className="font-body font-medium text-brand-navy text-[clamp(26px,3.2vw,42px)] leading-[1.3] tracking-[-0.01em] max-w-[1040px]">
           About <Num>25,000</Num> airliners fly today. Airbus expects about <Num>49,000</Num> by 2044. Roughly{' '}
           <Num>half</Num> are leased, and the 31 largest lessors alone hold about <Num>$318B</Num> of aircraft. Every one of
@@ -109,11 +50,11 @@ function Num({ children }: { children: React.ReactNode }) {
   return <b className="font-semibold underline decoration-brand-teal decoration-[3px] underline-offset-[6px]">{children}</b>;
 }
 
-/** Who uses it: a table, the way lessor sites present it (W16). */
+/** Who uses it: a table from 720px up (W16), stacked blocks on phones so nothing is cut off. */
 export function RolesTable({ rows }: { rows: Array<{ who: string; q: string; where: string }> }) {
   return (
-    <div className="mt-8 overflow-x-auto">
-      <table className="w-full min-w-[640px] border-collapse font-body text-[16px]">
+    <>
+      <table className="hidden sm:table mt-8 w-full border-collapse font-body text-[16px]">
         <thead>
           <tr className="text-left font-sans text-[14px] text-text-secondary border-b-2 border-brand-navy">
             <th className="py-3 pr-4 font-medium">Role</th>
@@ -124,52 +65,85 @@ export function RolesTable({ rows }: { rows: Array<{ who: string; q: string; whe
         <tbody>
           {rows.map((r) => (
             <tr key={r.who} className="border-b border-surface-border align-top">
-              <td className="py-[18px] pr-4 font-semibold text-brand-navy whitespace-nowrap">{r.who}</td>
+              <td className="py-[18px] pr-4 font-semibold text-brand-navy">{r.who}</td>
               <td className="py-[18px] px-4 text-[#334155] leading-[1.5]">{r.q}</td>
               <td className="py-[18px] pl-4 text-[#334155]">{r.where}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+      <dl className="sm:hidden mt-8 grid gap-7 font-body text-[16px]">
+        {rows.map((r) => (
+          <div key={r.who}>
+            <dt className="font-semibold text-[18px] text-brand-navy">{r.who}</dt>
+            <dd className="m-0 mt-1 text-[#334155] leading-[1.5]">{r.q}</dd>
+            <dd className="m-0 mt-1 text-text-secondary">Works in: {r.where}</dd>
+          </div>
+        ))}
+      </dl>
+    </>
   );
 }
 
-/** Company and investors (the section lessor sites always have). No founder names yet. */
-export function CompanyAndInvestors() {
+// Anonymous for now (Sam, 21 Oct 2026): what the team has done, not who they are. Every line
+// must hold up to "who on the team did that?".
+const EXPERIENCE = [
+  'Technical asset management for aircraft lessors',
+  'Aircraft and engine asset valuation',
+  'Lease transitions and redeliveries',
+  'Continuing airworthiness (CAMO) and technical records',
+  'MRO, heavy checks and engine shop visits',
+  'Maintenance reserves and aviation finance',
+  'Software and data engineering',
+];
+
+/** The team line and the investor path, on the hub only. The deck form opens in place. */
+export function TeamAndInvestors() {
   return (
-    // #investors sits on the section, not the form panel: the panel stacks below the copy on
-    // mobile, so anchoring it skipped the heading. scroll-mt-16 clears the sticky nav.
-    <section className="bg-surface-band scroll-mt-16" id="investors">
-      <Container className="py-[clamp(72px,9vw,120px)] grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
+    <section className="bg-white" id="investors">
+      <Container className="py-[clamp(64px,7vw,104px)] grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
         <div>
-          <H2>Built by engineers who have sat on the lessor side of a redelivery.</H2>
+          <H2>Built by people who have done the work.</H2>
           <Lede>
-            Fletaris is made by Uchuva Tech. We work with a small group of lessors through the Founding Partner Programme:
-            they bring real portfolios and real returns, and shape what we build next.
+            Fletaris is made by Uchuva Tech, a small team of aviation and software professionals. Between us, we have worked in:
           </Lede>
-          <ul className="mt-8 border-t border-surface-border font-body text-[16px]">
-            <li className="flex flex-wrap justify-between gap-x-4 gap-y-1 py-4 border-b border-surface-border">
-              <span className="font-semibold text-brand-navy">The product</span>
-              <span className="text-text-body">Live at app.fletaris.com, aviation first</span>
-            </li>
-            <li className="flex flex-wrap justify-between gap-x-4 gap-y-1 py-4 border-b border-surface-border">
-              <span className="font-semibold text-brand-navy">Founding Partner Programme</span>
-              <span className="text-text-body">Open to a small number of lessors</span>
-            </li>
-            <li className="flex flex-wrap justify-between gap-x-4 gap-y-1 py-4 border-b border-surface-border">
-              <span className="font-semibold text-brand-navy">Next verticals</span>
-              <span className="text-text-body">Drones, then trucks, vessels and satellites</span>
-            </li>
+          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 font-body text-[17px] leading-[1.45] text-brand-navy">
+            {EXPERIENCE.map((e) => (
+              <li key={e} className="flex gap-3">
+                <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 bg-brand-teal" aria-hidden="true" />
+                {e}
+              </li>
+            ))}
           </ul>
+          <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 font-body text-[16px]">
+            <div>
+              <dt className="font-semibold text-brand-navy">The product</dt>
+              <dd className="m-0 mt-1 text-text-body">Live at app.fletaris.com, aviation first</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-brand-navy">Founding Partner Programme</dt>
+              <dd className="m-0 mt-1 text-text-body">A small number of lessors bring real portfolios and shape what we build next</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-brand-navy">Next verticals</dt>
+              <dd className="m-0 mt-1 text-text-body">Drones, then trucks, vessels and satellites</dd>
+            </div>
+          </dl>
         </div>
-        <aside className="bg-brand-navy text-white p-9 border-t-4 border-brand-teal">
-          <h3 className="font-body font-semibold text-[26px] leading-[1.2]">For investors</h3>
-          <p className="mt-3 font-body text-[16px] leading-[1.6] text-[#CBD5E1]">
+        <aside className="bg-surface-band p-8 sm:p-9">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-horizontal-lightbg.png" alt="Fletaris" width={480} height={144} className="h-8 w-auto mb-6" />
+          <h3 className="font-body font-semibold text-[24px] leading-[1.2] text-brand-navy">For investors</h3>
+          <p className="mt-3 font-body text-[16px] leading-[1.6] text-text-body">
             The investor deck covers the market model, the product and the Founding Partner Programme.
           </p>
-          <InvestorForm />
-          <p className="mt-4 font-body text-[14px] text-[#CBD5E1]">Or write to operations@fletaris.com</p>
+          <details id="investor-details" className="mt-6 group">
+            <summary className="list-none [&::-webkit-details-marker]:hidden inline-flex cursor-pointer font-sans text-[15px] font-semibold text-white bg-brand-navy rounded-[3px] px-5 py-3.5 hover:bg-brand-navy-alt transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-teal group-open:hidden">
+              Get the investor deck
+            </summary>
+            <InvestorForm />
+          </details>
+          <p className="mt-5 font-body text-[14px] text-text-secondary">Or write to operations@fletaris.com</p>
         </aside>
       </Container>
     </section>

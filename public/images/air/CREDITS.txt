@@ -1,11 +1,7 @@
-Photos on fletaris.com/air. All under the Unsplash License (free commercial use, no
-attribution required; credited here anyway). Chosen by Sam, 2026-10-15.
+Photos on fletaris.com. Unsplash License (free commercial use, no attribution required;
+credited here anyway). Chosen by Sam, 2026-10-15.
 
 air-records.webp     Wesley Tingey   https://unsplash.com/photos/snNHKZ-mGfE
                      full frame, resized to 2000 px
-air-inspection.webp  Herry Sutanto   https://unsplash.com/photos/Ix-ZXBKO2cc
-                     right 16% cropped out (airline livery on the fuselage)
 
-Product screens (screen-*.webp) are frames from Fletaris's own demo recording (fletaris-video,
-Lessor cut, example data, fictional fleet); the caption strip burned into the recording is
-cropped off foresight and return.
+air-engine.jpg is a frame of a Pexels clip; see public/media/CREDITS.txt.

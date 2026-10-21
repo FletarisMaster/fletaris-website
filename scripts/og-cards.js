@@ -1,4 +1,7 @@
-// Link-preview cards (public/og/hub.jpg, air.jpg; 1200×630, keep < 120 KB) in direction D:
+// Link-preview cards (public/og/hub.jpg, air.jpg; 1200×630, keep < 120 KB). NOTE: the live v3 cards
+// (21 Oct 2026) are footage-based (hero poster + navy tint + caps line + record card) and were
+// rendered from a one-off template; this script still draws the older direction-D layout.
+// Direction D layout:
 // light ground, navy sentence-case headline, the B&W A320 with the live hangar screen, the
 // teal forward line. Rendered by headless Chrome from HTML with the site's own fonts.
 //
@@ -17,8 +20,8 @@ const REPO_ABS = path.resolve(REPO);
 const pub = (p) => 'file:///' + path.join(REPO_ABS, 'public', p).replace(/\\/g, '/');
 
 const CARDS = {
-  hub: { headline: 'Fleet intelligence for assets that carry life limits.', sub: 'Aviation is live today. Drones, trucks, vessels and satellites next.' },
-  air: { headline: 'Every aircraft’s next 24 months, on one screen.', sub: 'Maintenance, redelivery and reserves, projected forward.' },
+  hub: { headline: "Fleet intelligence that sees forward.", sub: "Aviation is live today. Drones, trucks, vessels and satellites next." },
+  air: { headline: "Every aircraft, months ahead.", sub: "Maintenance, redelivery and reserves, projected forward." },
 };
 
 const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
