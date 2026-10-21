@@ -131,6 +131,8 @@ export function TeamAndInvestors() {
           </dl>
         </div>
         <aside className="bg-surface-band p-8 sm:p-9">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-horizontal-lightbg.png" alt="Fletaris" width={480} height={144} className="h-8 w-auto mb-6" />
           <h3 className="font-body font-semibold text-[24px] leading-[1.2] text-brand-navy">For investors</h3>
           <p className="mt-3 font-body text-[16px] leading-[1.6] text-text-body">
             The investor deck covers the market model, the product and the Founding Partner Programme.

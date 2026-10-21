@@ -47,26 +47,29 @@ export default function TopNav() {
         Skip to content
       </a>
       <div className="max-w-content mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
-        {/* The Air pages add "Air" beside the logo (the fletaris-air lockup's "Air" is too small to
-            read at nav height); the logo itself is 32px tall everywhere. */}
-        <Link
-          href={onAir ? '/air' : '/'}
-          className="shrink-0 flex items-center rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
-          aria-label={onAir ? 'Fletaris Air home' : 'Fletaris home'}
-        >
-          <Image
-            src="/images/logo-horizontal-darkbg.webp"
-            alt=""
-            width={240}
-            height={74}
-            className="h-8 w-auto"
-            style={{ width: 'auto', height: '2rem' }}
-            priority
-          />
+        {/* The logo always goes back to the hub. On the Air pages, "Air" sits beside it as its own
+            link to /air (the fletaris-air lockup's "Air" is too small to read at nav height). */}
+        <div className="shrink-0 flex items-center">
+          <Link href="/" className="rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal" aria-label="Fletaris home">
+            <Image
+              src="/images/logo-horizontal-darkbg.png"
+              alt=""
+              width={400}
+              height={120}
+              className="h-8 w-auto"
+              style={{ width: 'auto', height: '2rem' }}
+              priority
+            />
+          </Link>
           {onAir && (
-            <span className="ml-3 pl-3 border-l border-white/25 font-sans text-[20px] font-medium leading-none text-[#CBD5E1]">Air</span>
+            <Link
+              href="/air"
+              className="ml-3 pl-3 border-l border-white/25 font-sans text-[20px] font-medium leading-none text-[#CBD5E1] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-[2px]"
+            >
+              Air
+            </Link>
           )}
-        </Link>
+        </div>
 
         <div className="hidden md:flex items-center gap-8">
           {VERTICALS.map((v) => {

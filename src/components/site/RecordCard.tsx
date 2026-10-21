@@ -30,7 +30,8 @@ export default function RecordCard({ record: r }: { record: HeroRecord }) {
     <div className="record-card w-full md:w-[440px] max-w-full bg-[#111827] border border-[#2D3F5C] rounded-[4px] text-white overflow-hidden" aria-label={`${r.kind}: ${r.id}`}>
       <div className="flex items-center justify-between gap-4 px-5 py-2.5 bg-[#152032] border-b border-[#2D3F5C]">
         <span className="flex items-center gap-2 font-sans text-[13px] font-medium text-[#CBD5E1]">
-          <span className="h-2 w-2 rounded-full bg-brand-teal" aria-hidden="true" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-mark.png" alt="" width={96} height={96} className="h-4 w-4" />
           {r.kind}
         </span>
         <span className="font-body text-[12px] text-[#94A3B8]">Updated today</span>

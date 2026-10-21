@@ -16,14 +16,16 @@ export default function Footer() {
     <footer className="tw bg-brand-navy">
       <div className="max-w-content mx-auto px-5 sm:px-10 py-8 border-t border-white/15">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
-          <Image
-            src="/images/logo-horizontal-darkbg.webp"
-            alt="Fletaris"
-            width={240}
-            height={74}
-            className="h-10 w-auto"
-            style={{ width: 'auto', height: '2.5rem' }}
-          />
+          <Link href="/" aria-label="Fletaris home" className="rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal">
+            <Image
+              src="/images/logo-stacked-darkbg.png"
+              alt="Fletaris"
+              width={360}
+              height={282}
+              className="h-20 w-auto"
+              style={{ width: 'auto', height: '5rem' }}
+            />
+          </Link>
           <p className="font-body text-[13px] text-white/60">
             Intelligence layer for <b className="font-sans font-semibold text-brand-teal">regulated asset management</b>
           </p>

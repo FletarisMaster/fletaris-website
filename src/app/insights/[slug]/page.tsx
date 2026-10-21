@@ -43,8 +43,12 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
               >
                 {n.title}
               </h1>
-              <p className="mt-4 font-sans text-[14px] font-medium text-text-secondary">
-                <time dateTime={n.date}>{formatDate(n.date)}</time> · Fletaris team
+              <p className="mt-4 flex items-center gap-2 font-sans text-[14px] font-medium text-text-secondary">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/logo-mark.png" alt="" width={96} height={96} className="h-5 w-5" />
+                <span>
+                  <time dateTime={n.date}>{formatDate(n.date)}</time> · Fletaris team
+                </span>
               </p>
               <p className="mt-8 font-body text-[21px] leading-[1.55] text-brand-navy">{n.summary}</p>
               {n.blocks.map((b, i) => (

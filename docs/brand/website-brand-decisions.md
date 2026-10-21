@@ -54,7 +54,7 @@ Research behind these decisions:
 | W14 | Numbers | "Data-dense" | Only **sourced** figures; market numbers written **into sentences** with their sources underneath, not as giant stat tiles | New | Invented or context-free metrics are a tell and a credibility risk |
 | W15 | Density | "Data-dense, not sparse" | Marketing pages are **spacious** (large type, wide margins); density lives in the product screens shown | Deviation (website only) | The site sells; the app works |
 | W16 | Cards and radius | Not specified for web | Few cards; **rules and tables** instead of card grids; radius 3–4 px | New | Identical card grids are a tell |
-| W17 | Logo on light | Landing page: **Logo_Variation_4** (teal icon + navy wordmark) | Logo sits on the **navy nav bar** (Variation 7 style, white wordmark) because the repo only has the dark-background file | Gap: needs the Variation 4 file | Add `logo-light` (Variation 4) to the repo to put the logo on white |
+| W17 | Logo on light | Landing page: **Logo_Variation_4** (teal icon + navy wordmark) | **Rev. 21 Oct:** logos from `fletaris-personal` placed by surface: nav = horizontal teal + white (Variation 7, 32px, always links to the hub; "Air" beside it on /air); footer = stacked main logo (Variation 3); investor panel on light = horizontal teal + navy (Variation 4); record cards and Insights byline = the compass mark; favicon / app icon = mark in a navy rounded square | Same | Files in `public/images/logo-*.png`, `src/app/icon.png`, `apple-icon.png`, `favicon.ico` |
 | W18 | Call to action | Not covered | One action everywhere: **"Request early access"** (F36 D5), with the email field in the hero; investors get a parallel **"Request the investor deck"** | New | One CTA; investors were missing a path |
 | W19 | Copy voice | Institutional, not startup-casual | Institutional, plain, specific: no "Not X. It's Y.", no heavy em-dashes, no "supercharge"-type claims; say what the reader can do | Same, made explicit | Listed AI copy tells |
 | W20 | Status colours | RAG only for status | RAG only inside product data and the fleet timeline's readiness states (unchanged) | Same | |
@@ -72,5 +72,4 @@ Research behind these decisions:
 ## To decide in the next brand-guide revision
 
 1. Whether caps-in-two-places (W2) also applies to decks and print, or decks keep all-caps headlines.
-2. Supply the light-background logo (W17).
-3. Replace stock footage with filmed footage at an MRO or storage site when one is available (W21).
+2. Replace stock footage with filmed footage at an MRO or storage site when one is available (W21).
