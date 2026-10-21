@@ -1,5 +1,17 @@
 import Link from 'next/link';
-import { Plane, Truck, Ship, Satellite, type LucideIcon } from 'lucide-react';
+import {
+  Plane,
+  Truck,
+  Ship,
+  Satellite,
+  Droplets,
+  Activity,
+  MapPin,
+  DoorOpen,
+  Hourglass,
+  Smartphone,
+  type LucideIcon,
+} from 'lucide-react';
 import DroneIcon from '@/components/icons/DroneIcon';
 import { VERTICALS, type VerticalKey } from '@/lib/verticals';
 import { PERSONAS } from '@/lib/personas';
@@ -106,6 +118,63 @@ const PATTERNS = [
   { title: 'Compliance', body: 'Everything answers to an authority, on a schedule it does not control.' },
   { title: 'History', body: 'Everything builds up a record, and the record decides what happens next.' },
 ];
+
+// The monitor (concept in Fletaris_Air_Storage_Monitor_Concept). Kept generic across asset
+// types on purpose, and passive: it measures and reports, people only check in. It never
+// tracks maintenance tasks, so nothing here should promise that.
+const MEASURES: Array<{ icon: LucideIcon; title: string; body: string }> = [
+  { icon: Droplets, title: 'Humidity and temperature', body: 'Moisture and condensation are what turn storage into corrosion.' },
+  { icon: Activity, title: 'Shock and tilt', body: 'Drops, impacts and rough handling, with the force and the time.' },
+  { icon: MapPin, title: 'Location and movement', body: 'Where the asset is, and when it was moved.' },
+  { icon: DoorOpen, title: 'Access', body: 'When a cover, container or hatch was opened.' },
+  { icon: Hourglass, title: 'Time in condition', body: 'How long it has been stored or parked, against its limits.' },
+  { icon: Smartphone, title: 'Check-ins', body: 'A phone tap on the device logs a visit and shows the asset’s status. Nothing to type.' },
+];
+
+const FITS: Array<{ icon: LucideIcon; title: string; body: string }> = [
+  { icon: Plane, title: 'Aircraft & engines', body: 'In storage: engines in containers or bags, and parked aircraft. This is where we start.' },
+  { icon: Truck, title: 'Trucks & land vehicles', body: 'In operation and parked.' },
+  { icon: Ship, title: 'Vessels & yachts', body: 'At sea and laid up.' },
+];
+
+export function PhysicalWorld() {
+  return (
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
+      <div>
+        <h3 className="font-sans text-[15px] font-semibold text-brand-navy">What it measures</h3>
+        <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-10 border-t-[3px] border-brand-teal">
+          {MEASURES.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="flex gap-4 py-5 border-b border-surface-border">
+              <Icon size={24} strokeWidth={1.5} className="shrink-0 mt-0.5 text-brand-navy" aria-hidden="true" />
+              <div>
+                <span className="block font-body font-semibold text-[18px] leading-[1.3] text-brand-navy">{title}</span>
+                <p className="mt-1 font-body text-[15px] leading-[1.5] text-text-body">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 className="font-sans text-[15px] font-semibold text-brand-navy">Where it goes</h3>
+        <ul className="mt-4 border-t-[3px] border-brand-teal">
+          {FITS.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="flex gap-4 py-5 border-b border-surface-border">
+              <Icon size={24} strokeWidth={1.5} className="shrink-0 mt-0.5 text-brand-navy" aria-hidden="true" />
+              <div>
+                <span className="block font-body font-semibold text-[18px] leading-[1.3] text-brand-navy">{title}</span>
+                <p className="mt-1 font-body text-[15px] leading-[1.5] text-text-body">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 font-body text-[15px] leading-[1.6] text-text-body">
+          Every reading goes into the same forecast as the records: what the asset will need, cost and owe when it goes
+          back to work.
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export function ThreePatterns() {
   return (
