@@ -71,7 +71,7 @@ export default function HeroEmail({
         </button>
       </div>
       {error && (
-        <p id={`${id}-error`} className={`mt-2 font-body text-[14px] ${dark ? 'text-[#FCA5A5]' : 'text-[#B91C1C]'}`}>
+        <p id={`${id}-error`} className={`mt-2 font-body text-[14px] ${dark ? 'text-[#F87171]' : 'text-[#991B1B]'}`}>
           {error}
         </p>
       )}

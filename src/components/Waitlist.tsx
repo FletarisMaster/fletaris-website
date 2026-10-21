@@ -1,7 +1,7 @@
 import FleetFields from '@/components/FleetFields';
 import WaitlistBehavior from '@/components/WaitlistBehavior';
 import type { Vertical } from '@/lib/fleet-options';
-import { DATA_OWNERSHIP_LINE, DATA_TRUST_URL, PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
+import { DATA_OWNERSHIP_LINE, DATA_TRUST_URL, NOT_AN_AUDIT_LINE, PRIVACY_POLICY_URL, WAITLIST_PRIVACY_LINE } from '@/lib/waitlist';
 
 // The one signup form, shared by the hub and /air. It is also each page's closing band (direction
 // v2): navy, with the second of the two caps lines a page may have (W2), running into the footer. Element ids are the
@@ -18,7 +18,7 @@ const FIELD =
 export default function Waitlist({ vertical }: { vertical?: Vertical }) {
   return (
     <section className="bg-brand-navy text-white" id="waitlist">
-      <div className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(72px,9vw,128px)] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+      <div className="max-w-content mx-auto px-5 sm:px-10 py-[clamp(64px,7vw,104px)] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <div>
           <h2
             className="font-body font-bold uppercase text-white text-[clamp(34px,calc(3.4vw+12px),56px)] leading-[1] tracking-[-0.01em]"
@@ -30,6 +30,7 @@ export default function Waitlist({ vertical }: { vertical?: Vertical }) {
             We onboard a small group of lessors and CAMOs ourselves, starting from the records you already keep. No sales
             sequence: one of the founders will write to you.
           </p>
+          <p className="mt-4 font-body text-[16px] leading-[1.6] text-[#CBD5E1] max-w-[480px]">{NOT_AN_AUDIT_LINE}</p>
           <p className="mt-4 font-body text-[16px] leading-[1.6] text-[#CBD5E1] max-w-[480px]">
             {DATA_OWNERSHIP_LINE}{' '}
             <a href={DATA_TRUST_URL} className="text-white underline underline-offset-2">
@@ -80,7 +81,7 @@ export default function Waitlist({ vertical }: { vertical?: Vertical }) {
                 Work email <span aria-hidden="true">*</span>
               </label>
               <input id="email" type="email" required autoComplete="email" aria-describedby="email-error" placeholder="you@lessor.com" className={FIELD} />
-              <p id="email-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#B91C1C]">
+              <p id="email-error" data-field-error="" hidden className="mt-2 font-body text-[14px] text-[#991B1B]">
                 Enter a valid work email, like name@company.com.
               </p>
             </div>
@@ -100,7 +101,7 @@ export default function Waitlist({ vertical }: { vertical?: Vertical }) {
               id="form-error-banner"
               role="alert"
               style={{ display: 'none' }}
-              className="mt-4 bg-[#FEF2F2] border border-[#FECACA] px-4 py-3 font-body text-[14px] text-[#B91C1C]"
+              className="mt-4 bg-[#FEE2E2] px-4 py-3 font-body text-[14px] text-[#991B1B]"
             >
               Something went wrong. Please try again.
             </div>

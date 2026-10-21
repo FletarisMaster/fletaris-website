@@ -27,6 +27,11 @@ export const DATA_TRUST_URL = PRIVACY_POLICY_URL;
 export const DATA_OWNERSHIP_LINE =
   'Your records stay yours: each organisation’s data is kept isolated and encrypted, every change is logged, and you can export all of it if you leave.';
 
+// What Fletaris is and is not (Sam, 21 Oct 2026): it does not audit records, it works from the
+// information the asset manager already keeps. Shown in the closing band on every page.
+export const NOT_AN_AUDIT_LINE =
+  'Fletaris does not audit or certify your records. It works from the information your team already keeps and turns it into intelligence and foresight; the records, and the decisions, stay yours.';
+
 export const WAITLIST_CONTACT_EMAIL = 'operations@fletaris.com';
 
 /** The notice under both forms (Sam, 2026-10-02). Followed by a "Privacy Policy" link. */

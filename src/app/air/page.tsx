@@ -57,9 +57,12 @@ export default function AirPage() {
         </section>
 
         <section className="bg-white">
-          <Container className="py-[clamp(72px,9vw,120px)]">
+          <Container className="py-[clamp(64px,7vw,104px)]">
             <H2>Three questions decide every return.</H2>
-            <Lede>Fletaris answers them from the records, months before the aircraft comes back.</Lede>
+            <Lede>
+              Fletaris answers them from the records your team already keeps, months before the aircraft comes back. It doesn’t
+              audit those records; it turns them into foresight you can act on.
+            </Lede>
             <CapabilityTabs
               items={[
                 {
@@ -111,7 +114,7 @@ export default function AirPage() {
             loading="lazy"
             className="w-full h-[clamp(220px,30vw,420px)] object-cover object-[center_45%] block"
           />
-          <Container className="py-[clamp(72px,9vw,120px)]">
+          <Container className="py-[clamp(64px,7vw,104px)]">
             <H2>Who uses it, and for what</H2>
             <RolesTable
               rows={[

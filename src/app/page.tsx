@@ -33,7 +33,7 @@ export default function HubPage() {
           lede="Aircraft, drones, trucks, vessels and satellites wear out, answer to rules and build up records. Fletaris turns those records into what each asset will need, cost and owe in the months ahead. Aviation is live today."
           placeholder="you@company.com"
           records={HUB_RECORDS}
-          segment={2.6}
+          segment={4.5}
           below={
             <>
               <a href="/air" className="text-white underline underline-offset-2">
@@ -48,7 +48,7 @@ export default function HubPage() {
         />
 
         <section className="bg-white">
-          <Container className="py-[clamp(72px,9vw,120px)]">
+          <Container className="py-[clamp(64px,7vw,104px)]">
             <H2>One method, five kinds of fleet.</H2>
             <Lede>We start where the stakes are highest. Aviation is live, drones are next, and trucks, vessels and satellites are in research on the same core.</Lede>
             <FleetsList />
@@ -62,14 +62,14 @@ export default function HubPage() {
         />
 
         <section className="bg-surface-band">
-          <Container className="py-[clamp(72px,9vw,120px)]">
+          <Container className="py-[clamp(64px,7vw,104px)]">
             <H2>Different assets, the same three questions.</H2>
             <ThreePatterns />
           </Container>
         </section>
 
         <section className="bg-white" id="monitor">
-          <Container className="py-[clamp(72px,9vw,120px)]">
+          <Container className="py-[clamp(64px,7vw,104px)]">
             <H2>Fletaris on the asset itself.</H2>
             <Lede>
               The Fletaris monitor, in development, is a small device fixed to the asset. It measures the asset’s condition on its

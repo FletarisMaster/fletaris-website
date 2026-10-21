@@ -31,7 +31,7 @@ export function Lede({ children, className = '' }: { children: React.ReactNode; 
 export function MarketStatement() {
   return (
     <section className="bg-surface-band">
-      <Container className="py-[clamp(72px,9vw,128px)]">
+      <Container className="py-[clamp(64px,7vw,104px)]">
         <p className="font-body font-medium text-brand-navy text-[clamp(26px,3.2vw,42px)] leading-[1.3] tracking-[-0.01em] max-w-[1040px]">
           About <Num>25,000</Num> airliners fly today. Airbus expects about <Num>49,000</Num> by 2044. Roughly{' '}
           <Num>half</Num> are leased, and the 31 largest lessors alone hold about <Num>$318B</Num> of aircraft. Every one of
@@ -101,7 +101,7 @@ const EXPERIENCE = [
 export function TeamAndInvestors() {
   return (
     <section className="bg-white" id="investors">
-      <Container className="py-[clamp(72px,9vw,120px)] grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
+      <Container className="py-[clamp(64px,7vw,104px)] grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
         <div>
           <H2>Built by people who have done the work.</H2>
           <Lede>

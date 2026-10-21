@@ -88,7 +88,7 @@ export default function HeroVideo({
       >
         <source src={video} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[#16223A]/70" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[#152032]/75" aria-hidden="true" />
 
       {motion && (
         <button
@@ -104,7 +104,7 @@ export default function HeroVideo({
         </button>
       )}
 
-      <div className="relative max-w-content mx-auto px-5 sm:px-10 pt-[clamp(72px,10vw,144px)] pb-[clamp(40px,5vw,64px)] md:min-h-[min(84vh,800px)] flex flex-col">
+      <div className="relative max-w-content mx-auto px-5 sm:px-10 pt-[clamp(56px,7vw,104px)] pb-[clamp(40px,5vw,64px)] md:min-h-[min(80vh,780px)] flex flex-col">
         <div className="flex-1 grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-10 md:gap-14 items-end">
           <div>
             <h1
@@ -122,7 +122,8 @@ export default function HeroVideo({
             {below && <div className="mt-4 font-body text-[15px] text-[#CBD5E1]">{below}</div>}
           </div>
           <div className="md:justify-self-end w-full md:w-auto">
-            <RecordCard record={records[index]} />
+            {/* keyed, so a new record fades in (globals.css .record-card) instead of snapping */}
+            <RecordCard key={index} record={records[index]} />
           </div>
         </div>
 

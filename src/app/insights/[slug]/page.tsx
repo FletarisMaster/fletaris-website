@@ -61,7 +61,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
               ))}
               <p className="mt-14 pt-8 border-t border-surface-border font-body text-[17px] leading-[1.6] text-text-body">
                 Fletaris reads the records lessors already keep and shows what each aircraft will need, cost and owe in the months
-                ahead.{' '}
+                ahead. It does not audit those records; it turns them into foresight.{' '}
                 <Link href="/air" className="text-brand-navy underline underline-offset-2">
                   See Fletaris Air
                 </Link>

@@ -67,7 +67,7 @@ export function FleetsList() {
               className={`row-span-3 md:row-span-1 w-full h-auto aspect-[4/3] object-cover block rounded-sm ${v.live ? '' : 'grayscale'}`}
             />
             <div className="flex items-center gap-3 min-w-0">
-              <Icon size={22} strokeWidth={1.5} className={`shrink-0 ${v.live ? 'text-[#0E7C82]' : 'text-text-secondary'}`} aria-hidden="true" />
+              <Icon size={22} strokeWidth={1.5} className={`shrink-0 ${v.live ? 'text-brand-navy' : 'text-text-secondary'}`} aria-hidden="true" />
               <span className="font-body font-semibold text-[20px] leading-[1.25] text-brand-navy">{v.assetCategory}</span>
             </div>
             {p && (

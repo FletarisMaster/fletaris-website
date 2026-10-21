@@ -14,15 +14,15 @@ const VERTICALS = [
 export default function Footer() {
   return (
     <footer className="tw bg-brand-navy">
-      <div className="max-w-content mx-auto px-5 sm:px-10 py-8">
+      <div className="max-w-content mx-auto px-5 sm:px-10 py-8 border-t border-white/15">
         <div className="flex flex-wrap items-center justify-between gap-8 pb-8 border-b border-white/15">
           <Image
             src="/images/logo-horizontal-darkbg.webp"
             alt="Fletaris"
-            width={140}
-            height={24}
-            className="h-6 w-auto"
-            style={{ width: 'auto', height: '1.5rem' }}
+            width={240}
+            height={74}
+            className="h-10 w-auto"
+            style={{ width: 'auto', height: '2.5rem' }}
           />
           <p className="font-body text-[13px] text-white/60">
             Intelligence layer for <b className="font-sans font-semibold text-brand-teal">regulated asset management</b>

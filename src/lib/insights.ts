@@ -41,6 +41,7 @@ export const INSIGHTS: Insight[] = [
         p: [
           'The gaps that hurt at return are usually visible in the records months earlier. Read against the return conditions, the records show which conditions will not be met on the date, what it would take to close them, and who is responsible for each.',
           'Found months ahead, a gap is a task with an owner. Found at the return location, it is a negotiation. That difference is what Fletaris is built to give a lessor: the return conditions read against the records continuously, well before the aircraft comes back.',
+          'Fletaris does not audit the records or replace the technical review at return. It works from the information the lessor’s team already keeps and shows where that information points, early enough to act.',
         ],
       },
     ],

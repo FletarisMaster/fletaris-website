@@ -10,8 +10,8 @@ import { PRIVACY_POLICY_URL } from '@/lib/waitlist';
 const LABEL = 'block font-sans text-[14px] font-medium text-brand-navy mb-2';
 const FIELD =
   'w-full bg-white border border-[#94A3B8] rounded-[3px] px-4 py-3 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
-// Same error red as the waitlist (6.3:1 on the band).
-const ERROR = 'mt-2 font-body text-[14px] text-[#B91C1C]';
+// Same error red as the waitlist (brand red-800, #991B1B).
+const ERROR = 'mt-2 font-body text-[14px] text-[#991B1B]';
 
 export default function InvestorForm() {
   return (
@@ -64,7 +64,7 @@ export default function InvestorForm() {
           id="investor-error-banner"
           role="alert"
           style={{ display: 'none' }}
-          className="mt-4 bg-[#FEF2F2] border border-[#FECACA] px-4 py-3 font-body text-[14px] text-[#B91C1C]"
+          className="mt-4 bg-[#FEE2E2] px-4 py-3 font-body text-[14px] text-[#991B1B]"
         >
           Something went wrong. Please try again.
         </div>

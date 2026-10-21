@@ -19,6 +19,7 @@ export default function TopNav() {
   const [open, setOpen] = useState(false);
   // Every page has the signup form (#waitlist) except /air/trust, which sends people to /air's.
   const cta = pathname === '/air/trust' ? '/air#waitlist' : '#waitlist';
+  const onAir = pathname === '/air' || pathname.startsWith('/air/');
 
   // While the menu is open: no page scroll behind it, and Escape closes it.
   useEffect(() => {
@@ -46,16 +47,25 @@ export default function TopNav() {
         Skip to content
       </a>
       <div className="max-w-content mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
-        <Link href="/" className="shrink-0" aria-label="Fletaris home">
+        {/* The Air pages add "Air" beside the logo (the fletaris-air lockup's "Air" is too small to
+            read at nav height); the logo itself is 32px tall everywhere. */}
+        <Link
+          href={onAir ? '/air' : '/'}
+          className="shrink-0 flex items-center rounded-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal"
+          aria-label={onAir ? 'Fletaris Air home' : 'Fletaris home'}
+        >
           <Image
             src="/images/logo-horizontal-darkbg.webp"
-            alt="Fletaris"
-            width={140}
-            height={24}
-            className="h-6 w-auto"
-            style={{ width: 'auto', height: '1.5rem' }}
+            alt=""
+            width={240}
+            height={74}
+            className="h-8 w-auto"
+            style={{ width: 'auto', height: '2rem' }}
             priority
           />
+          {onAir && (
+            <span className="ml-3 pl-3 border-l border-white/25 font-sans text-[20px] font-medium leading-none text-[#CBD5E1]">Air</span>
+          )}
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

@@ -130,6 +130,16 @@ a {
   }
 }
 
+/* The hero record card fades in when the hub montage moves to the next fleet. */
+.record-card {
+  animation: record-in 450ms ease-out both;
+}
+@keyframes record-in {
+  from {
+    opacity: 0;
+  }
+}
+
 ::selection {
   background: rgba(0, 196, 204, 0.25);
 }

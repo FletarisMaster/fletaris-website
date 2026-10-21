@@ -17,15 +17,16 @@ Never dark-with-glow, never decorative motion, never stock "AI" ornament.
 | Token | Hex | Role |
 |---|---|---|
 | `brand.navy` | `#1E2D4A` | Headlines and emphasis on light; nav bar; timeline band; closing band and footer |
-| hero tint | `#16223A` at 70% | Flat tint over hero footage (no gradients) |
+| hero tint | `#152032` (brand dark header) at 75% | Flat tint over hero footage (no gradients) |
 | `brand.teal` | `#00C4CC` | Lines and fills only: forward line, buttons on navy, small markers. Never body text on white |
-| teal ink | `#0E7C82` | Record IDs on white cards, live-vertical icon |
+| brand dark | `#0B1120` `#111827` `#152032` `#2D3F5C` | Record card (card, header/foresight block, border); only on the footage hero |
 | white | `#FFFFFF` | Page ground, record cards, form card |
 | `surface.band` | `#F1F5F9` | Alternate section ground, active list rows |
 | `text.body` | `#475569` | Running text on light |
 | `text.secondary` | `#64748B` | Captions, sources, notes |
 | on-navy text | `#E2E8F0` / `#CBD5E1` | Ledes / secondary text on navy |
-| status | `#EF4444` `#F59E0B` `#22C55E` | Only for readiness states (tags, timeline ticks) |
+| status | `#EF4444` `#F59E0B` `#22C55E` | Only for readiness states (tags, timeline ticks). On dark: text `#F87171` / `#FCD34D` / `#4ADE80` on a 15% tint (brand Option A). Errors on light: `#991B1B` on `#FEE2E2` |
+| neutrals | slate `#334155` `#475569` `#64748B` `#94A3B8` `#CBD5E1` `#E2E8F0` | Text and lines; no other greys |
 
 ## 3. Typography rules
 
@@ -42,12 +43,14 @@ Never dark-with-glow, never decorative motion, never stock "AI" ornament.
 
 - **Buttons:** radius 3px. Navy fill on light, teal fill with navy text on navy. One label: "Request
   early access" (investors: "Get the investor deck").
-- **Record card** (`RecordCard`, data in `src/lib/heroRecords.ts`): a dark product panel
-  (`#0B1120` at 92%, 1px white/15 border, radius 4px) modelled on the Fletaris Air hangar card:
-  header (kind · updated today), ID in teal mono + type, operator line, three usage stats in mono,
-  last route/track with a route line, four status chips (RAG dot + domain), and a foresight block
-  (event in N days, state tag, progress bar, outcome). All values synthetic; "Example data" or
-  "Illustrative example" note. Same layout for every asset class, its own fields.
+- **Record card** (`RecordCard`, data in `src/lib/heroRecords.ts`): built like the Fletaris Air hangar
+  card on the brand dark tokens (card `#111827`, header and foresight block `#152032`, border
+  `#2D3F5C`, radius 4px, flat). Header (kind · updated today); ID in teal mono + type; operator line;
+  three usage figures (sentence-case grey labels, Outfit tabular values); last route/track; four
+  domains with a RAG dot and a word (OK / Watch / Action); foresight block with the event date, one
+  status pill, "N days ahead", a measured bar with its value on the right edge, and the finding in
+  words. All values synthetic; "Example data" or "Illustrative example" note. Fades in when the hub
+  montage moves on (every 4.5 s).
 - **Footage hero** (`HeroVideo`): full-bleed muted loop + poster + flat tint, caps line, lede, email
   field, record card bottom-right, pause button top-right; /air adds the forward line.
 - **Capability list** (`CapabilityTabs`): questions as tabs on the left, a cropped product clip
@@ -58,7 +61,7 @@ Never dark-with-glow, never decorative motion, never stock "AI" ornament.
 ## 5. Layout principles
 
 - Container `max-w-content` (1440px) with 20px / 40px side padding; sections
-  `py-[clamp(72px,9vw,120px)]`.
+  `py-[clamp(64px,7vw,104px)]`.
 - Two-column splits `7fr / 5fr` from 940px (`md`), one column below.
 - Order of the argument, not stock order. Hub: footage hero → five fleets → timeline → three
   questions → monitor → market → team and investors → closing band. Air: footage hero → demo →

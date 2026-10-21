@@ -23,7 +23,8 @@ export interface HeroRecord {
     state: DueState;
     /** 0–1 for the bar */
     progress: number;
-    progressLabel: string;
+    /** what the bar measures, and its value as shown on the right */
+    measure: [label: string, value: string];
     detail: string;
   };
   note: string;
@@ -35,9 +36,9 @@ export const AIR_RECORD: HeroRecord = {
   type: 'Airbus A320-214',
   line: 'Liffey Air · 2 × CFM56-5B',
   stats: [
-    ['FH', '70,367'],
-    ['FC', '46,723'],
-    ['Age', '19.1 y'],
+    ['Flight hours', '70,367'],
+    ['Flight cycles', '46,723'],
+    ['Age', '19.1 years'],
   ],
   track: { label: 'Last flight', from: 'EIDW', to: 'LIRF', when: '13 Oct' },
   domains: [
@@ -51,8 +52,8 @@ export const AIR_RECORD: HeroRecord = {
     days: 40,
     state: 'notready',
     progress: 22 / 29,
-    progressLabel: '22 of 29 return conditions met',
-    detail: 'Est. $518K to close before return',
+    measure: ['Return conditions met', '22 / 29'],
+    detail: 'Estimated $518K to close before return',
   },
   note: 'Example data from the live product',
 };
@@ -65,9 +66,9 @@ export const HUB_RECORDS: HeroRecord[] = [
     type: 'Inspection quadcopter',
     line: 'Andes Survey Ops · 4 × 12S packs',
     stats: [
-      ['Flight h', '1,284'],
+      ['Flight hours', '1,284'],
       ['Sorties', '2,917'],
-      ['Packs', '312 cyc'],
+      ['Battery cycles', '312'],
     ],
     track: { label: 'Last mission', from: 'Base 2', to: 'Line 7 km 40', when: '18 Oct' },
     domains: [
@@ -81,7 +82,7 @@ export const HUB_RECORDS: HeroRecord[] = [
       days: 12,
       state: 'notready',
       progress: 0.96,
-      progressLabel: '96% of motor life used',
+      measure: ['Motor life used', '96%'],
       detail: 'Overhaul not booked; 3 missions planned',
     },
     note: 'Illustrative example · Drones',
@@ -92,9 +93,9 @@ export const HUB_RECORDS: HeroRecord[] = [
     type: 'Class 8 tractor',
     line: 'Northline Freight · leased unit',
     stats: [
-      ['km', '412,600'],
-      ['Engine h', '9,870'],
-      ['Age', '4.2 y'],
+      ['Odometer', '412,600 km'],
+      ['Engine hours', '9,870'],
+      ['Age', '4.2 years'],
     ],
     track: { label: 'Last trip', from: 'Depot 3', to: 'Port gate B', when: '20 Oct' },
     domains: [
@@ -108,7 +109,7 @@ export const HUB_RECORDS: HeroRecord[] = [
       days: 30,
       state: 'notready',
       progress: 1,
-      progressLabel: 'Brake lining at its wear limit',
+      measure: ['Brake lining worn', '100%'],
       detail: 'Replace before the inspection date',
     },
     note: 'Illustrative example · Trucks',
@@ -119,9 +120,9 @@ export const HUB_RECORDS: HeroRecord[] = [
     type: 'Supramax bulk carrier',
     line: 'Meridian Bulk · time charter',
     stats: [
-      ['Running h', '61,200'],
-      ['DWT', '58,000 t'],
-      ['Age', '9.8 y'],
+      ['Running hours', '61,200'],
+      ['Deadweight', '58,000 t'],
+      ['Age', '9.8 years'],
     ],
     track: { label: 'Last voyage', from: 'Santos', to: 'Rotterdam', when: '16 Oct' },
     domains: [
@@ -135,7 +136,7 @@ export const HUB_RECORDS: HeroRecord[] = [
       days: 70,
       state: 'notready',
       progress: 31 / 48,
-      progressLabel: '31 of 48 survey items closed',
+      measure: ['Survey items closed', '31 / 48'],
       detail: 'Dry-dock slot not yet booked',
     },
     note: 'Illustrative example · Vessels',
@@ -146,7 +147,7 @@ export const HUB_RECORDS: HeroRecord[] = [
     type: 'GEO communications',
     line: 'Orbital slot 75.0° W · 36 transponders',
     stats: [
-      ['In orbit', '11.4 y'],
+      ['In orbit', '11.4 years'],
       ['Propellant', '18%'],
       ['Uptime', '99.97%'],
     ],
@@ -162,7 +163,7 @@ export const HUB_RECORDS: HeroRecord[] = [
       days: 120,
       state: 'marginal',
       progress: 0.18,
-      progressLabel: '18% propellant left at renewal',
+      measure: ['Propellant left', '18%'],
       detail: 'Fuel margin under review by the insurer',
     },
     note: 'Illustrative example · Satellites',
