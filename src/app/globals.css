@@ -50,6 +50,11 @@ body {
   padding: 0;
 }
 
+/* In-page links (#waitlist, #demo, #investors…) land below the sticky 64px nav. */
+html {
+  scroll-padding-top: 4.5rem;
+}
+
 body {
   font-family: 'Outfit', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -115,7 +120,7 @@ a {
   border-color: #b91c1c !important;
 }
 
-/* The forward line draws once across the hero (src/components/site/ForwardLine.tsx). */
+/* The forward line draws once along the bottom of the /air hero (src/components/site/HeroVideo.tsx). */
 .forward-draw {
   animation: forward-draw 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) 400ms both;
 }
@@ -129,14 +134,6 @@ a {
   background: rgba(0, 196, 204, 0.25);
 }
 
-@keyframes carouselFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -2,114 +2,85 @@ import type { Metadata } from 'next';
 import TopNav from '@/components/TopNav';
 import Footer from '@/components/Footer';
 import Waitlist from '@/components/Waitlist';
-import HeroEmail from '@/components/site/HeroEmail';
-import ForwardLine from '@/components/site/ForwardLine';
+import HeroVideo from '@/components/site/HeroVideo';
 import FleetTimeline from '@/components/site/FleetTimeline';
-import { CompanyAndInvestors, Container, H2, Lede, MarketStatement, PhotoWithScreen } from '@/components/site/Sections';
-import { PhysicalWorld, ThreePatterns, VerticalsMosaic, VerticalsRow } from '@/components/site/HubSections';
+import { Container, H2, Lede, MarketStatement, TeamAndInvestors } from '@/components/site/Sections';
+import { FleetsList, PhysicalWorld, ThreePatterns } from '@/components/site/HubSections';
 import { pageMetadata } from '@/lib/site';
 import { FLEETS } from '@/lib/timelineFleets';
+import { HUB_RECORDS } from '@/lib/heroRecords';
 
 export const metadata: Metadata = pageMetadata({
   path: '/',
-  title: 'Fletaris — Fleet intelligence for assets that carry life limits',
+  title: 'Fletaris — Fleet intelligence that sees forward',
   description:
-    'Fletaris turns the technical records behind regulated fleets into a forward view of what each asset will need, cost and owe. Live for aviation today.',
-  ogImage: '/og/hub.jpg?v=2', // ?v= makes social sites refetch after a redesign
-  ogAlt: 'Fleet intelligence for assets that carry life limits: an A320 on the apron with the Fletaris hangar view, example data',
+    'Fletaris turns the technical records behind regulated fleets into a forward view of what each asset will need, cost and owe in the months ahead. Live for aviation today.',
+  ogImage: '/og/hub.jpg?v=3', // ?v= makes social sites refetch after a redesign
+  ogAlt: 'Fleet intelligence that sees forward: an airliner on the apron with one aircraft’s record, example data',
 });
 
-// The hub in direction D (F36; decisions in docs/brand/website-brand-decisions.md).
+// The hub (direction v2, 21 Oct 2026; decisions in docs/brand/website-brand-decisions.md):
+// five fleets, one method. Nothing here repeats /air except the closing form and the footer.
 export default function HubPage() {
   return (
     <div className="tw bg-white">
       <TopNav />
-      <main>
-        <section className="bg-white">
-          <Container className="pt-[clamp(40px,6vw,88px)]">
-            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 md:gap-14 items-center">
-              <div>
-                <h1
-                  className="font-body font-semibold text-brand-navy text-[clamp(40px,5vw,66px)] leading-[1.04] tracking-[-0.025em]"
-                  style={{ textWrap: 'balance' }}
-                >
-                  Fleet intelligence for assets that carry life limits.
-                </h1>
-                <p className="mt-6 font-body text-[19px] leading-[1.6] text-text-body max-w-[500px]">
-                  Aircraft, drones, trucks, vessels and satellites run on the same three things: parts that wear out, rules
-                  that must be met, and records that decide what happens next. Fletaris turns those records into a view of
-                  what is coming. Aviation is live today.
-                </p>
-                <div className="mt-8">
-                  <HeroEmail />
-                </div>
-                <p className="mt-4 font-body text-[15px] text-text-secondary">
-                  <a href="/air" className="text-brand-navy underline underline-offset-2">
-                    See Fletaris Air
-                  </a>{' '}
-                  or{' '}
-                  <a href="#fleet-timeline" className="text-brand-navy underline underline-offset-2">
-                    try the fleet timeline
-                  </a>
-                </p>
-              </div>
-              <PhotoWithScreen
-                picture={<VerticalsMosaic />}
-                screen="/media/fletaris-air-poster.webp"
-                screenAlt="The Fletaris hangar view in the live product, with example data"
-                caption="Aviation is live today: the Fletaris Air hangar view, with example data"
-              />
-            </div>
-            <ForwardLine
-              points={[
-                { when: 'Today', what: 'Your records, exactly as they are' },
-                { when: 'In 3 months', what: 'The next inspection or overhaul' },
-                { when: 'In 6 months', what: 'The commitments coming due' },
-                { when: 'In 12 months', what: 'The handover or the return' },
-                { when: 'In 24 months', what: 'The fleet you will be running' },
-              ]}
-            />
-          </Container>
-        </section>
+      <main id="main">
+        <HeroVideo
+          video="/media/hub-hero.mp4"
+          poster="/media/hub-hero.jpg"
+          heading="Fleet intelligence that sees forward."
+          lede="Aircraft, drones, trucks, vessels and satellites wear out, answer to rules and build up records. Fletaris turns those records into what each asset will need, cost and owe in the months ahead. Aviation is live today."
+          placeholder="you@company.com"
+          records={HUB_RECORDS}
+          segment={2.6}
+          below={
+            <>
+              <a href="/air" className="text-white underline underline-offset-2">
+                See Fletaris Air
+              </a>{' '}
+              or{' '}
+              <a href="#fleet-timeline" className="text-white underline underline-offset-2">
+                try the fleet timeline
+              </a>
+            </>
+          }
+        />
 
         <section className="bg-white">
           <Container className="py-[clamp(72px,9vw,120px)]">
-            <H2>One method, five kinds of fleet. We start where the stakes are highest.</H2>
-            <Lede>Aviation is live. Drones are next. Trucks, vessels and satellites are in research, built on the same core.</Lede>
-            <VerticalsRow />
+            <H2>One method, five kinds of fleet.</H2>
+            <Lede>We start where the stakes are highest. Aviation is live, drones are next, and trucks, vessels and satellites are in research on the same core.</Lede>
+            <FleetsList />
           </Container>
         </section>
 
         <FleetTimeline
-          heading="Pick a fleet. Drag the line and watch it come due."
-          lede="Aircraft are the live product’s example portfolio. Drones, trucks, vessels and satellites are illustrative fleets showing the same method. Move from today to 24 months ahead and see what comes due, and what will not be ready on the date."
+          heading="Pick a fleet and see what comes due."
+          lede="Aircraft are the live product’s example portfolio; drones, trucks, vessels and satellites are illustrative fleets using the same method. Drag the line into the months ahead and see what comes due, and what will not be ready on the date."
           fleets={[FLEETS.air, FLEETS.drone, FLEETS.land, FLEETS.sea, FLEETS.space]}
         />
 
         <section className="bg-surface-band">
           <Container className="py-[clamp(72px,9vw,120px)]">
-            <H2>Different assets. The same three questions.</H2>
+            <H2>Different assets, the same three questions.</H2>
             <ThreePatterns />
           </Container>
         </section>
 
         <section className="bg-white" id="monitor">
           <Container className="py-[clamp(72px,9vw,120px)]">
-            <p className="font-sans text-[13px] font-medium text-brand-navy">
-              <span className="underline decoration-brand-teal decoration-2 underline-offset-4">In development</span>
-            </p>
-            <H2 className="mt-4">Fletaris on the asset, not only on the screen.</H2>
+            <H2>Fletaris on the asset itself.</H2>
             <Lede>
-              The Fletaris monitor is a small device fixed to the asset. It measures the asset’s condition on its own and
-              sends it to Fletaris, so the intelligence and foresight follow the asset as it is every day, not only when
-              someone visits.
+              The Fletaris monitor, in development, is a small device fixed to the asset. It measures the asset’s condition on its
+              own and sends it to Fletaris, so the foresight follows the asset every day, not only when someone visits.
             </Lede>
             <PhysicalWorld />
           </Container>
         </section>
 
         <MarketStatement />
-        <CompanyAndInvestors />
+        <TeamAndInvestors />
         <Waitlist />
       </main>
       <Footer />

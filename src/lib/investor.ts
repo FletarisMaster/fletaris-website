@@ -143,10 +143,12 @@ export function bindInvestorForm(): () => void {
   }
 
   // "Request the investor deck" links elsewhere on the page (the fleet timeline) scroll here
-  // by their #investors href; put the cursor in the first field too.
+  // by their #investors href; open the form (it sits in a <details>) and put the cursor in the
+  // first field too.
   const onCtaClick = (e: Event) => {
     const a = (e.target as HTMLElement | null)?.closest?.('a[data-investor-cta]');
     if (!a) return;
+    (document.getElementById('investor-details') as HTMLDetailsElement | null)?.setAttribute('open', '');
     setTimeout(() => document.getElementById('investor-name')?.focus({ preventScroll: true }), 500);
   };
   document.addEventListener('click', onCtaClick);

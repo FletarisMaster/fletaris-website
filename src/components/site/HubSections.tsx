@@ -16,9 +16,10 @@ import DroneIcon from '@/components/icons/DroneIcon';
 import { VERTICALS, type VerticalKey } from '@/lib/verticals';
 import { PERSONAS } from '@/lib/personas';
 
-// Hub-only blocks for direction D. Statuses are stated plainly: aviation is live, drones are
-// in development, the rest are research. To an investor that reads as a focused start with a
-// roadmap, not five products at once.
+// Hub-only blocks. Statuses are stated plainly: aviation is live, drones are in development,
+// the rest are research. To an investor that reads as a focused start with a roadmap, not five
+// products at once. Photo rule: the live vertical in colour, the ones still to come in black
+// and white.
 
 const PHOTOS: Record<string, { src: string; alt: string }> = {
   air: { src: '/images/hub/air-tile.webp', alt: 'A narrowbody airliner on a maintenance stand' },
@@ -36,75 +37,57 @@ const ICONS: Record<VerticalKey, LucideIcon | typeof DroneIcon> = {
   space: Satellite,
 };
 
-/**
- * The hub's hero picture (so it no longer repeats /air's A320): aviation large and in colour,
- * the four verticals still to come smaller and in black and white, the same live/not-yet
- * rule as the verticals row below. Fills PhotoWithScreen's 16:11 frame. The tiles are the
- * row's own files, so they cost nothing extra further down the page.
- */
-export function VerticalsMosaic() {
-  const rest = ['drone', 'land', 'sea', 'space'];
-  return (
-    <div
-      role="img"
-      aria-label={`Five kinds of fleet: ${['air', ...rest].map((k) => PHOTOS[k].alt.charAt(0).toLowerCase() + PHOTOS[k].alt.slice(1)).join('; ')}`}
-      className="w-full aspect-[16/11] grid grid-cols-[minmax(0,11fr)_minmax(0,5fr)_minmax(0,5fr)] grid-rows-2 gap-1 bg-white"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={PHOTOS.air.src} alt="" fetchPriority="high" className="row-span-2 w-full h-full object-cover object-[50%_40%] block" />
-      {rest.map((k) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img key={k} src={PHOTOS[k].src} alt="" className="w-full h-full object-cover block grayscale" />
-      ))}
-    </div>
-  );
-}
-
 const STATUS: Record<string, string> = {
   'BUILT · V1': 'Live',
   'IN DEVELOPMENT': 'In development',
   RESEARCH: 'Research',
 };
 
-export function VerticalsRow() {
+/** The five fleets as one compact list (replaces the row of five identical photo cards). */
+export function FleetsList() {
   return (
-    <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-10">
+    <ul className="mt-12 grid gap-3">
       {VERTICALS.map((v) => {
         const p = PERSONAS.find((x) => x.key === v.key);
         const photo = PHOTOS[v.key];
         const Icon = ICONS[v.key];
-        const body = (
-          <>
+        const row = (
+          <div
+            className={`grid grid-cols-[72px_minmax(0,1fr)] sm:grid-cols-[120px_minmax(0,1fr)] md:grid-cols-[120px_minmax(0,4fr)_minmax(0,6fr)_210px] gap-x-5 md:gap-x-8 gap-y-1 items-center p-3 rounded-[3px] ${
+              v.live ? 'bg-surface-band' : ''
+            }`}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={photo.src}
               alt={photo.alt}
+              width={560}
+              height={700}
               loading="lazy"
-              className={`w-full aspect-[4/5] object-cover block ${v.live ? '' : 'grayscale opacity-80'}`}
+              className={`row-span-3 md:row-span-1 w-full h-auto aspect-[4/3] object-cover block rounded-sm ${v.live ? '' : 'grayscale'}`}
             />
-            <div className="mt-4 flex items-center justify-between gap-3">
-              <Icon size={26} strokeWidth={1.5} className={`shrink-0 ${v.live ? 'text-brand-teal' : 'text-text-secondary'}`} />
-              <span className={`font-sans text-[13px] font-medium ${v.live ? 'text-brand-navy underline decoration-brand-teal decoration-2 underline-offset-4' : 'text-text-secondary'}`}>
-                {STATUS[v.status]}
-              </span>
+            <div className="flex items-center gap-3 min-w-0">
+              <Icon size={22} strokeWidth={1.5} className={`shrink-0 ${v.live ? 'text-[#0E7C82]' : 'text-text-secondary'}`} aria-hidden="true" />
+              <span className="font-body font-semibold text-[20px] leading-[1.25] text-brand-navy">{v.assetCategory}</span>
             </div>
-            <span className="mt-2 block font-body font-semibold text-[20px] leading-[1.25] text-brand-navy">{v.assetCategory}</span>
             {p && (
-              <p className="mt-2 font-body text-[15px] leading-[1.5] text-text-body">
+              <p className="col-start-2 md:col-start-auto font-body text-[15px] leading-[1.5] text-text-body">
                 For the {p.title.toLowerCase()}: {p.body.charAt(0).toLowerCase() + p.body.slice(1)}.
               </p>
             )}
-          </>
+            <span className="col-start-2 md:col-start-auto md:justify-self-end whitespace-nowrap font-sans text-[14px] font-medium text-text-secondary">
+              {v.live ? <span className="font-semibold text-brand-navy group-hover:underline">Live · Open Fletaris Air →</span> : STATUS[v.status]}
+            </span>
+          </div>
         );
         return (
           <li key={v.key}>
             {v.live ? (
-              <Link href={v.href} className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal" aria-label={`${v.assetCategory}: live, open Fletaris Air`}>
-                {body}
-                <span className="mt-3 inline-block font-sans text-[14px] font-semibold text-brand-navy group-hover:underline">Open Fletaris Air →</span>
+              <Link href={v.href} className="block group rounded-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal">
+                {row}
               </Link>
             ) : (
-              body
+              row
             )}
           </li>
         );
@@ -131,7 +114,7 @@ const MEASURES: Array<{ icon: LucideIcon; title: string; body: string }> = [
   { icon: Smartphone, title: 'Check-ins', body: 'A phone tap on the device logs a visit and shows the asset’s status. Nothing to type.' },
 ];
 
-const FITS: Array<{ icon: LucideIcon; title: string; body: string }> = [
+const FITS = [
   { icon: Plane, title: 'Aircraft & engines', body: 'In storage: engines in containers or bags, and parked aircraft. This is where we start.' },
   { icon: Truck, title: 'Trucks & land vehicles', body: 'In operation and parked.' },
   { icon: Ship, title: 'Vessels & yachts', body: 'At sea and laid up.' },
@@ -142,9 +125,9 @@ export function PhysicalWorld() {
     <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-16 items-start">
       <div>
         <h3 className="font-sans text-[15px] font-semibold text-brand-navy">What it measures</h3>
-        <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-10 border-t-[3px] border-brand-teal">
+        <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7">
           {MEASURES.map(({ icon: Icon, title, body }) => (
-            <li key={title} className="flex gap-4 py-5 border-b border-surface-border">
+            <li key={title} className="flex gap-4">
               <Icon size={24} strokeWidth={1.5} className="shrink-0 mt-0.5 text-brand-navy" aria-hidden="true" />
               <div>
                 <span className="block font-body font-semibold text-[18px] leading-[1.3] text-brand-navy">{title}</span>
@@ -153,25 +136,32 @@ export function PhysicalWorld() {
             </li>
           ))}
         </ul>
-      </div>
-      <div>
-        <h3 className="font-sans text-[15px] font-semibold text-brand-navy">Where it goes</h3>
-        <ul className="mt-4 border-t-[3px] border-brand-teal">
+        <h3 className="mt-12 font-sans text-[15px] font-semibold text-brand-navy">Where it goes</h3>
+        <ul className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-6">
           {FITS.map(({ icon: Icon, title, body }) => (
-            <li key={title} className="flex gap-4 py-5 border-b border-surface-border">
-              <Icon size={24} strokeWidth={1.5} className="shrink-0 mt-0.5 text-brand-navy" aria-hidden="true" />
-              <div>
-                <span className="block font-body font-semibold text-[18px] leading-[1.3] text-brand-navy">{title}</span>
-                <p className="mt-1 font-body text-[15px] leading-[1.5] text-text-body">{body}</p>
-              </div>
+            <li key={title}>
+              <Icon size={24} strokeWidth={1.5} className="text-brand-navy" aria-hidden="true" />
+              <span className="mt-2 block font-body font-semibold text-[18px] leading-[1.3] text-brand-navy">{title}</span>
+              <p className="mt-1 font-body text-[15px] leading-[1.5] text-text-body">{body}</p>
             </li>
           ))}
         </ul>
-        <p className="mt-6 font-body text-[15px] leading-[1.6] text-text-body">
-          Every reading feeds Fletaris intelligence and foresight: what the asset will need, cost and owe when it goes back
-          to work.
-        </p>
       </div>
+      <figure className="m-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hub/air.webp"
+          alt="An A320 parked on a wet apron, maintenance stairs at the forward door"
+          width={1600}
+          height={1200}
+          loading="lazy"
+          className="w-full h-auto aspect-[4/3] object-cover object-[50%_40%] block rounded-sm"
+        />
+        <figcaption className="mt-3 font-body text-[14px] leading-[1.5] text-text-secondary">
+          Parked or in storage, an aircraft keeps ageing. The monitor records how, every day, and every reading feeds what it
+          will need, cost and owe when it goes back to work.
+        </figcaption>
+      </figure>
     </div>
   );
 }
@@ -180,7 +170,7 @@ export function ThreePatterns() {
   return (
     <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10">
       {PATTERNS.map((p) => (
-        <div key={p.title} className="border-t-[3px] border-brand-teal pt-6">
+        <div key={p.title}>
           <h3 className="font-body font-semibold text-[24px] text-brand-navy">{p.title}</h3>
           <p className="mt-3 font-body text-[17px] leading-[1.6] text-text-body">{p.body}</p>
         </div>
