@@ -100,9 +100,9 @@ export default function HubPage() {
             </p>
             <H2 className="mt-4">Fletaris on the asset, not only on the screen.</H2>
             <Lede>
-              Records say what was done. They do not say what the asset is going through today. The Fletaris monitor is a
-              small device fixed to the asset that measures its condition on its own and sends it to Fletaris, so the forecast
-              follows the asset as it is, between visits.
+              The Fletaris monitor is a small device fixed to the asset. It measures the asset’s condition on its own and
+              sends it to Fletaris, so the intelligence and foresight follow the asset as it is every day, not only when
+              someone visits.
             </Lede>
             <PhysicalWorld />
           </Container>

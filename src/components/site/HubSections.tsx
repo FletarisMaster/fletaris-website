@@ -168,8 +168,8 @@ export function PhysicalWorld() {
           ))}
         </ul>
         <p className="mt-6 font-body text-[15px] leading-[1.6] text-text-body">
-          Every reading goes into the same forecast as the records: what the asset will need, cost and owe when it goes
-          back to work.
+          Every reading feeds Fletaris intelligence and foresight: what the asset will need, cost and owe when it goes back
+          to work.
         </p>
       </div>
     </div>
