@@ -155,3 +155,18 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* One keyboard-focus ring for every control. Teal on the navy bands, navy on the light ones (rule
+   below), each with an opposite-tone halo; !important so the per-element `focus:outline-none`
+   utilities and ring-* colours can't remove or fade it. Only :focus-visible, so mouse clicks
+   show nothing. */
+:is(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #00c4cc !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 0 0 4px #1e2d4a !important;
+}
+/* Inside the light bands the ring flips to navy on white. */
+:is(section.bg-white, form.bg-white, section.bg-surface-band, section.bg-surface-page, section.bg-surface-card) :is(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: #1e2d4a !important;
+  box-shadow: 0 0 0 4px #ffffff !important;
+}
