@@ -13,7 +13,7 @@ import { DATA_OWNERSHIP_LINE, DATA_TRUST_URL, NOT_AN_AUDIT_LINE, PRIVACY_POLICY_
 
 const LABEL = 'block font-sans text-[14px] font-medium text-brand-navy mb-2';
 const FIELD =
-  'w-full bg-white border border-[#94A3B8] rounded-[3px] px-4 py-3.5 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
+  'w-full bg-white border border-[#7C8CA3] rounded-[3px] px-4 py-3.5 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
 
 export default function Waitlist({ vertical }: { vertical?: Vertical }) {
   return (

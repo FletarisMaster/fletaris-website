@@ -45,7 +45,7 @@ const config: Config = {
         },
         text: {
           primary: '#020202',
-          secondary: '#64748B',
+          secondary: '#5B6B80', // 5.0:1 on the #F1F5F9 band (was #64748B, 4.34:1)
           body: '#475569', // running text on light (direction D)
           'on-dark': '#F1F5F9', // brand dark text primary
           'on-dark-dim': '#94A3B8', // brand dark text secondary

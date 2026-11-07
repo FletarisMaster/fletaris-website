@@ -9,7 +9,7 @@ import { PRIVACY_POLICY_URL } from '@/lib/waitlist';
 
 const LABEL = 'block font-sans text-[14px] font-medium text-brand-navy mb-2';
 const FIELD =
-  'w-full bg-white border border-[#94A3B8] rounded-[3px] px-4 py-3 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
+  'w-full bg-white border border-[#7C8CA3] rounded-[3px] px-4 py-3 text-text-primary font-body text-[16px] outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-teal/50';
 // Same error red as the waitlist (brand red-800, #991B1B).
 const ERROR = 'mt-2 font-body text-[14px] text-[#991B1B]';
 
@@ -72,7 +72,7 @@ export default function InvestorForm() {
         <button
           type="submit"
           disabled
-          className="mt-6 inline-flex font-sans text-[15px] font-semibold text-white bg-brand-navy rounded-[3px] px-5 py-3.5 hover:bg-brand-navy-alt transition-colors disabled:opacity-60 disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-teal"
+          className="mt-6 inline-flex whitespace-nowrap font-sans text-[15px] font-semibold text-white bg-brand-navy rounded-[3px] px-5 py-3.5 hover:bg-brand-navy-alt transition-colors disabled:opacity-60 disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-teal"
         >
           Request the investor deck
         </button>

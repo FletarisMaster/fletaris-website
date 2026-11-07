@@ -56,7 +56,7 @@ export default function HeroEmail({
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
           className={`flex-[1_1_220px] min-w-0 font-body text-[16px] text-text-primary bg-white border rounded-[3px] px-4 py-3.5 outline-none focus:ring-2 ${
-            dark ? 'border-white focus:ring-brand-teal' : 'border-[#94A3B8] focus:border-brand-navy focus:ring-brand-teal/50'
+            dark ? 'border-white focus:ring-brand-teal' : 'border-[#7C8CA3] focus:border-brand-navy focus:ring-brand-teal/50'
           }`}
         />
         <button
